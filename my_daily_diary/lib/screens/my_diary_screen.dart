@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_daily_diary/app_theme.dart';
+import 'package:my_daily_diary/widgets/diary_list_view.dart';
 
 class MyDiaryScreen extends StatelessWidget {
   static const routName = '/';
@@ -23,8 +24,17 @@ class MyDiaryScreen extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).padding.top,
             ),
-            _getAppBarUI(),
-            _getNewDiary(context),
+            Expanded(
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  children: [
+                    _getAppBarUI(),
+                    _getNewDiary(context),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -51,55 +61,70 @@ class MyDiaryScreen extends StatelessWidget {
   Widget _getNewDiary(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 8, left: 18, right: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Column(
         children: [
-          Text(
-            'NootBooks',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          PopupMenuButton(
-            // icon: FaIcon(FontAwesomeIcons.ellipsisH),
-            // color: Colors.black.withOpacity(0.2),
-            itemBuilder: (context) {
-              return [
-                PopupMenuItem(
-                  child: ListTile(
-                    leading: Icon(Icons.add),
-                    title: Text('Add New Diary'),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return Dialog(
-                            child: Container(
-                              height: MediaQuery.of(context).size.height / 2,
-                              child: Column(
-                                children: [],
-                              ),
-                            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'NootBooks',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              PopupMenuButton(
+                itemBuilder: (context) {
+                  return [
+                    PopupMenuItem(
+                      child: ListTile(
+                        leading: Icon(Icons.add),
+                        title: Text('Add New Diary'),
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Dialog(
+                                child: Container(
+                                  height:
+                                      MediaQuery.of(context).size.height / 2,
+                                  child: Column(
+                                    children: [],
+                                  ),
+                                ),
+                              );
+                            },
                           );
                         },
-                      );
-                    },
-                  ),
-                ),
-              ];
-            },
+                      ),
+                    ),
+                    PopupMenuItem(
+                      child: ListTile(
+                        leading: Icon(Icons.delete),
+                        title: Text('Delete All Diaries'),
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text(
+                                    'Are you sure that you want to delete all your diaries?'),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ];
+                },
+              ),
+            ],
           ),
-          // IconButton(
-          //   icon: FaIcon(FontAwesomeIcons.ellipsisH),
-          //   color: Colors.black.withOpacity(0.5),
-          //   onPressed: () {
-          //     showMenu(context: context, position: null, items: null);
-          //   },
-          // ),
+          const SizedBox(height: 16),
+          DiaryListView(),
         ],
       ),
     );
