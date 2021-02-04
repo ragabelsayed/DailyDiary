@@ -1,12 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Diary {
-  String id;
-  String name;
-  String image;
-  Color customColor;
-  String password;
+  final String id;
+  final String name;
+  final File image;
+  final Color customColor;
+  final String password;
 
   Diary({this.id, this.name, this.image, this.customColor, this.password});
 

@@ -34,7 +34,7 @@ class _DiaryListViewState extends State<DiaryListView>
 
   @override
   Widget build(BuildContext context) {
-    final _diaryData = Provider.of<DiaryData>(context, listen: true).items;
+    final _diaryData = Provider.of<DiaryData>(context).items;
     return FutureBuilder(
       future: _getData(),
       builder: (context, snapshot) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
+
 import 'package:provider/provider.dart';
 import './screens/my_diary_screen.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
+        //home: UserColorPicker(),
         initialRoute: MyDiaryScreen.routName,
         routes: {
           MyDiaryScreen.routName: (ctx) => MyDiaryScreen(),

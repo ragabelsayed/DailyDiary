@@ -14,7 +14,7 @@ class DiaryData with ChangeNotifier {
     return [..._items];
   }
 
-  void _addItem(Diary diary) {
+  void addItem(Diary diary) {
     _items.add(diary);
     notifyListeners();
   }

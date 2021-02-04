@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:my_daily_diary/app_theme.dart';
+import 'package:my_daily_diary/widgets/dialog_view.dart';
 import 'package:my_daily_diary/widgets/diary_list_view.dart';
 
 class MyDiaryScreen extends StatelessWidget {
@@ -87,15 +88,7 @@ class MyDiaryScreen extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder: (context) {
-                              return Dialog(
-                                child: Container(
-                                  height:
-                                      MediaQuery.of(context).size.height / 2,
-                                  child: Column(
-                                    children: [],
-                                  ),
-                                ),
-                              );
+                              return DialogView();
                             },
                           );
                         },
