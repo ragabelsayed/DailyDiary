@@ -84,48 +84,78 @@ class DiaryView extends StatelessWidget {
   const DiaryView({this.diaryData, this.animationController, this.animation});
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: animationController,
-      builder: (context, child) {
-        return FadeTransition(
-          opacity: animation,
-          child: Transform(
-            transform:
-                Matrix4.translationValues(100 * (1.0 * animation.value), 0, 0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                      width: 130,
-                      decoration: BoxDecoration(
-                        color: diaryData.customColor,
-                        borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(15),
-                          bottomRight: Radius.circular(15),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.7),
-                            offset: const Offset(2.0, 2.0),
-                            blurRadius: 10,
+    return Padding(
+      padding: const EdgeInsets.only(right: 16),
+      child: AnimatedBuilder(
+        animation: animationController,
+        builder: (context, child) {
+          return FadeTransition(
+            opacity: animation,
+            child: Transform(
+              transform:
+                  Matrix4.translationValues(30 * (1.0 * animation.value), 0, 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 130,
+                        decoration: BoxDecoration(
+                          color: diaryData.customColor,
+                          borderRadius: const BorderRadius.only(
+                            topRight: Radius.circular(15),
+                            bottomRight: Radius.circular(15),
+                            topLeft: Radius.circular(3),
+                            bottomLeft: Radius.circular(3),
                           ),
-                        ],
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.topRight,
+                            colors: [
+                              diaryData.customColor != null
+                                  ? diaryData.customColor.withAlpha(255)
+                                  : Colors.pink,
+                              diaryData.customColor != null
+                                  ? diaryData.customColor.withAlpha(50)
+                                  : Colors.pink.withRed(5),
+                            ],
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.7),
+                              offset: const Offset(2.0, 2.0),
+                              blurRadius: 10,
+                            ),
+                          ],
+                        ),
+                        child: diaryData.image == null
+                            ? Text('')
+                            : ClipRRect(
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(15),
+                                  bottomRight: Radius.circular(15),
+                                  topLeft: Radius.circular(3),
+                                  bottomLeft: Radius.circular(3),
+                                ),
+                                child: Image.file(
+                                  diaryData.image,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                       ),
-                      child: null,
                     ),
                   ),
-                ),
-                const SizedBox(height: 15),
-                Text(diaryData.name),
-              ],
+                  const SizedBox(height: 15),
+                  Text(diaryData.name),
+                ],
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

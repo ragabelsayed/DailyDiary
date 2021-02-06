@@ -44,7 +44,7 @@ class MyDiaryScreen extends StatelessWidget {
 
   Widget _getAppBarUI() {
     return Padding(
-      padding: const EdgeInsets.only(top: 15, left: 18, right: 18),
+      padding: const EdgeInsets.only(top: 15, left: 16, right: 16),
       child: Center(
         child: Text(
           'My Diaries',
@@ -61,7 +61,7 @@ class MyDiaryScreen extends StatelessWidget {
 
   Widget _getNewDiary(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8, left: 18, right: 16),
+      padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
       child: Column(
         children: [
           Row(

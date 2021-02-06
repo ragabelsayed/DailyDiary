@@ -6,7 +6,12 @@ import 'package:my_daily_diary/providers/diary_data.dart';
 import 'package:my_daily_diary/widgets/cover_picker.dart';
 import 'package:provider/provider.dart';
 
-class DialogView extends StatelessWidget {
+class DialogView extends StatefulWidget {
+  @override
+  _DialogViewState createState() => _DialogViewState();
+}
+
+class _DialogViewState extends State<DialogView> {
   final _form = GlobalKey<FormState>();
 
   Diary _newDiary = Diary(
@@ -30,11 +35,13 @@ class DialogView extends StatelessWidget {
         customColor: pickcolor,
       );
     } else if (pickcolor == null && image != null) {
-      _newDiary = Diary(
-        id: _newDiary.id,
-        name: _newDiary.name,
-        image: image,
-      );
+      setState(() {
+        _newDiary = Diary(
+          id: _newDiary.id,
+          name: _newDiary.name,
+          image: image,
+        );
+      });
     }
   }
 
@@ -80,6 +87,7 @@ class DialogView extends StatelessWidget {
                         id: DateTime.now().toString(),
                         name: newValue,
                         customColor: _newDiary.customColor,
+                        image: _newDiary.image,
                       ),
                     ),
                   ),
