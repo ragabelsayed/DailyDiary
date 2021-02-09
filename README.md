@@ -6,4 +6,5 @@ MyDiary  app for stores.
 - Give users full control to Secure and lock his Diary or exact chapter or day.
 - Use bin code and fingerprint.
 - Choose to hide any diary or chapter or day. 
+- Multi themes to choose.
 
