@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_daily_diary/app_theme.dart';
 import 'package:my_daily_diary/widgets/dialog_view.dart';
 import 'package:my_daily_diary/widgets/diary_list_view.dart';
+import 'package:my_daily_diary/widgets/title_view.dart';
 
 class MyDiaryScreen extends StatelessWidget {
   static const routName = '/';
@@ -31,7 +32,7 @@ class MyDiaryScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     _getAppBarUI(),
-                    _getNewDiary(context),
+                    Expanded(child: _getNewDiary(context)),
                   ],
                 ),
               ),
@@ -60,66 +61,22 @@ class MyDiaryScreen extends StatelessWidget {
   }
 
   Widget _getNewDiary(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'NootBooks',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              PopupMenuButton(
-                itemBuilder: (context) {
-                  return [
-                    PopupMenuItem(
-                      child: ListTile(
-                        leading: Icon(Icons.add),
-                        title: Text('Add New Diary'),
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return DialogView();
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                    PopupMenuItem(
-                      child: ListTile(
-                        leading: Icon(Icons.delete),
-                        title: Text('Delete All Diaries'),
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: Text(
-                                    'Are you sure that you want to delete all your diaries?'),
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ];
-                },
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          DiaryListView(),
-        ],
-      ),
+    return Column(
+      children: [
+        TitleView(
+          titleName: 'Diaries',
+          add: 'Add New Diary',
+          delete: 'Delete All Diaries',
+          deleteMessage:
+              'Are you sure that you want to delete all your diaries?',
+          inputDialogName: 'Diary Name',
+          inputDialogHint: 'Ex: 2020, Secret ...ets',
+          inputDialogCoverName: 'Diary Cover',
+          inputDialogAction: AddAction.diary,
+        ),
+        const SizedBox(height: 16),
+        DiaryListView(),
+      ],
     );
   }
 }

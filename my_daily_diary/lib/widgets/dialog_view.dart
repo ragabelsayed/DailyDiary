@@ -1,12 +1,21 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:my_daily_diary/models/chapter.dart';
 import 'package:my_daily_diary/models/diary.dart';
+import 'package:my_daily_diary/providers/chapter_data.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
 import 'package:my_daily_diary/widgets/cover_picker.dart';
 import 'package:provider/provider.dart';
 
+enum AddAction { diary, chapter }
+
 class DialogView extends StatefulWidget {
+  final String name;
+  final String hint;
+  final String coverName;
+  final AddAction action;
+  const DialogView({this.name, this.hint, this.coverName, this.action});
   @override
   _DialogViewState createState() => _DialogViewState();
 }
@@ -21,27 +30,60 @@ class _DialogViewState extends State<DialogView> {
     image: null,
   );
 
+  Chapter _newChapter = Chapter(name: '', image: '');
+
   void _saveForm(BuildContext context) {
-    _form.currentState.save();
-    Provider.of<DiaryData>(context, listen: false).addItem(_newDiary);
-    Navigator.pop(context);
+    switch (widget.action) {
+      case AddAction.diary:
+        _form.currentState.save();
+        Provider.of<DiaryData>(context, listen: false).addItem(_newDiary);
+        Navigator.pop(context);
+        break;
+      case AddAction.chapter:
+        _form.currentState.save();
+        Provider.of<ChapterData>(context, listen: false).addItem(_newChapter);
+        Navigator.pop(context);
+        break;
+    }
   }
 
-  void _diaryCover(Color pickcolor, File image) {
-    if (pickcolor != null && image == null) {
-      _newDiary = Diary(
-        id: _newDiary.id,
-        name: _newDiary.name,
-        customColor: pickcolor,
-      );
-    } else if (pickcolor == null && image != null) {
-      setState(() {
-        _newDiary = Diary(
-          id: _newDiary.id,
-          name: _newDiary.name,
-          image: image,
-        );
-      });
+  void _getCover(Color pickcolor, File image) {
+    switch (widget.action) {
+      case AddAction.diary:
+        if (pickcolor != null && image == null) {
+          _newDiary = Diary(
+            id: _newDiary.id,
+            name: _newDiary.name,
+            customColor: pickcolor,
+          );
+        } else if (pickcolor == null && image != null) {
+          setState(() {
+            _newDiary = Diary(
+              id: _newDiary.id,
+              name: _newDiary.name,
+              image: image,
+            );
+          });
+        }
+        break;
+
+      case AddAction.chapter:
+        if (pickcolor != null && image == null) {
+          _newDiary = Diary(
+            id: _newDiary.id,
+            name: _newDiary.name,
+            customColor: pickcolor,
+          );
+        } else if (pickcolor == null && image != null) {
+          setState(() {
+            _newDiary = Diary(
+              id: _newDiary.id,
+              name: _newDiary.name,
+              image: image,
+            );
+          });
+        }
+        break;
     }
   }
 
@@ -65,12 +107,12 @@ class _DialogViewState extends State<DialogView> {
                 children: [
                   Text.rich(
                     TextSpan(
-                      text: 'Diary Name',
+                      text: widget.name,
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                       children: [
                         TextSpan(
-                          text: '*',
+                          text: ' *',
                           style: TextStyle(color: Colors.red),
                         ),
                       ],
@@ -81,7 +123,7 @@ class _DialogViewState extends State<DialogView> {
                         const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                     child: TextFormField(
                       decoration: InputDecoration(
-                        hintText: 'Ex: 2020, Secret ...ets',
+                        hintText: widget.hint,
                       ),
                       onSaved: (newValue) => _newDiary = Diary(
                         id: DateTime.now().toString(),
@@ -93,18 +135,18 @@ class _DialogViewState extends State<DialogView> {
                   ),
                   Text.rich(
                     TextSpan(
-                      text: 'Diary Cover',
+                      text: widget.coverName,
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                       children: [
                         TextSpan(
-                          text: '*',
+                          text: ' *',
                           style: TextStyle(color: Colors.red),
                         ),
                       ],
                     ),
                   ),
-                  CoverPicker(_diaryCover),
+                  CoverPicker(_getCover),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,

@@ -18,4 +18,9 @@ class DiaryData with ChangeNotifier {
     _items.add(diary);
     notifyListeners();
   }
+
+  void removeItem(int index) {
+    _items.removeAt(index);
+    notifyListeners();
+  }
 }

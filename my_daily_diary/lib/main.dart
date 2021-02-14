@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_daily_diary/providers/chapter_data.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
 
 import 'package:provider/provider.dart';
@@ -11,8 +12,15 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => DiaryData(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => DiaryData(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ChapterData(),
+        ),
+      ],
       child: MaterialApp(
         title: 'MyDiary',
         debugShowCheckedModeBanner: false,

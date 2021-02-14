@@ -15,6 +15,7 @@ dependencies:
   provider: ^4.3.3
   image_picker: ^0.6.7+22
   flutter_colorpicker: ^0.3.5
+  flutter_slidable: ^0.5.7
   font_awesome_flutter: ^8.11.0
   cupertino_icons: ^1.0.0
 
@@ -24,3 +25,10 @@ dev_dependencies:
 
 flutter: 
   uses-material-design: true
+
+  assets:
+  
+    - lib/assets/images/winter.png
+    - lib/assets/images/summer.png
+    - lib/assets/images/autumn.png
+    - lib/assets/images/spring.png
