@@ -77,8 +77,26 @@ class ChapterView extends StatelessWidget {
           contentPadding:
               const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
           leading: CircleAvatar(
-              radius: 25, backgroundImage: AssetImage(chapterData.image)
-              //child: Image.asset(chapterData.image),
+              radius: 25,
+              //backgroundImage: AssetImage(chapterData.backgroundImage),
+              backgroundColor: chapterData.customColor != null
+                  ? chapterData.customColor.withAlpha(255)
+                  : Colors.pink.shade700,
+              child: chapterData.image == null
+                  ? Text('')
+                  : Image.file(chapterData.image)
+              // : ClipRRect(
+              //     borderRadius: BorderRadius.only(
+              //       topRight: Radius.circular(15),
+              //       bottomRight: Radius.circular(15),
+              //       topLeft: Radius.circular(3),
+              //       bottomLeft: Radius.circular(3),
+              //     ),
+              //     child: Image.file(
+              //       diaryData.image,
+              //       fit: BoxFit.cover,
+              //     ),
+              //   ),
               ),
           title: Text(
             chapterData.name,

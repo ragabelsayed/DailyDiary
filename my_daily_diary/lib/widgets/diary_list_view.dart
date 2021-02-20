@@ -55,7 +55,7 @@ class _DiaryListViewState extends State<DiaryListView>
     ));
   }
 
-  void _addChapter(Chapter chapter) {
+  void _addChapter(int index, Chapter chapter) {
     Provider.of<ChapterData>(context, listen: false).addItem(Chapter());
     key.currentState;
     Scaffold.of(context).showSnackBar(SnackBar(
@@ -123,15 +123,12 @@ class _DiaryListViewState extends State<DiaryListView>
                 const SizedBox(height: 16),
                 TitleView(
                   titleName: 'Chapters',
-                  add: 'Add New Chapter',
-                  delete: 'Delete All Chapters',
-                  deleteMessage:
-                      'Are you sure that you want to delete all your chapters?',
                   inputDialogName: 'Chapter Name',
                   inputDialogHint: 'Ex: collection,importent ...ets',
                   inputDialogCoverName: 'Chapter Cover',
                   inputDialogAction: AddAction.chapter,
                 ),
+                const SizedBox(height: 5),
                 // height: MediaQuery.of(context).size.height / 2,
                 _chapterData.isNotEmpty
                     ? Expanded(

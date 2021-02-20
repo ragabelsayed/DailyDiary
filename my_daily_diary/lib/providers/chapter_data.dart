@@ -3,18 +3,18 @@ import 'package:my_daily_diary/models/chapter.dart';
 
 class ChapterData with ChangeNotifier {
   List<Chapter> _items = [
-    Chapter(name: 'January', image: 'lib/assets/images/winter.png'),
-    Chapter(name: 'February', image: 'lib/assets/images/winter.png'),
-    Chapter(name: 'March', image: 'lib/assets/images/spring.png'),
-    Chapter(name: 'April', image: 'lib/assets/images/spring.png'),
-    Chapter(name: 'May', image: 'lib/assets/images/spring.png'),
-    Chapter(name: 'June', image: 'lib/assets/images/summer.png'),
-    Chapter(name: 'July', image: 'lib/assets/images/summer.png'),
-    Chapter(name: 'August', image: 'lib/assets/images/summer.png'),
-    Chapter(name: 'September', image: 'lib/assets/images/autumn.png'),
-    Chapter(name: 'October', image: 'lib/assets/images/autumn.png'),
-    Chapter(name: 'November', image: 'lib/assets/images/autumn.png'),
-    Chapter(name: 'December', image: 'lib/assets/images/winter.png'),
+    Chapter(name: 'January', backgroundImage: 'lib/assets/images/winter.png'),
+    Chapter(name: 'February', backgroundImage: 'lib/assets/images/winter.png'),
+    Chapter(name: 'March', backgroundImage: 'lib/assets/images/spring.png'),
+    Chapter(name: 'April', backgroundImage: 'lib/assets/images/spring.png'),
+    Chapter(name: 'May', backgroundImage: 'lib/assets/images/spring.png'),
+    Chapter(name: 'June', backgroundImage: 'lib/assets/images/summer.png'),
+    Chapter(name: 'July', backgroundImage: 'lib/assets/images/summer.png'),
+    Chapter(name: 'August', backgroundImage: 'lib/assets/images/summer.png'),
+    Chapter(name: 'September', backgroundImage: 'lib/assets/images/autumn.png'),
+    Chapter(name: 'October', backgroundImage: 'lib/assets/images/autumn.png'),
+    Chapter(name: 'November', backgroundImage: 'lib/assets/images/autumn.png'),
+    Chapter(name: 'December', backgroundImage: 'lib/assets/images/winter.png'),
   ];
 
   List<Chapter> get items {

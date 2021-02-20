@@ -4,18 +4,12 @@ import 'dialog_view.dart';
 
 class TitleView extends StatelessWidget {
   final String titleName;
-  final String add;
-  final String delete;
-  final String deleteMessage;
   final String inputDialogName;
   final String inputDialogHint;
   final String inputDialogCoverName;
   final AddAction inputDialogAction;
   const TitleView(
       {this.titleName,
-      this.add,
-      this.delete,
-      this.deleteMessage,
       this.inputDialogName,
       this.inputDialogHint,
       this.inputDialogCoverName,
@@ -37,47 +31,63 @@ class TitleView extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          PopupMenuButton(
-            itemBuilder: (context) {
-              return [
-                PopupMenuItem(
-                  child: ListTile(
-                    leading: Icon(Icons.add),
-                    title: Text(add),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return DialogView(
-                            name: inputDialogName,
-                            hint: inputDialogHint,
-                            coverName: inputDialogCoverName,
-                            action: inputDialogAction,
-                          );
-                        },
-                      );
-                    },
-                  ),
-                ),
-                PopupMenuItem(
-                  child: ListTile(
-                    leading: Icon(Icons.delete),
-                    title: Text(delete),
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text(deleteMessage),
-                          );
-                        },
-                      );
-                    },
-                  ),
-                ),
-              ];
+          FloatingActionButton.extended(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return DialogView(
+                    name: inputDialogName,
+                    hint: inputDialogHint,
+                    coverName: inputDialogCoverName,
+                    action: inputDialogAction,
+                  );
+                },
+              );
             },
+            label: Icon(Icons.add),
           ),
+          // PopupMenuButton(
+          //   itemBuilder: (context) {
+          //     return [
+          //       PopupMenuItem(
+          //         child: ListTile(
+          //           leading: Icon(Icons.add),
+          //           title: Text(add),
+          //           onTap: () {
+          //             showDialog(
+          //               context: context,
+          //               builder: (context) {
+          //                 return DialogView(
+          //                   name: inputDialogName,
+          //                   hint: inputDialogHint,
+          //                   coverName: inputDialogCoverName,
+          //                   action: inputDialogAction,
+          //                 );
+          //               },
+          //             );
+          //           },
+          //         ),
+          //       ),
+          //       PopupMenuItem(
+          //         child: ListTile(
+          //           leading: Icon(Icons.delete),
+          //           title: Text(delete),
+          //           onTap: () {
+          //             showDialog(
+          //               context: context,
+          //               builder: (context) {
+          //                 return AlertDialog(
+          //                   title: Text(deleteMessage),
+          //                 );
+          //               },
+          //             );
+          //           },
+          //         ),
+          //       ),
+          //     ];
+          //   },
+          // ),
         ],
       ),
     );

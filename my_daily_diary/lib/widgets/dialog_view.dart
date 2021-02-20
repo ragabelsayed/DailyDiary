@@ -30,7 +30,11 @@ class _DialogViewState extends State<DialogView> {
     image: null,
   );
 
-  Chapter _newChapter = Chapter(name: '', image: '');
+  Chapter _newChapter = Chapter(
+    name: '',
+    image: null,
+    customColor: Colors.cyan,
+  );
 
   void _saveForm(BuildContext context) {
     switch (widget.action) {
@@ -69,16 +73,14 @@ class _DialogViewState extends State<DialogView> {
 
       case AddAction.chapter:
         if (pickcolor != null && image == null) {
-          _newDiary = Diary(
-            id: _newDiary.id,
-            name: _newDiary.name,
+          _newChapter = Chapter(
+            name: _newChapter.name,
             customColor: pickcolor,
           );
         } else if (pickcolor == null && image != null) {
           setState(() {
-            _newDiary = Diary(
-              id: _newDiary.id,
-              name: _newDiary.name,
+            _newChapter = Chapter(
+              name: _newChapter.name,
               image: image,
             );
           });
@@ -125,12 +127,25 @@ class _DialogViewState extends State<DialogView> {
                       decoration: InputDecoration(
                         hintText: widget.hint,
                       ),
-                      onSaved: (newValue) => _newDiary = Diary(
-                        id: DateTime.now().toString(),
-                        name: newValue,
-                        customColor: _newDiary.customColor,
-                        image: _newDiary.image,
-                      ),
+                      onSaved: (newValue) {
+                        switch (widget.action) {
+                          case AddAction.diary:
+                            return _newDiary = Diary(
+                              id: DateTime.now().toString(),
+                              name: newValue,
+                              customColor: _newDiary.customColor,
+                              image: _newDiary.image,
+                            );
+                            break;
+                          case AddAction.chapter:
+                            return _newChapter = Chapter(
+                              name: newValue,
+                              customColor: _newChapter.customColor,
+                              image: _newChapter.image,
+                            );
+                            break;
+                        }
+                      },
                     ),
                   ),
                   Text.rich(

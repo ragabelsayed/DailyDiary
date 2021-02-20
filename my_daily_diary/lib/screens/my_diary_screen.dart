@@ -65,10 +65,6 @@ class MyDiaryScreen extends StatelessWidget {
       children: [
         TitleView(
           titleName: 'Diaries',
-          add: 'Add New Diary',
-          delete: 'Delete All Diaries',
-          deleteMessage:
-              'Are you sure that you want to delete all your diaries?',
           inputDialogName: 'Diary Name',
           inputDialogHint: 'Ex: 2020, Secret ...ets',
           inputDialogCoverName: 'Diary Cover',
