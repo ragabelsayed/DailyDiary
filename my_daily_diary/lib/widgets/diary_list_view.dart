@@ -194,53 +194,59 @@ class DiaryView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        width: 130,
-                        decoration: BoxDecoration(
-                          color: diaryData.customColor,
-                          borderRadius: const BorderRadius.only(
-                            topRight: Radius.circular(15),
-                            bottomRight: Radius.circular(15),
-                            topLeft: Radius.circular(3),
-                            bottomLeft: Radius.circular(3),
-                          ),
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.topRight,
-                            colors: [
-                              diaryData.customColor != null
-                                  ? diaryData.customColor.withAlpha(255)
-                                  : Colors.pink,
-                              diaryData.customColor != null
-                                  ? diaryData.customColor.withAlpha(50)
-                                  : Colors.pink.withRed(5),
-                            ],
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.7),
-                              offset: const Offset(2.0, 2.0),
-                              blurRadius: 10,
-                            ),
-                          ],
-                        ),
-                        child: diaryData.image == null
-                            ? Text('')
-                            : ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(15),
-                                  bottomRight: Radius.circular(15),
-                                  topLeft: Radius.circular(3),
-                                  bottomLeft: Radius.circular(3),
-                                ),
-                                child: Image.file(
-                                  diaryData.image,
-                                  fit: BoxFit.cover,
-                                ),
+                    child: Stack(
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: 130,
+                            height: double.infinity,
+                            decoration: BoxDecoration(
+                              color: diaryData.customColor,
+                              borderRadius: const BorderRadius.only(
+                                topRight: Radius.circular(15),
+                                bottomRight: Radius.circular(15),
+                                topLeft: Radius.circular(3),
+                                bottomLeft: Radius.circular(3),
                               ),
-                      ),
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.topRight,
+                                colors: [
+                                  diaryData.customColor != null
+                                      ? diaryData.customColor.withAlpha(255)
+                                      : Colors.pink,
+                                  diaryData.customColor != null
+                                      ? diaryData.customColor.withAlpha(50)
+                                      : Colors.pink.withRed(5),
+                                ],
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.7),
+                                  offset: const Offset(2.0, 2.0),
+                                  blurRadius: 10,
+                                ),
+                              ],
+                            ),
+                            child: diaryData.image == null
+                                ? Text('')
+                                : ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(15),
+                                      bottomRight: Radius.circular(15),
+                                      topLeft: Radius.circular(3),
+                                      bottomLeft: Radius.circular(3),
+                                    ),
+                                    child: Image.file(
+                                      diaryData.image,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                          ),
+                        ),
+                        Positioned(child: null),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 15),
