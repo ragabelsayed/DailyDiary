@@ -45,7 +45,8 @@ class _DialogViewState extends State<DialogView> {
         break;
       case AddAction.chapter:
         _form.currentState.save();
-        Provider.of<ChapterData>(context, listen: false).addItem(_newChapter);
+        Provider.of<ChapterData>(context, listen: false)
+            .addChapter(_newChapter);
         Navigator.pop(context);
         break;
     }

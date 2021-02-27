@@ -42,22 +42,22 @@ class _DiaryListViewState extends State<DiaryListView>
         ));
         break;
       case SlidableAction.delete:
-        _removeChapter(index);
+        //  _removeChapter(index);
         break;
     }
   }
 
-  void _removeChapter(int index) {
-    Provider.of<ChapterData>(context, listen: false).removeItem(index);
-    key.currentState.removeItem(index,
-        (context, animation) => _buildChapterItem(index, animation, context));
-    Scaffold.of(context).showSnackBar(SnackBar(
-      content: Text('Chapter has been deleted', textAlign: TextAlign.center),
-    ));
-  }
+  // void _removeChapter(int index) {
+  //   Provider.of<ChapterData>(context, listen: false).removeItem(index);
+  //   key.currentState.removeItem(index,
+  //       (context, animation) => _buildChapterItem(index, animation, context));
+  //   Scaffold.of(context).showSnackBar(SnackBar(
+  //     content: Text('Chapter has been deleted', textAlign: TextAlign.center),
+  //   ));
+  // }
 
   void _addChapter(int index, Chapter chapter) {
-    Provider.of<ChapterData>(context, listen: false).addItem(Chapter());
+    Provider.of<ChapterData>(context, listen: false).addChapter(Chapter());
     key.currentState;
     Scaffold.of(context).showSnackBar(SnackBar(
       content: Text('Chapter has been deleted', textAlign: TextAlign.center),
@@ -133,13 +133,29 @@ class _DiaryListViewState extends State<DiaryListView>
                 // height: MediaQuery.of(context).size.height / 2,
                 _chapterData.isNotEmpty
                     ? Expanded(
-                        child: AnimatedList(
-                          key: key,
-                          //  padding: const EdgeInsets.only(right: 5, left: 5),
-                          initialItemCount: _chapterData.length,
+                        child: ListView.builder(
+                          itemCount: _chapterData.length,
                           scrollDirection: Axis.vertical,
-                          itemBuilder: (context, index, animation) {
-                            return _buildChapterItem(index, animation, context);
+                          itemBuilder: (context, index) {
+                            final int count = _chapterData.length > 10
+                                ? 10
+                                : _chapterData.length;
+                            final Animation<double> animation =
+                                Tween<double>(begin: 0.0, end: 1.0).animate(
+                              CurvedAnimation(
+                                parent: _animationController,
+                                curve: Interval((1 / count) * index, 1.0,
+                                    curve: Curves.fastOutSlowIn),
+                              ),
+                            );
+                            _animationController.forward();
+                            return ChapterView(
+                              chapterData: _chapterData[index],
+                              animation: animation,
+                              animationController: _animationController,
+                              // onDismissed: (action) =>
+                              //     _dismissSlidableItem(context, index, action),
+                            );
                           },
                         ),
                       )
@@ -160,14 +176,14 @@ class _DiaryListViewState extends State<DiaryListView>
     );
   }
 
-  ChapterView _buildChapterItem(
-      int index, Animation<double> animation, BuildContext context) {
-    final _chapterData = Provider.of<ChapterData>(context).items;
+  // ChapterView _buildChapterItem(
+  //     int index, Animation<double> animation, BuildContext context) {
+  //   final _chapterData = Provider.of<ChapterData>(context).items;
 
-    return ChapterView(
-      chapterData: _chapterData[index],
-      animation: animation,
-      onDismissed: (action) => _dismissSlidableItem(context, index, action),
-    );
-  }
+  //   return ChapterView(
+  //     chapterData: _chapterData[index],
+  //     animation: animation,
+  //     onDismissed: (action) => _dismissSlidableItem(context, index, action),
+  //   );
+  // }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:my_daily_diary/app_theme.dart';
-import 'package:my_daily_diary/widgets/dialog_view.dart';
-import 'package:my_daily_diary/widgets/diary_list_view.dart';
-import 'package:my_daily_diary/widgets/title_view.dart';
+import 'package:my_daily_diary/widgets/diary_screen_widget/dialog_view.dart';
+import 'package:my_daily_diary/widgets/diary_screen_widget/diary_list_view.dart';
+import 'package:my_daily_diary/widgets/diary_screen_widget/title_view.dart';
 
 class MyDiaryScreen extends StatelessWidget {
   static const routName = '/';

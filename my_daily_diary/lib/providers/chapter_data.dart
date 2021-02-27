@@ -57,13 +57,13 @@ class ChapterData with ChangeNotifier {
     return [..._items];
   }
 
-  void addItem(Chapter chapter) {
+  void addChapter(Chapter chapter) {
     _items.add(chapter);
     notifyListeners();
   }
 
-  void removeItem(int index) {
-    _items.removeAt(index);
+  void removeChapter(String id) {
+    _items.removeWhere((chapter) => chapter.id == id);
     notifyListeners();
   }
 }
