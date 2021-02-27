@@ -14,13 +14,13 @@ class DiaryData with ChangeNotifier {
     return [..._items];
   }
 
-  void addItem(Diary diary) {
+  void addDiary(Diary diary) {
     _items.add(diary);
     notifyListeners();
   }
 
-  void removeItem(int index) {
-    _items.removeAt(index);
+  void removeDiary(String id) {
+    _items.removeWhere((diary) => diary.id == id);
     notifyListeners();
   }
 }

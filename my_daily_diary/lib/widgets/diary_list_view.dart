@@ -245,7 +245,68 @@ class DiaryView extends StatelessWidget {
                                   ),
                           ),
                         ),
-                        Positioned(child: null),
+                        Positioned(
+                          right: 1,
+                          top: 1,
+                          child: PopupMenuButton(
+                            itemBuilder: (context) {
+                              return [
+                                PopupMenuItem(
+                                  child: ListTile(
+                                    leading: Icon(Icons.lock),
+                                    title: Text('Lock'),
+                                    onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return Container();
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  child: ListTile(
+                                    leading: Icon(Icons.delete),
+                                    title: Text('Delete'),
+                                    onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            content: Text(
+                                                'Are you sure that you want to delete this diary ?'),
+                                            actions: [
+                                              FlatButton(
+                                                child: Text('No'),
+                                                onPressed: () {
+                                                  Navigator.of(context)
+                                                      .pop(false);
+                                                },
+                                              ),
+                                              FlatButton(
+                                                child: Text('Yes'),
+                                                onPressed: () {
+                                                  Provider.of<DiaryData>(
+                                                          context,
+                                                          listen: false)
+                                                      .removeDiary(
+                                                          diaryData.id);
+                                                  Navigator.of(context)
+                                                      .pop(false);
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ];
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   ),

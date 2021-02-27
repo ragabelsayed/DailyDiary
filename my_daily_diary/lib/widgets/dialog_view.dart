@@ -40,7 +40,7 @@ class _DialogViewState extends State<DialogView> {
     switch (widget.action) {
       case AddAction.diary:
         _form.currentState.save();
-        Provider.of<DiaryData>(context, listen: false).addItem(_newDiary);
+        Provider.of<DiaryData>(context, listen: false).addDiary(_newDiary);
         Navigator.pop(context);
         break;
       case AddAction.chapter:
