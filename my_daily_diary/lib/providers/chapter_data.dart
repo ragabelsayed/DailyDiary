@@ -3,18 +3,54 @@ import 'package:my_daily_diary/models/chapter.dart';
 
 class ChapterData with ChangeNotifier {
   List<Chapter> _items = [
-    Chapter(name: 'January', backgroundImage: 'lib/assets/images/winter.png'),
-    Chapter(name: 'February', backgroundImage: 'lib/assets/images/winter.png'),
-    Chapter(name: 'March', backgroundImage: 'lib/assets/images/spring.png'),
-    Chapter(name: 'April', backgroundImage: 'lib/assets/images/spring.png'),
-    Chapter(name: 'May', backgroundImage: 'lib/assets/images/spring.png'),
-    Chapter(name: 'June', backgroundImage: 'lib/assets/images/summer.png'),
-    Chapter(name: 'July', backgroundImage: 'lib/assets/images/summer.png'),
-    Chapter(name: 'August', backgroundImage: 'lib/assets/images/summer.png'),
-    Chapter(name: 'September', backgroundImage: 'lib/assets/images/autumn.png'),
-    Chapter(name: 'October', backgroundImage: 'lib/assets/images/autumn.png'),
-    Chapter(name: 'November', backgroundImage: 'lib/assets/images/autumn.png'),
-    Chapter(name: 'December', backgroundImage: 'lib/assets/images/winter.png'),
+    Chapter(
+        id: DateTime.now().toString(),
+        name: 'January',
+        backgroundImage: 'lib/assets/images/winter.png'),
+    Chapter(
+        id: DateTime.now().toString(),
+        name: 'February',
+        backgroundImage: 'lib/assets/images/winter.png'),
+    Chapter(
+        id: DateTime.now().toString(),
+        name: 'March',
+        backgroundImage: 'lib/assets/images/spring.png'),
+    Chapter(
+        id: DateTime.now().toString(),
+        name: 'April',
+        backgroundImage: 'lib/assets/images/spring.png'),
+    Chapter(
+        id: DateTime.now().toString(),
+        name: 'May',
+        backgroundImage: 'lib/assets/images/spring.png'),
+    Chapter(
+        id: DateTime.now().toString(),
+        name: 'June',
+        backgroundImage: 'lib/assets/images/summer.png'),
+    Chapter(
+        id: DateTime.now().toString(),
+        name: 'July',
+        backgroundImage: 'lib/assets/images/summer.png'),
+    Chapter(
+        id: DateTime.now().toString(),
+        name: 'August',
+        backgroundImage: 'lib/assets/images/summer.png'),
+    Chapter(
+        id: DateTime.now().toString(),
+        name: 'September',
+        backgroundImage: 'lib/assets/images/autumn.png'),
+    Chapter(
+        id: DateTime.now().toString(),
+        name: 'October',
+        backgroundImage: 'lib/assets/images/autumn.png'),
+    Chapter(
+        id: DateTime.now().toString(),
+        name: 'November',
+        backgroundImage: 'lib/assets/images/autumn.png'),
+    Chapter(
+        id: DateTime.now().toString(),
+        name: 'December',
+        backgroundImage: 'lib/assets/images/winter.png'),
   ];
 
   List<Chapter> get items {
