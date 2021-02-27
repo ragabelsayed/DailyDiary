@@ -125,7 +125,7 @@ class _DiaryListViewState extends State<DiaryListView>
                 TitleView(
                   titleName: 'Chapters',
                   inputDialogName: 'Chapter Name',
-                  inputDialogHint: 'Ex: collection,importent ...ets',
+                  inputDialogHint: 'Ex: January,February,Collection ...ets',
                   inputDialogCoverName: 'Chapter Cover',
                   inputDialogAction: AddAction.chapter,
                 ),

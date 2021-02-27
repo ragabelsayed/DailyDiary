@@ -130,20 +130,13 @@ class ChapterView extends StatelessWidget {
                         : Colors.pink.shade700,
                     child: chapterData.image == null
                         ? Text('')
-                        : Image.file(chapterData.image)
-                    // : ClipRRect(
-                    //     borderRadius: BorderRadius.only(
-                    //       topRight: Radius.circular(15),
-                    //       bottomRight: Radius.circular(15),
-                    //       topLeft: Radius.circular(3),
-                    //       bottomLeft: Radius.circular(3),
-                    //     ),
-                    //     child: Image.file(
-                    //       diaryData.image,
-                    //       fit: BoxFit.cover,
-                    //     ),
-                    //   ),
-                    ),
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(25),
+                            child: Image.file(
+                              chapterData.image,
+                              fit: BoxFit.cover,
+                            ),
+                          )),
                 title: Text(
                   chapterData.name,
                   style: TextStyle(fontSize: 18),
