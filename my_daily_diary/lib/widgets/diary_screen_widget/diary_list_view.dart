@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:my_daily_diary/widgets/diary_screen_widget/dialog_view.dart';
+import 'package:my_daily_diary/widgets/dialog_view.dart';
 
 import 'package:my_daily_diary/models/chapter.dart';
 import 'package:my_daily_diary/models/diary.dart';

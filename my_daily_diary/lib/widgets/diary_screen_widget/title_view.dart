@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'dialog_view.dart';
+import '../dialog_view.dart';
 
 class TitleView extends StatelessWidget {
   final String titleName;
