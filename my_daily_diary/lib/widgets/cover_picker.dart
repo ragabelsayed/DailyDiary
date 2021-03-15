@@ -5,7 +5,7 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CoverPicker extends StatefulWidget {
-  final void Function(Color color, File image) covor;
+  final void Function(Color? color, File? image) covor;
   const CoverPicker(this.covor);
   @override
   _CoverPickerState createState() => _CoverPickerState();
@@ -18,7 +18,7 @@ class _CoverPickerState extends State<CoverPicker> {
   Color currentColor = Colors.limeAccent;
   List<Color> currentColors = [Colors.limeAccent, Colors.green];
 
-  File _image;
+  File? _image;
   final picker = ImagePicker();
   Future _getImage(ImageSource source) async {
     final pickedFile = await picker.getImage(source: source);

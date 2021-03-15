@@ -5,9 +5,9 @@ import 'package:my_daily_diary/widgets/Lock_view.dart';
 import 'package:provider/provider.dart';
 
 class DiaryView extends StatelessWidget {
-  final Diary diaryData;
-  final AnimationController animationController;
-  final Animation animation;
+  final Diary? diaryData;
+  final AnimationController? animationController;
+  final Animation? animation;
 
   const DiaryView({this.diaryData, this.animationController, this.animation});
   @override
@@ -15,13 +15,13 @@ class DiaryView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 16),
       child: AnimatedBuilder(
-        animation: animationController,
+        animation: animationController!,
         builder: (context, child) {
           return FadeTransition(
-            opacity: animation,
+            opacity: animation as Animation<double>,
             child: Transform(
               transform:
-                  Matrix4.translationValues(25 * (1.0 * animation.value), 0, 0),
+                  Matrix4.translationValues(25 * (1.0 * animation!.value), 0, 0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +35,7 @@ class DiaryView extends StatelessWidget {
                             width: 130,
                             height: double.infinity,
                             decoration: BoxDecoration(
-                              color: diaryData.customColor,
+                              color: diaryData!.customColor,
                               borderRadius: const BorderRadius.only(
                                 topRight: Radius.circular(15),
                                 bottomRight: Radius.circular(15),
@@ -46,11 +46,11 @@ class DiaryView extends StatelessWidget {
                                 begin: Alignment.topLeft,
                                 end: Alignment.topRight,
                                 colors: [
-                                  diaryData.customColor != null
-                                      ? diaryData.customColor.withAlpha(255)
+                                  diaryData!.customColor != null
+                                      ? diaryData!.customColor!.withAlpha(255)
                                       : Colors.pink,
-                                  diaryData.customColor != null
-                                      ? diaryData.customColor.withAlpha(50)
+                                  diaryData!.customColor != null
+                                      ? diaryData!.customColor!.withAlpha(50)
                                       : Colors.pink.withRed(5),
                                 ],
                               ),
@@ -62,7 +62,7 @@ class DiaryView extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            child: diaryData.image == null
+                            child: diaryData!.image == null
                                 ? Text('')
                                 : ClipRRect(
                                     borderRadius: BorderRadius.only(
@@ -72,7 +72,7 @@ class DiaryView extends StatelessWidget {
                                       bottomLeft: Radius.circular(3),
                                     ),
                                     child: Image.file(
-                                      diaryData.image,
+                                      diaryData!.image!,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -124,7 +124,7 @@ class DiaryView extends StatelessWidget {
                                                           context,
                                                           listen: false)
                                                       .removeDiary(
-                                                          diaryData.id);
+                                                          diaryData!.id);
                                                   Navigator.of(context)
                                                       .pop(false);
                                                 },
@@ -144,7 +144,7 @@ class DiaryView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 15),
-                  Text(diaryData.name),
+                  Text(diaryData!.name!),
                 ],
               ),
             ),

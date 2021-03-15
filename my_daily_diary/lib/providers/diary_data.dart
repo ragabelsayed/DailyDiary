@@ -19,7 +19,7 @@ class DiaryData with ChangeNotifier {
     notifyListeners();
   }
 
-  void removeDiary(String id) {
+  void removeDiary(String? id) {
     _items.removeWhere((diary) => diary.id == id);
     notifyListeners();
   }

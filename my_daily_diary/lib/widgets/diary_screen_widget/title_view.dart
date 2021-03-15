@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../dialog_view.dart';
 
 class TitleView extends StatelessWidget {
-  final String titleName;
-  final String inputDialogName;
-  final String inputDialogHint;
-  final String inputDialogCoverName;
-  final AddAction inputDialogAction;
+  final String? titleName;
+  final String? inputDialogName;
+  final String? inputDialogHint;
+  final String? inputDialogCoverName;
+  final AddAction? inputDialogAction;
   const TitleView(
       {this.titleName,
       this.inputDialogName,
@@ -23,7 +23,7 @@ class TitleView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            titleName,
+            titleName!,
             style: TextStyle(
               color: Colors.black,
               fontSize: 20,

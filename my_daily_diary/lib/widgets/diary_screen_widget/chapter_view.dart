@@ -7,10 +7,10 @@ import 'package:provider/provider.dart';
 enum SlidableAction { lock, delete }
 
 class ChapterView extends StatelessWidget {
-  final Chapter chapterData;
-  final Animation animation;
-  final AnimationController animationController;
-  final Function(SlidableAction action) onDismissed;
+  final Chapter? chapterData;
+  final Animation? animation;
+  final AnimationController? animationController;
+  final Function(SlidableAction action)? onDismissed;
 
   const ChapterView(
       {this.chapterData,
@@ -20,12 +20,12 @@ class ChapterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: animationController,
+      animation: animationController!,
       builder: (context, child) => FadeTransition(
-        opacity: animation,
+        opacity: animation as Animation<double>,
         child: Transform(
           transform: Matrix4.translationValues(
-              0.0, 25 * (-1.0 * animation.value), 0.0),
+              0.0, 25 * (-1.0 * animation!.value), 0.0),
           child: Slidable(
             actionPane: SlidableBehindActionPane(),
             actions: [
@@ -44,9 +44,9 @@ class ChapterView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   child: IconSlideAction(
                     caption: 'Secure',
-                    color: Colors.grey[700].withOpacity(0.7),
+                    color: Colors.grey[700]!.withOpacity(0.7),
                     icon: Icons.lock,
-                    onTap: () => onDismissed(SlidableAction.lock),
+                    onTap: () => onDismissed!(SlidableAction.lock),
                   ),
                 ),
               ),
@@ -89,7 +89,7 @@ class ChapterView extends StatelessWidget {
                                 onPressed: () {
                                   Provider.of<ChapterData>(context,
                                           listen: false)
-                                      .removeChapter(chapterData.id);
+                                      .removeChapter(chapterData!.id);
                                   // Scaffold.of(context).showSnackBar(SnackBar(
                                   //   content: Text('Chapter has been deleted',
                                   //       textAlign: TextAlign.center),
@@ -125,20 +125,20 @@ class ChapterView extends StatelessWidget {
                 leading: CircleAvatar(
                     radius: 25,
                     //backgroundImage: AssetImage(chapterData.backgroundImage),
-                    backgroundColor: chapterData.customColor != null
-                        ? chapterData.customColor.withAlpha(255)
+                    backgroundColor: chapterData!.customColor != null
+                        ? chapterData!.customColor!.withAlpha(255)
                         : Colors.pink.shade700,
-                    child: chapterData.image == null
+                    child: chapterData!.image == null
                         ? Text('')
                         : ClipRRect(
                             borderRadius: BorderRadius.circular(25),
                             child: Image.file(
-                              chapterData.image,
+                              chapterData!.image!,
                               fit: BoxFit.cover,
                             ),
                           )),
                 title: Text(
-                  chapterData.name,
+                  chapterData!.name!,
                   style: TextStyle(fontSize: 18),
                 ),
                 trailing: IconButton(

@@ -62,7 +62,7 @@ class ChapterData with ChangeNotifier {
     notifyListeners();
   }
 
-  void removeChapter(String id) {
+  void removeChapter(String? id) {
     _items.removeWhere((chapter) => chapter.id == id);
     notifyListeners();
   }

@@ -11,10 +11,10 @@ import 'package:provider/provider.dart';
 enum AddAction { diary, chapter }
 
 class DialogView extends StatefulWidget {
-  final String name;
-  final String hint;
-  final String coverName;
-  final AddAction action;
+  final String? name;
+  final String? hint;
+  final String? coverName;
+  final AddAction? action;
   const DialogView({this.name, this.hint, this.coverName, this.action});
   @override
   _DialogViewState createState() => _DialogViewState();
@@ -40,20 +40,21 @@ class _DialogViewState extends State<DialogView> {
   void _saveForm(BuildContext context) {
     switch (widget.action) {
       case AddAction.diary:
-        _form.currentState.save();
+        _form.currentState!.save();
         Provider.of<DiaryData>(context, listen: false).addDiary(_newDiary);
         Navigator.pop(context);
         break;
       case AddAction.chapter:
-        _form.currentState.save();
+        _form.currentState!.save();
         Provider.of<ChapterData>(context, listen: false)
             .addChapter(_newChapter);
         Navigator.pop(context);
         break;
+      default:
     }
   }
 
-  void _getCover(Color pickcolor, File image) {
+  void _getCover(Color? pickcolor, File? image) {
     switch (widget.action) {
       case AddAction.diary:
         if (pickcolor != null && image == null) {
@@ -90,6 +91,7 @@ class _DialogViewState extends State<DialogView> {
           });
         }
         break;
+      default:
     }
   }
 
@@ -134,7 +136,7 @@ class _DialogViewState extends State<DialogView> {
                       onSaved: (newValue) {
                         switch (widget.action) {
                           case AddAction.diary:
-                            return _newDiary = Diary(
+                            _newDiary = Diary(
                               id: DateTime.now().toString(),
                               name: newValue,
                               customColor: _newDiary.customColor,
@@ -142,13 +144,14 @@ class _DialogViewState extends State<DialogView> {
                             );
                             break;
                           case AddAction.chapter:
-                            return _newChapter = Chapter(
+                            _newChapter = Chapter(
                               id: DateTime.now().toString(),
                               name: newValue,
                               customColor: _newChapter.customColor,
                               image: _newChapter.image,
                             );
                             break;
+                          default:
                         }
                       },
                     ),

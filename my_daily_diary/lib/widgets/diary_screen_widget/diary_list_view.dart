@@ -21,7 +21,7 @@ class DiaryListView extends StatefulWidget {
 
 class _DiaryListViewState extends State<DiaryListView>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
+  AnimationController? _animationController;
   final key = GlobalKey<AnimatedListState>();
 
   @override
@@ -71,7 +71,7 @@ class _DiaryListViewState extends State<DiaryListView>
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _animationController!.dispose();
     super.dispose();
   }
 
@@ -107,12 +107,12 @@ class _DiaryListViewState extends State<DiaryListView>
                       final Animation<double> animation =
                           Tween<double>(begin: 0.0, end: 1.0).animate(
                         CurvedAnimation(
-                          parent: _animationController,
+                          parent: _animationController!,
                           curve: Interval((1 / count) * index, 1.0,
                               curve: Curves.fastOutSlowIn),
                         ),
                       );
-                      _animationController.forward();
+                      _animationController!.forward();
                       return DiaryView(
                         diaryData: _diaryData[index],
                         animationController: _animationController,
@@ -143,12 +143,12 @@ class _DiaryListViewState extends State<DiaryListView>
                             final Animation<double> animation =
                                 Tween<double>(begin: 0.0, end: 1.0).animate(
                               CurvedAnimation(
-                                parent: _animationController,
+                                parent: _animationController!,
                                 curve: Interval((1 / count) * index, 1.0,
                                     curve: Curves.fastOutSlowIn),
                               ),
                             );
-                            _animationController.forward();
+                            _animationController!.forward();
                             return ChapterView(
                               chapterData: _chapterData[index],
                               animation: animation,
