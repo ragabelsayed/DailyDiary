@@ -174,16 +174,20 @@ class _DialogViewState extends State<DialogView> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      RaisedButton(
-                        elevation: 3.0,
+                      ElevatedButton(
                         child: Text('Cancel'),
+                        style: ButtonStyle(
+                          elevation: MaterialStateProperty.all<double>(3.0),
+                        ),
                         onPressed: () {
                           _close(context);
                         },
                       ),
-                      RaisedButton(
-                        elevation: 3.0,
+                      ElevatedButton(
                         child: Text('Save'),
+                        style: ButtonStyle(
+                          elevation: MaterialStateProperty.all<double>(3.0),
+                        ),
                         onPressed: () {
                           _saveForm(context);
                         },

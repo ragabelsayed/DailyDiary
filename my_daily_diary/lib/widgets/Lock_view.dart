@@ -15,14 +15,14 @@ class LockView extends StatelessWidget {
   }
 }
 
-class LocalAuth {
-  static final _auth = LocalAuthentication();
+// class LocalAuth {
+//   static final _auth = LocalAuthentication();
 
-  static Future<bool> authentication() async {
-    return await _auth.authenticateWithBiometrics(
-      localizedReason: 'Scan Fingerprint to Authnticate',
-      useErrorDialogs: true,
-      stickyAuth: true,
-    );
-  }
-}
+//   static Future<bool> authentication() async {
+//     return await _auth.authenticateWithBiometrics(
+//       localizedReason: 'Scan Fingerprint to Authnticate',
+//       useErrorDialogs: true,
+//       stickyAuth: true,
+//     );
+//   }
+// }

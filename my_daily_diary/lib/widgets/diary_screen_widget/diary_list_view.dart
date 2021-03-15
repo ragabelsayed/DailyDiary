@@ -1,11 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
+
 import 'package:my_daily_diary/widgets/dialog_view.dart';
 
-import 'package:my_daily_diary/models/chapter.dart';
-import 'package:my_daily_diary/models/diary.dart';
 import 'package:my_daily_diary/providers/chapter_data.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
 import 'package:my_daily_diary/widgets/diary_screen_widget/title_view.dart';
@@ -31,37 +27,6 @@ class _DiaryListViewState extends State<DiaryListView>
       vsync: this,
       duration: const Duration(milliseconds: 2000),
     );
-  }
-
-  void _dismissSlidableItem(
-      BuildContext context, int index, SlidableAction action) {
-    switch (action) {
-      case SlidableAction.lock:
-        Scaffold.of(context).showSnackBar(SnackBar(
-          content: Text('Chapter has been locked', textAlign: TextAlign.center),
-        ));
-        break;
-      case SlidableAction.delete:
-        //  _removeChapter(index);
-        break;
-    }
-  }
-
-  // void _removeChapter(int index) {
-  //   Provider.of<ChapterData>(context, listen: false).removeItem(index);
-  //   key.currentState.removeItem(index,
-  //       (context, animation) => _buildChapterItem(index, animation, context));
-  //   Scaffold.of(context).showSnackBar(SnackBar(
-  //     content: Text('Chapter has been deleted', textAlign: TextAlign.center),
-  //   ));
-  // }
-
-  void _addChapter(int index, Chapter chapter) {
-    Provider.of<ChapterData>(context, listen: false).addChapter(Chapter());
-    key.currentState;
-    Scaffold.of(context).showSnackBar(SnackBar(
-      content: Text('Chapter has been deleted', textAlign: TextAlign.center),
-    ));
   }
 
   Future<bool> _getData() async {
@@ -153,8 +118,6 @@ class _DiaryListViewState extends State<DiaryListView>
                               chapterData: _chapterData[index],
                               animation: animation,
                               animationController: _animationController,
-                              // onDismissed: (action) =>
-                              //     _dismissSlidableItem(context, index, action),
                             );
                           },
                         ),
@@ -175,15 +138,4 @@ class _DiaryListViewState extends State<DiaryListView>
       },
     );
   }
-
-  // ChapterView _buildChapterItem(
-  //     int index, Animation<double> animation, BuildContext context) {
-  //   final _chapterData = Provider.of<ChapterData>(context).items;
-
-  //   return ChapterView(
-  //     chapterData: _chapterData[index],
-  //     animation: animation,
-  //     onDismissed: (action) => _dismissSlidableItem(context, index, action),
-  //   );
-  // }
 }

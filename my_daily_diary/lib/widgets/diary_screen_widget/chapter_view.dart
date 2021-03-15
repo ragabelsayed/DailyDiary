@@ -78,13 +78,13 @@ class ChapterView extends StatelessWidget {
                             content: Text(
                                 'Are you sure that you want to delete this chapter ?'),
                             actions: [
-                              FlatButton(
+                              TextButton(
                                 child: Text('No'),
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
                               ),
-                              FlatButton(
+                              TextButton(
                                 child: Text('Yes'),
                                 onPressed: () {
                                   Provider.of<ChapterData>(context,

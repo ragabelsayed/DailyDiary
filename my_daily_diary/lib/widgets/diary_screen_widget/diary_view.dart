@@ -20,8 +20,8 @@ class DiaryView extends StatelessWidget {
           return FadeTransition(
             opacity: animation as Animation<double>,
             child: Transform(
-              transform:
-                  Matrix4.translationValues(25 * (1.0 * animation!.value), 0, 0),
+              transform: Matrix4.translationValues(
+                  25 * (1.0 * animation!.value), 0, 0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,14 +110,14 @@ class DiaryView extends StatelessWidget {
                                             content: Text(
                                                 'Are you sure that you want to delete this diary ?'),
                                             actions: [
-                                              FlatButton(
+                                              TextButton(
                                                 child: Text('No'),
                                                 onPressed: () {
                                                   Navigator.of(context)
                                                       .pop(false);
                                                 },
                                               ),
-                                              FlatButton(
+                                              TextButton(
                                                 child: Text('Yes'),
                                                 onPressed: () {
                                                   Provider.of<DiaryData>(
