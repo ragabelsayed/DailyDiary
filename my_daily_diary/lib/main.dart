@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_daily_diary/providers/chapter_data.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
+import 'package:my_daily_diary/screens/chapter_screen.dart';
 
 import 'package:provider/provider.dart';
 import './screens/my_diary_screen.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         initialRoute: MyDiaryScreen.routName,
         routes: {
           MyDiaryScreen.routName: (ctx) => MyDiaryScreen(),
+          ChapterScreen.routName: (ctx) => ChapterScreen(),
         },
       ),
     );

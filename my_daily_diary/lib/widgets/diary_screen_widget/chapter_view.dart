@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:my_daily_diary/models/chapter.dart';
 import 'package:my_daily_diary/providers/chapter_data.dart';
+import 'package:my_daily_diary/screens/chapter_screen.dart';
 import 'package:provider/provider.dart';
 
 enum SlidableAction { lock, delete }
@@ -143,7 +144,9 @@ class ChapterView extends StatelessWidget {
                 ),
                 trailing: IconButton(
                   icon: Icon(Icons.arrow_forward_ios),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(ChapterScreen.routName);
+                  },
                 ),
               ),
             ),
