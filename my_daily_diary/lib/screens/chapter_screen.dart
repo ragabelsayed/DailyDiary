@@ -24,25 +24,37 @@ class ChapterScreen extends StatelessWidget {
               child: Text('Add Your frist day in this chapter 😀'),
             );
           } else {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: ListWheelScrollView(
-                itemExtent: 250,
-                // diameterRatio: 0.1,
-                //magnification: 5.5,
-                // offAxisFraction: 0,
-                // overAndUnderCenterOpacity: 0.8,
-                // perspective: 0.01,
-                // renderChildrenOutsideViewport: false,
-                // squeeze: 5.0,
-                // useMagnifier: false,
+            return Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: ListWheelScrollView(
+                    itemExtent: 250,
+                    // diameterRatio: 0.1,
+                    //magnification: 5.5,
+                    // offAxisFraction: 0,
+                    // overAndUnderCenterOpacity: 0.8,
+                    // perspective: 0.01,
+                    // renderChildrenOutsideViewport: false,
+                    // squeeze: 5.0,
+                    // useMagnifier: false,
 
-                children: _dayData
-                    .map((day) => DaysView(
-                          dayData: day,
-                        ))
-                    .toList(),
-              ),
+                    children: _dayData
+                        .map((day) => DaysView(
+                              dayData: day,
+                            ))
+                        .toList(),
+                  ),
+                ),
+                Positioned(
+                  right: 10,
+                  bottom: 10,
+                  child: FloatingActionButton(
+                    child: Icon(Icons.add),
+                    onPressed: () {},
+                  ),
+                ),
+              ],
             );
           }
         },
