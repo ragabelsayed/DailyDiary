@@ -2,13 +2,15 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:my_daily_diary/models/chapter.dart';
+import 'package:my_daily_diary/models/days.dart';
 import 'package:my_daily_diary/models/diary.dart';
 import 'package:my_daily_diary/providers/chapter_data.dart';
+import 'package:my_daily_diary/providers/day_data.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
 import 'package:my_daily_diary/widgets/cover_picker.dart';
 import 'package:provider/provider.dart';
 
-enum AddAction { diary, chapter }
+enum AddAction { diary, chapter, day }
 
 class DialogView extends StatefulWidget {
   final String? name;
@@ -37,6 +39,13 @@ class _DialogViewState extends State<DialogView> {
     customColor: Colors.cyan,
   );
 
+  Day _newDay = Day(
+    id: null,
+    name: '',
+    image: null,
+    customColor: Colors.cyan,
+  );
+
   void _saveForm(BuildContext context) {
     switch (widget.action) {
       case AddAction.diary:
@@ -48,6 +57,11 @@ class _DialogViewState extends State<DialogView> {
         _form.currentState!.save();
         Provider.of<ChapterData>(context, listen: false)
             .addChapter(_newChapter);
+        Navigator.pop(context);
+        break;
+      case AddAction.day:
+        _form.currentState!.save();
+        Provider.of<DayData>(context, listen: false).addDay(_newDay);
         Navigator.pop(context);
         break;
       default:
@@ -86,6 +100,24 @@ class _DialogViewState extends State<DialogView> {
             _newChapter = Chapter(
               id: _newChapter.id,
               name: _newChapter.name,
+              image: image,
+            );
+          });
+        }
+        break;
+
+      case AddAction.day:
+        if (pickcolor != null && image == null) {
+          _newDay = Day(
+            id: _newDay.id,
+            name: _newDay.name,
+            customColor: pickcolor,
+          );
+        } else if (pickcolor == null && image != null) {
+          setState(() {
+            _newDay = Day(
+              id: _newDay.id,
+              name: _newDay.name,
               image: image,
             );
           });
@@ -149,6 +181,14 @@ class _DialogViewState extends State<DialogView> {
                               name: newValue,
                               customColor: _newChapter.customColor,
                               image: _newChapter.image,
+                            );
+                            break;
+                          case AddAction.day:
+                            _newDay = Day(
+                              id: DateTime.now().toString(),
+                              name: newValue,
+                              customColor: _newDay.customColor,
+                              image: _newDay.image,
                             );
                             break;
                           default:

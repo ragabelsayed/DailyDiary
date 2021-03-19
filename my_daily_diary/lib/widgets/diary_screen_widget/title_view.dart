@@ -32,6 +32,7 @@ class TitleView extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           FloatingActionButton.extended(
+            heroTag: 'btn$inputDialogAction',
             onPressed: () {
               showDialog(
                 context: context,

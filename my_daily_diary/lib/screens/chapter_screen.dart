@@ -3,6 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:my_daily_diary/models/days.dart';
 import 'package:my_daily_diary/providers/day_data.dart';
 import 'package:my_daily_diary/widgets/Lock_view.dart';
+import 'package:my_daily_diary/widgets/dialog_view.dart';
+
 import 'package:provider/provider.dart';
 
 class ChapterScreen extends StatelessWidget {
@@ -51,7 +53,19 @@ class ChapterScreen extends StatelessWidget {
                   bottom: 10,
                   child: FloatingActionButton(
                     child: Icon(Icons.add),
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return DialogView(
+                            name: 'Day Name',
+                            hint: '',
+                            coverName: 'Day Cover',
+                            action: AddAction.day,
+                          );
+                        },
+                      );
+                    },
                   ),
                 ),
               ],
@@ -102,17 +116,11 @@ class DaysView extends StatelessWidget {
             child: dayData!.image == null
                 ? Text('')
                 : ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(15),
-                      bottomRight: Radius.circular(15),
-                      topLeft: Radius.circular(3),
-                      bottomLeft: Radius.circular(3),
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    child: Image.file(
+                      dayData!.image!,
+                      fit: BoxFit.cover,
                     ),
-                    child: Image.asset(dayData!.backgroundImage!),
-                    // Image.file(
-                    //   dayData!.image!,
-                    //   fit: BoxFit.cover,
-                    // ),
                   ),
           ),
         ),

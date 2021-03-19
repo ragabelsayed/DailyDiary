@@ -56,4 +56,9 @@ class DayData with ChangeNotifier {
   List<Day> get items {
     return [..._items];
   }
+
+  void addDay(Day day) {
+    _items.add(day);
+    notifyListeners();
+  }
 }
