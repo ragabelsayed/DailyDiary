@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_daily_diary/models/days.dart';
@@ -59,7 +61,7 @@ class ChapterScreen extends StatelessWidget {
                         builder: (context) {
                           return DialogView(
                             name: 'Day Name',
-                            hint: '',
+                            hint: 'Ex: 1, 2 ...30 ets',
                             coverName: 'Day Cover',
                             action: AddAction.day,
                           );
@@ -175,6 +177,42 @@ class DaysView extends StatelessWidget {
                 ),
               ];
             },
+          ),
+        ),
+        Positioned(
+          left: 10,
+          top: 10,
+          child: Container(
+            width: 70,
+            height: 70,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.grey.withOpacity(0.4)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.4),
+                  offset: const Offset(1, 2),
+                  blurRadius: 10,
+                )
+              ],
+            ),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 2),
+                child: Text(
+                  dayData!.name!,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  // softWrap: false,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 25,
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
       ],
