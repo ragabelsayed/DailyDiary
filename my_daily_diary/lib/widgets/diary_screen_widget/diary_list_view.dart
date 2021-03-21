@@ -18,7 +18,6 @@ class DiaryListView extends StatefulWidget {
 class _DiaryListViewState extends State<DiaryListView>
     with SingleTickerProviderStateMixin {
   AnimationController? _animationController;
-  final key = GlobalKey<AnimatedListState>();
 
   @override
   void initState() {
