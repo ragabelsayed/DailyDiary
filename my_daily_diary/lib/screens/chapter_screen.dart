@@ -46,6 +46,9 @@ class ChapterScreen extends StatelessWidget {
                     children: _dayData
                         .map((day) => DaysView(
                               dayData: day,
+                              click: () {
+                                print(day.name);
+                              },
                             ))
                         .toList(),
                   ),
@@ -81,13 +84,15 @@ class ChapterScreen extends StatelessWidget {
 
 class DaysView extends StatelessWidget {
   final Day? dayData;
-  DaysView({this.dayData});
+  final Function? click;
+  // final PopupMenuButton? pop;
+  DaysView({this.dayData, this.click});
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         InkWell(
-          onTap: () {},
+          onTap: click!(),
           child: Container(
             // width: 130,
             width: double.maxFinite,
@@ -127,8 +132,8 @@ class DaysView extends StatelessWidget {
           ),
         ),
         Positioned(
-          right: 1,
-          top: 1,
+          right: 10,
+          top: 10,
           child: PopupMenuButton(
             itemBuilder: (context) {
               return [
@@ -166,7 +171,11 @@ class DaysView extends StatelessWidget {
                               ),
                               TextButton(
                                 child: Text('Yes'),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Provider.of<DayData>(context, listen: false)
+                                      .removeDay(dayData!.id);
+                                  Navigator.of(context).pop();
+                                },
                               ),
                             ],
                           );

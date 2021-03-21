@@ -61,4 +61,9 @@ class DayData with ChangeNotifier {
     _items.add(day);
     notifyListeners();
   }
+
+  void removeDay(String? id) {
+    _items.removeWhere((day) => day.id == id);
+    notifyListeners();
+  }
 }
