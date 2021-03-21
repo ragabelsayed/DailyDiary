@@ -114,7 +114,19 @@ class DaysView extends StatelessWidget {
                                           Provider.of<DayData>(context,
                                                   listen: false)
                                               .removeDay(dayData!.id);
+
                                           Navigator.of(context).pop();
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'This day has been deleted',
+                                                textAlign: TextAlign.center,
+                                              ),
+                                              duration:
+                                                  const Duration(seconds: 1),
+                                            ),
+                                          );
                                         },
                                       ),
                                     ],
