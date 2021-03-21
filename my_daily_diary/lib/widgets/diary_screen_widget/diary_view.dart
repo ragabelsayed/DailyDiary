@@ -127,6 +127,18 @@ class DiaryView extends StatelessWidget {
                                                           diaryData!.id);
                                                   Navigator.of(context)
                                                       .pop(false);
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'This diary has been deleted',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
+                                                      duration: const Duration(
+                                                          seconds: 1),
+                                                    ),
+                                                  );
                                                 },
                                               ),
                                             ],

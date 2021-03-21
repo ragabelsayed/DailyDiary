@@ -91,11 +91,17 @@ class ChapterView extends StatelessWidget {
                                   Provider.of<ChapterData>(context,
                                           listen: false)
                                       .removeChapter(chapterData!.id);
-                                  // Scaffold.of(context).showSnackBar(SnackBar(
-                                  //   content: Text('Chapter has been deleted',
-                                  //       textAlign: TextAlign.center),
-                                  // ));
+
                                   Navigator.of(context).pop();
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Chapter has been deleted',
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      duration: const Duration(seconds: 1),
+                                    ),
+                                  );
                                 },
                               ),
                             ],
