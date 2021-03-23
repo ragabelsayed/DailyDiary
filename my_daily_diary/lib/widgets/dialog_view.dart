@@ -42,6 +42,7 @@ class _DialogViewState extends State<DialogView> {
   Day _newDay = Day(
     id: null,
     name: '',
+    date: null,
     image: null,
     customColor: Colors.cyan,
   );
@@ -111,6 +112,7 @@ class _DialogViewState extends State<DialogView> {
           _newDay = Day(
             id: _newDay.id,
             name: _newDay.name,
+            date: _newDay.date,
             customColor: pickcolor,
           );
         } else if (pickcolor == null && image != null) {
@@ -118,6 +120,7 @@ class _DialogViewState extends State<DialogView> {
             _newDay = Day(
               id: _newDay.id,
               name: _newDay.name,
+              date: _newDay.date,
               image: image,
             );
           });
@@ -187,6 +190,7 @@ class _DialogViewState extends State<DialogView> {
                             _newDay = Day(
                               id: DateTime.now().toString(),
                               name: newValue,
+                              date: DateTime.now(),
                               customColor: _newDay.customColor,
                               image: _newDay.image,
                             );

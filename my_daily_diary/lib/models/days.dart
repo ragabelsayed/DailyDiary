@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class Day {
   final String? id;
   final String? name;
+  final DateTime? date;
   final String? backgroundImage;
   final File? image;
   final Color? customColor;
@@ -12,6 +13,7 @@ class Day {
   const Day({
     this.id,
     this.name,
+    this.date,
     this.backgroundImage,
     this.image,
     this.customColor,

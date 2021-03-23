@@ -6,50 +6,62 @@ class DayData with ChangeNotifier {
     Day(
         id: DateTime.now().toString(),
         name: 'January',
+        date: DateTime.now(),
         backgroundImage: 'lib/assets/images/winter.png'),
     Day(
         id: DateTime.now().toString(),
         name: 'February',
+        date: DateTime.now(),
         backgroundImage: 'lib/assets/images/winter.png'),
     Day(
         id: DateTime.now().toString(),
         name: 'March',
+        date: DateTime.now(),
         backgroundImage: 'lib/assets/images/spring.png'),
     Day(
         id: DateTime.now().toString(),
         name: 'April',
+        date: DateTime.now(),
         backgroundImage: 'lib/assets/images/spring.png'),
     Day(
         id: DateTime.now().toString(),
         name: 'May',
+        date: DateTime.now(),
         backgroundImage: 'lib/assets/images/spring.png'),
     Day(
         id: DateTime.now().toString(),
         name: 'June',
+        date: DateTime.now(),
         backgroundImage: 'lib/assets/images/summer.png'),
     Day(
         id: DateTime.now().toString(),
         name: 'July',
+        date: DateTime.now(),
         backgroundImage: 'lib/assets/images/summer.png'),
     Day(
         id: DateTime.now().toString(),
         name: 'August',
+        date: DateTime.now(),
         backgroundImage: 'lib/assets/images/summer.png'),
     Day(
         id: DateTime.now().toString(),
         name: 'September',
+        date: DateTime.now(),
         backgroundImage: 'lib/assets/images/autumn.png'),
     Day(
         id: DateTime.now().toString(),
         name: 'October',
+        date: DateTime.now(),
         backgroundImage: 'lib/assets/images/autumn.png'),
     Day(
         id: DateTime.now().toString(),
         name: 'November',
+        date: DateTime.now(),
         backgroundImage: 'lib/assets/images/autumn.png'),
     Day(
         id: DateTime.now().toString(),
         name: 'December',
+        date: DateTime.now(),
         backgroundImage: 'lib/assets/images/winter.png'),
   ];
 
