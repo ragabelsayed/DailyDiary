@@ -1,11 +1,8 @@
-import 'dart:ui';
-
-import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_daily_diary/models/days.dart';
+
 import 'package:my_daily_diary/providers/day_data.dart';
-import 'package:my_daily_diary/widgets/Lock_view.dart';
+
 import 'package:my_daily_diary/widgets/chapter_screen_widget/dayes_view.dart';
 import 'package:my_daily_diary/widgets/dialog_view.dart';
 

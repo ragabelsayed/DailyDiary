@@ -30,7 +30,8 @@ class DaysView extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    print(dayData!.name);
+                    // print(format.format(DateTime.now())
+                    print(dayData!.id);
                   },
                   child: Container(
                     height: 250,

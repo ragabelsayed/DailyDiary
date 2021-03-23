@@ -6,6 +6,7 @@ import 'package:my_daily_diary/screens/chapter_screen.dart';
 
 import 'package:provider/provider.dart';
 import './screens/my_diary_screen.dart';
+import 'screens/day_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         routes: {
           MyDiaryScreen.routName: (ctx) => MyDiaryScreen(),
           ChapterScreen.routName: (ctx) => ChapterScreen(),
+          DayScreen.routName: (ctx) => DayScreen(),
         },
       ),
     );
