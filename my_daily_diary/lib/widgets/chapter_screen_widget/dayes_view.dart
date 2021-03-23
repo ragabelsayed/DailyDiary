@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_daily_diary/models/days.dart';
 import 'package:my_daily_diary/providers/day_data.dart';
+import 'package:my_daily_diary/screens/day_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../Lock_view.dart';
@@ -31,8 +32,10 @@ class DaysView extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    print(dayData!.id);
-                    // print(DateFormat.yM().format(dayData!.id!);
+                    Navigator.of(context).pushNamed(
+                      DayScreen.routName,
+                      arguments: {'id': '${dayData!.id}'},
+                    );
                   },
                   child: Container(
                     height: 250,
