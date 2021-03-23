@@ -16,14 +16,54 @@ class DayScreen extends StatelessWidget {
     final _dayData = Provider.of<DayData>(context)
         .items
         .firstWhere((day) => day.id == dayId);
-    // .where((day) => day.id == dayId).toList() ;
+
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            DateFormat.E().format(_dayData.date!),
+          SizedBox(height: MediaQuery.of(context).padding.top),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, top: 20),
+            child: Text(
+              DateFormat('EEEE').format(_dayData.date!),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+                fontSize: 25,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, top: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  DateFormat('MMMM').format(_dayData.date!),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.grey.withOpacity(0.7),
+                    fontWeight: FontWeight.w300,
+                    fontSize: 18,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 5),
+                  child: Text(
+                    DateFormat.d().format(_dayData.date!),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.grey.withOpacity(0.7),
+                      fontWeight: FontWeight.w300,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           )
         ],
       ),
