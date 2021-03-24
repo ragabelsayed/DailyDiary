@@ -91,6 +91,16 @@ class DayScreen extends StatelessWidget {
                       onSaved: (value) => _formData['title'] = value!,
                     ),
                   ),
+                  TextFormField(
+                    maxLines: null,
+                    // expands: true,
+                    cursorColor: Color(0xFF3C4858),
+                    keyboardType: TextInputType.multiline,
+                    decoration: InputDecoration.collapsed(
+                        hintText: 'Tell me about it, I don\'t snitch 🤐..'),
+                    // validator: InputValidator.content,
+                    onSaved: (value) => _formData['content'] = value!,
+                  ),
                 ],
               )),
           SizedBox(height: MediaQuery.of(context).padding.bottom),
