@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:my_daily_diary/models/days.dart';
+
 import 'package:my_daily_diary/providers/day_data.dart';
 import 'package:provider/provider.dart';
 
 class DayScreen extends StatelessWidget {
   static const routName = '/day_screen';
+  Map<String, String> _formData = {};
+  final _form = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    // DateFormat.E().format(dayData!.date!)
     final routArgs =
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     final dayId = routArgs['id'];
@@ -64,7 +66,34 @@ class DayScreen extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
+          Form(
+              key: _form,
+              child: Column(
+                children: [
+                  SizedBox(height: 45),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 20.0),
+                    child: TextFormField(
+                      minLines: 1,
+                      maxLines: 3,
+                      textAlign: TextAlign.center,
+                      keyboardType: TextInputType.multiline,
+                      cursorColor: Color(0xFF3C4858),
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                      decoration: InputDecoration(
+                        hintText: 'What\'s our topic of discussion?',
+                      ),
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(100),
+                      ],
+                      // validator: InputValidator.title,
+                      onSaved: (value) => _formData['title'] = value!,
+                    ),
+                  ),
+                ],
+              )),
+          SizedBox(height: MediaQuery.of(context).padding.bottom),
         ],
       ),
     );
