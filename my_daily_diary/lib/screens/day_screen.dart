@@ -67,42 +67,57 @@ class DayScreen extends StatelessWidget {
               ],
             ),
           ),
-          Form(
-              key: _form,
-              child: Column(
-                children: [
-                  SizedBox(height: 45),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 20.0),
-                    child: TextFormField(
-                      minLines: 1,
-                      maxLines: 3,
-                      textAlign: TextAlign.center,
-                      keyboardType: TextInputType.multiline,
-                      cursorColor: Color(0xFF3C4858),
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                      decoration: InputDecoration(
-                        hintText: 'What\'s our topic of discussion?',
-                      ),
-                      inputFormatters: [
-                        LengthLimitingTextInputFormatter(100),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 5, right: 5),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.pink,
+                    borderRadius: const BorderRadius.all(Radius.circular(15))),
+                child: Form(
+                  key: _form,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 20.0),
+                          child: TextFormField(
+                            minLines: 1,
+                            maxLines: 3,
+                            textAlign: TextAlign.center,
+                            keyboardType: TextInputType.multiline,
+                            cursorColor: Color(0xFF3C4858),
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                            decoration: InputDecoration(
+                              hintText: 'What\'s our topic of discussion?',
+                            ),
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(100),
+                            ],
+                            // validator: InputValidator.title,
+                            onSaved: (value) => _formData['title'] = value!,
+                          ),
+                        ),
+                        TextFormField(
+                          maxLines: null,
+                          // expands: true,
+                          cursorColor: Color(0xFF3C4858),
+                          keyboardType: TextInputType.multiline,
+
+                          decoration: InputDecoration.collapsed(
+                              hintText:
+                                  'Tell me about it, I don\'t snitch 🤐..'),
+                          // validator: InputValidator.content,
+                          onSaved: (value) => _formData['content'] = value!,
+                        ),
                       ],
-                      // validator: InputValidator.title,
-                      onSaved: (value) => _formData['title'] = value!,
                     ),
                   ),
-                  TextFormField(
-                    maxLines: null,
-                    // expands: true,
-                    cursorColor: Color(0xFF3C4858),
-                    keyboardType: TextInputType.multiline,
-                    decoration: InputDecoration.collapsed(
-                        hintText: 'Tell me about it, I don\'t snitch 🤐..'),
-                    // validator: InputValidator.content,
-                    onSaved: (value) => _formData['content'] = value!,
-                  ),
-                ],
-              )),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 5),
           SizedBox(height: MediaQuery.of(context).padding.bottom),
         ],
       ),
