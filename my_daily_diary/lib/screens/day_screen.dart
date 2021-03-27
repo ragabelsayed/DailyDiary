@@ -5,10 +5,20 @@ import 'package:intl/intl.dart';
 import 'package:my_daily_diary/providers/day_data.dart';
 import 'package:provider/provider.dart';
 
-class DayScreen extends StatelessWidget {
+class DayScreen extends StatefulWidget {
   static const routName = '/day_screen';
+
+  @override
+  _DayScreenState createState() => _DayScreenState();
+}
+
+class _DayScreenState extends State<DayScreen> {
   Map<String, String> _formData = {};
+
   final _form = GlobalKey<FormState>();
+
+  List<bool> _isSelected1 = [true, false, false];
+  List<bool> _isSelected2 = [false, false, false, false];
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +75,77 @@ class DayScreen extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 20),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ToggleButtons(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    children: [
+                      Icon(Icons.format_align_left),
+                      Icon(Icons.format_align_center),
+                      Icon(Icons.format_align_right),
+
+                      // SizedBox(
+                      //   width: MediaQuery.of(context).size.width / 6,
+                      //   child: Icon(Icons.format_align_left),
+                      // ),
+                      // SizedBox(
+                      //   width: MediaQuery.of(context).size.width / 4,
+                      //   child: Icon(Icons.format_align_center),
+                      // ),
+                      // SizedBox(
+                      //   width: MediaQuery.of(context).size.width / 6,
+                      //   child: Icon(Icons.format_align_right),
+                      // ),
+                    ],
+                    onPressed: (index) {
+                      setState(() {
+                        _isSelected1[index] = !_isSelected1[index];
+                      });
+                    },
+                    isSelected: _isSelected1,
+                  ),
+                  const SizedBox(width: 10),
+                  ToggleButtons(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    children: [
+                      Icon(Icons.format_bold),
+                      Icon(Icons.format_italic),
+                      Icon(Icons.format_color_text),
+                      Icon(Icons.format_size),
+                      // Icon(Icons.format_underline),
+                      // Icon(Icons.font_download),
+
+                      // SizedBox(
+                      //   width: MediaQuery.of(context).size.width / 6,
+                      //   child: Icon(Icons.format_align_left),
+                      // ),
+                      // SizedBox(
+                      //   width: MediaQuery.of(context).size.width / 4,
+                      //   child: Icon(Icons.format_align_center),
+                      // ),
+                      // SizedBox(
+                      //   width: MediaQuery.of(context).size.width / 6,
+                      //   child: Icon(Icons.format_align_right),
+                      // ),
+                    ],
+                    onPressed: (index) {
+                      setState(() {
+                        _isSelected2[index] = !_isSelected2[index];
+                      });
+                    },
+                    isSelected: _isSelected2,
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
