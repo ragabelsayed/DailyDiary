@@ -22,11 +22,18 @@ class _DayScreenState extends State<DayScreen> {
 
   List<bool> _isSelected1 = [true, false, false];
   List<bool> _isSelected2 = [false, false, false, false];
+  Color currentColor = Colors.limeAccent;
   TextAlign _textAlign = TextAlign.left;
   late FontWeight _fontweight;
   late FontStyle _fontStyle;
   bool _fontweightBool = false;
   bool _fontStyleBool = false;
+
+  void changeColor(Color color) {
+    // widget.covor(color, null);
+    setState(() => currentColor = color);
+    print(color.red);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -178,6 +185,20 @@ class _DayScreenState extends State<DayScreen> {
                             _fontStyle = FontStyle.italic;
                           } else if (index == 2 && newIndex == 2) {
                             _isSelected2[index] = !_isSelected2[index];
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Select a color'),
+                                  content: SingleChildScrollView(
+                                    child: BlockPicker(
+                                      pickerColor: currentColor,
+                                      onColorChanged: changeColor,
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
                           } else if (index == 3 && newIndex == 3) {
                           } else {
                             _isSelected2[index] = false;
@@ -227,6 +248,7 @@ class _DayScreenState extends State<DayScreen> {
                           // expands: true,
                           textAlign: _textAlign,
                           style: TextStyle(
+                            color: currentColor,
                             fontWeight: _fontweightBool
                                 ? _fontweight
                                 : FontWeight.normal,
