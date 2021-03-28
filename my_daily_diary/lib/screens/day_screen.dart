@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:intl/intl.dart';
 
 import 'package:my_daily_diary/providers/day_data.dart';
@@ -19,7 +22,11 @@ class _DayScreenState extends State<DayScreen> {
 
   List<bool> _isSelected1 = [true, false, false];
   List<bool> _isSelected2 = [false, false, false, false];
-  TextAlign textAlign = TextAlign.left;
+  TextAlign _textAlign = TextAlign.left;
+  late FontWeight _fontweight;
+  late FontStyle _fontStyle;
+  bool _fontweightBool = false;
+  bool _fontStyleBool = false;
 
   @override
   Widget build(BuildContext context) {
@@ -115,13 +122,13 @@ class _DayScreenState extends State<DayScreen> {
                         setState(() {
                           if (index == 0 && newIndex == 0) {
                             _isSelected1[index] = !_isSelected1[index];
-                            textAlign = TextAlign.left;
+                            _textAlign = TextAlign.left;
                           } else if (index == 1 && newIndex == 1) {
                             _isSelected1[index] = !_isSelected1[index];
-                            textAlign = TextAlign.center;
+                            _textAlign = TextAlign.center;
                           } else if (index == 2 && newIndex == 2) {
                             _isSelected1[index] = !_isSelected1[index];
-                            textAlign = TextAlign.right;
+                            _textAlign = TextAlign.right;
                           } else {
                             _isSelected1[index] = false;
                           }
@@ -139,6 +146,7 @@ class _DayScreenState extends State<DayScreen> {
                       Icon(Icons.format_italic),
                       Icon(Icons.format_color_text),
                       Icon(Icons.font_download),
+
                       // Icon(Icons.format_size),
                       // Icon(Icons.format_underline),
 
@@ -155,10 +163,27 @@ class _DayScreenState extends State<DayScreen> {
                       //   child: Icon(Icons.format_align_right),
                       // ),
                     ],
-                    onPressed: (index) {
-                      setState(() {
-                        _isSelected2[index] = !_isSelected2[index];
-                      });
+                    onPressed: (newIndex) {
+                      for (var index = 0;
+                          index < _isSelected2.length;
+                          index++) {
+                        setState(() {
+                          if (index == 0 && newIndex == 0) {
+                            _isSelected2[index] = !_isSelected2[index];
+                            _fontweightBool = !_fontweightBool;
+                            _fontweight = FontWeight.bold;
+                          } else if (index == 1 && newIndex == 1) {
+                            _isSelected2[index] = !_isSelected2[index];
+                            _fontStyleBool = !_fontStyleBool;
+                            _fontStyle = FontStyle.italic;
+                          } else if (index == 2 && newIndex == 2) {
+                            _isSelected2[index] = !_isSelected2[index];
+                          } else if (index == 3 && newIndex == 3) {
+                          } else {
+                            _isSelected2[index] = false;
+                          }
+                        });
+                      }
                     },
                     isSelected: _isSelected2,
                   ),
@@ -200,7 +225,14 @@ class _DayScreenState extends State<DayScreen> {
                         TextFormField(
                           maxLines: null,
                           // expands: true,
-                          textAlign: textAlign,
+                          textAlign: _textAlign,
+                          style: TextStyle(
+                            fontWeight: _fontweightBool
+                                ? _fontweight
+                                : FontWeight.normal,
+                            fontStyle:
+                                _fontStyleBool ? _fontStyle : FontStyle.normal,
+                          ),
                           cursorColor: Color(0xFF3C4858),
                           keyboardType: TextInputType.multiline,
 
