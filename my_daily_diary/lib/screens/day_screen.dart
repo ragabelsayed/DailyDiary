@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import 'package:my_daily_diary/providers/day_data.dart';
@@ -21,7 +22,7 @@ class _DayScreenState extends State<DayScreen> {
   final _form = GlobalKey<FormState>();
 
   List<bool> _isSelected1 = [true, false, false];
-  List<bool> _isSelected2 = [false, false, false, false];
+  List<bool> _isSelected2 = [false, false, false];
   Color currentColor = Colors.limeAccent;
   TextAlign _textAlign = TextAlign.left;
   late FontWeight _fontweight;
@@ -152,23 +153,10 @@ class _DayScreenState extends State<DayScreen> {
                       Icon(Icons.format_bold),
                       Icon(Icons.format_italic),
                       Icon(Icons.format_color_text),
-                      Icon(Icons.font_download),
+                      // Icon(Icons.font_download),
 
                       // Icon(Icons.format_size),
                       // Icon(Icons.format_underline),
-
-                      // SizedBox(
-                      //   width: MediaQuery.of(context).size.width / 6,
-                      //   child: Icon(Icons.format_align_left),
-                      // ),
-                      // SizedBox(
-                      //   width: MediaQuery.of(context).size.width / 4,
-                      //   child: Icon(Icons.format_align_center),
-                      // ),
-                      // SizedBox(
-                      //   width: MediaQuery.of(context).size.width / 6,
-                      //   child: Icon(Icons.format_align_right),
-                      // ),
                     ],
                     onPressed: (newIndex) {
                       for (var index = 0;
@@ -199,7 +187,6 @@ class _DayScreenState extends State<DayScreen> {
                                 );
                               },
                             );
-                          } else if (index == 3 && newIndex == 3) {
                           } else {
                             _isSelected2[index] = false;
                           }
@@ -217,7 +204,7 @@ class _DayScreenState extends State<DayScreen> {
               padding: const EdgeInsets.only(left: 5, right: 5),
               child: Container(
                 decoration: BoxDecoration(
-                    color: Colors.pink,
+                    color: Colors.white,
                     borderRadius: const BorderRadius.all(Radius.circular(15))),
                 child: Form(
                   key: _form,
@@ -255,6 +242,12 @@ class _DayScreenState extends State<DayScreen> {
                             fontStyle:
                                 _fontStyleBool ? _fontStyle : FontStyle.normal,
                           ),
+                          // style: GoogleFonts.lato(
+                          //   textStyle: TextStyle(
+                          //     color: Colors.blue,
+                          //     letterSpacing: .5,
+                          //   ),
+                          // ),
                           cursorColor: Color(0xFF3C4858),
                           keyboardType: TextInputType.multiline,
 
