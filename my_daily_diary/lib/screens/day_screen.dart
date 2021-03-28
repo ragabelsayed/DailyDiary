@@ -23,12 +23,97 @@ class _DayScreenState extends State<DayScreen> {
 
   List<bool> _isSelected1 = [true, false, false];
   List<bool> _isSelected2 = [false, false, false];
-  Color currentColor = Colors.limeAccent;
+  Color currentColor = Colors.black;
   TextAlign _textAlign = TextAlign.left;
   late FontWeight _fontweight;
   late FontStyle _fontStyle;
   bool _fontweightBool = false;
   bool _fontStyleBool = false;
+  String dropdownValue = 'lato';
+
+  List<String> fontMenu = [
+    'lato',
+    'roboto',
+    'openSans',
+    'raleway',
+    'quicksand',
+    'dancingScript',
+    'pacifico',
+    'indieFlower'
+  ];
+
+  TextStyle? textStyle({
+    required String font,
+    required Color color,
+    required FontWeight fontWeight,
+    required FontStyle fontStyle,
+  }) {
+    switch (font) {
+      case 'lato':
+        return GoogleFonts.lato(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+        );
+
+      case 'roboto':
+        return GoogleFonts.roboto(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+        );
+
+      case 'openSans':
+        return GoogleFonts.openSans(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+        );
+
+      case 'raleway':
+        return GoogleFonts.raleway(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+        );
+
+      case 'quicksand':
+        return GoogleFonts.quicksand(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+        );
+
+      case 'dancingScript':
+        return GoogleFonts.dancingScript(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+        );
+
+      case 'pacifico':
+        return GoogleFonts.pacifico(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+        );
+
+      case 'indieFlower':
+        return GoogleFonts.indieFlower(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+        );
+
+      default:
+        GoogleFonts.lato(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+        );
+    }
+    return null;
+  }
 
   void changeColor(Color color) {
     // widget.covor(color, null);
@@ -154,7 +239,6 @@ class _DayScreenState extends State<DayScreen> {
                       Icon(Icons.format_italic),
                       Icon(Icons.format_color_text),
                       // Icon(Icons.font_download),
-
                       // Icon(Icons.format_size),
                       // Icon(Icons.format_underline),
                     ],
@@ -195,6 +279,29 @@ class _DayScreenState extends State<DayScreen> {
                     },
                     isSelected: _isSelected2,
                   ),
+                  const SizedBox(width: 10),
+                  DropdownButton(
+                    value: dropdownValue,
+                    // icon: const Icon(Icons.font_download),
+                    style: const TextStyle(color: Colors.blue),
+                    underline: Container(
+                      height: 2,
+                      color: Colors.blueAccent,
+                    ),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue = newValue!;
+                      });
+                    },
+                    items: fontMenu
+                        .map(
+                          (font) => DropdownMenuItem(
+                            value: font,
+                            child: Text(font),
+                          ),
+                        )
+                        .toList(),
+                  ),
                 ],
               ),
             ),
@@ -234,7 +341,8 @@ class _DayScreenState extends State<DayScreen> {
                           maxLines: null,
                           // expands: true,
                           textAlign: _textAlign,
-                          style: TextStyle(
+                          style: textStyle(
+                            font: dropdownValue,
                             color: currentColor,
                             fontWeight: _fontweightBool
                                 ? _fontweight
@@ -242,12 +350,6 @@ class _DayScreenState extends State<DayScreen> {
                             fontStyle:
                                 _fontStyleBool ? _fontStyle : FontStyle.normal,
                           ),
-                          // style: GoogleFonts.lato(
-                          //   textStyle: TextStyle(
-                          //     color: Colors.blue,
-                          //     letterSpacing: .5,
-                          //   ),
-                          // ),
                           cursorColor: Color(0xFF3C4858),
                           keyboardType: TextInputType.multiline,
 
