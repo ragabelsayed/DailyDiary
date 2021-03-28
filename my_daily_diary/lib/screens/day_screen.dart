@@ -19,6 +19,7 @@ class _DayScreenState extends State<DayScreen> {
 
   List<bool> _isSelected1 = [true, false, false];
   List<bool> _isSelected2 = [false, false, false, false];
+  TextAlign textAlign = TextAlign.left;
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +89,7 @@ class _DayScreenState extends State<DayScreen> {
                 children: [
                   ToggleButtons(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderWidth: 0,
                     children: [
                       Icon(Icons.format_align_left),
                       Icon(Icons.format_align_center),
@@ -106,23 +108,39 @@ class _DayScreenState extends State<DayScreen> {
                       //   child: Icon(Icons.format_align_right),
                       // ),
                     ],
-                    onPressed: (index) {
-                      setState(() {
-                        _isSelected1[index] = !_isSelected1[index];
-                      });
+                    onPressed: (newIndex) {
+                      for (var index = 0;
+                          index < _isSelected1.length;
+                          index++) {
+                        setState(() {
+                          if (index == 0 && newIndex == 0) {
+                            _isSelected1[index] = !_isSelected1[index];
+                            textAlign = TextAlign.left;
+                          } else if (index == 1 && newIndex == 1) {
+                            _isSelected1[index] = !_isSelected1[index];
+                            textAlign = TextAlign.center;
+                          } else if (index == 2 && newIndex == 2) {
+                            _isSelected1[index] = !_isSelected1[index];
+                            textAlign = TextAlign.right;
+                          } else {
+                            _isSelected1[index] = false;
+                          }
+                        });
+                      }
                     },
                     isSelected: _isSelected1,
                   ),
                   const SizedBox(width: 10),
                   ToggleButtons(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderWidth: 0,
                     children: [
                       Icon(Icons.format_bold),
                       Icon(Icons.format_italic),
                       Icon(Icons.format_color_text),
-                      Icon(Icons.format_size),
+                      Icon(Icons.font_download),
+                      // Icon(Icons.format_size),
                       // Icon(Icons.format_underline),
-                      // Icon(Icons.font_download),
 
                       // SizedBox(
                       //   width: MediaQuery.of(context).size.width / 6,
@@ -182,6 +200,7 @@ class _DayScreenState extends State<DayScreen> {
                         TextFormField(
                           maxLines: null,
                           // expands: true,
+                          textAlign: textAlign,
                           cursorColor: Color(0xFF3C4858),
                           keyboardType: TextInputType.multiline,
 
