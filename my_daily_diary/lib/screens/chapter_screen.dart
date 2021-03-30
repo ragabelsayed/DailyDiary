@@ -127,6 +127,29 @@ class _ChapterScreenState extends State<ChapterScreen>
                           },
                         ),
                       ),
+                      Positioned(
+                        child: Padding(
+                          padding:
+                              const EdgeInsets.only(left: 5, top: 5, bottom: 5),
+                          child: SizedBox(
+                            width: 30,
+                            height: 30,
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(30),
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Icon(
+                                  Icons.arrow_back_ios,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
