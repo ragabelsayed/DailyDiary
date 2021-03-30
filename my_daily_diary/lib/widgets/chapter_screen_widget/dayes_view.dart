@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
 import 'package:my_daily_diary/models/days.dart';
 import 'package:my_daily_diary/providers/day_data.dart';
 import 'package:my_daily_diary/screens/day_screen.dart';

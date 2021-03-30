@@ -78,4 +78,54 @@ class DayData with ChangeNotifier {
     _items.removeWhere((day) => day.id == id);
     notifyListeners();
   }
+
+  Color _currentColor = Colors.black;
+  TextAlign _textAlign = TextAlign.left;
+  bool _fontweight = false;
+  bool _fontStyle = false;
+  String _dropdownValue = 'lato';
+
+  void setCurrentColor(Color currentColor) {
+    _currentColor = currentColor;
+    notifyListeners();
+  }
+
+  Color get currentColor {
+    return _currentColor;
+  }
+
+  void setTextAlign(TextAlign textAlign) {
+    _textAlign = textAlign;
+    notifyListeners();
+  }
+
+  TextAlign get textAlign {
+    return _textAlign;
+  }
+
+  void setFontweight() {
+    _fontweight = !_fontweight;
+    notifyListeners();
+  }
+
+  bool get fontWeight {
+    return _fontweight;
+  }
+
+  void setFontStyle() {
+    _fontStyle = !_fontStyle;
+    notifyListeners();
+  }
+
+  bool get fontStyle {
+    return _fontStyle;
+  }
+
+  void setFontName(String fontName) {
+    _dropdownValue = fontName;
+  }
+
+  String get fontName {
+    return _dropdownValue;
+  }
 }
