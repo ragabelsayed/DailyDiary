@@ -65,6 +65,12 @@ class DayData with ChangeNotifier {
         backgroundImage: 'lib/assets/images/winter.png'),
   ];
 
+  Color _currentColor = Colors.black;
+  TextAlign _textAlign = TextAlign.left;
+  bool _fontweight = false;
+  bool _fontStyle = false;
+  String _dropdownValue = 'lato';
+
   List<Day> get items {
     return [..._items];
   }
@@ -78,12 +84,6 @@ class DayData with ChangeNotifier {
     _items.removeWhere((day) => day.id == id);
     notifyListeners();
   }
-
-  Color _currentColor = Colors.black;
-  TextAlign _textAlign = TextAlign.left;
-  bool _fontweight = false;
-  bool _fontStyle = false;
-  String _dropdownValue = 'lato';
 
   void setCurrentColor(Color currentColor) {
     _currentColor = currentColor;
