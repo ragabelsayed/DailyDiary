@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_daily_diary/models/chapter.dart';
 
 class Diary {
   final String? id;
@@ -9,8 +10,15 @@ class Diary {
   final File? image;
   final Color? customColor;
   final String? password;
-
-  Diary({this.id, this.name, this.image, this.customColor, this.password});
+  final List<Chapter>? chapters;
+  Diary({
+    this.id,
+    this.name,
+    this.image,
+    this.customColor,
+    this.password,
+    this.chapters,
+  });
 
   static List<Diary> diaryData = [
     Diary(

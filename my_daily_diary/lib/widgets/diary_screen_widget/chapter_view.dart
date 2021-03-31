@@ -151,7 +151,12 @@ class ChapterView extends StatelessWidget {
                 trailing: IconButton(
                   icon: Icon(Icons.arrow_forward_ios),
                   onPressed: () {
-                    Navigator.of(context).pushNamed(ChapterScreen.routName);
+                    Navigator.of(context).pushNamed(
+                      ChapterScreen.routName,
+                      arguments: {
+                        'id': '${chapterData!.id}',
+                      },
+                    );
                   },
                 ),
               ),

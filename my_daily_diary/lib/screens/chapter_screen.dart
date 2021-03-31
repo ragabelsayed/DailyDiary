@@ -41,6 +41,13 @@ class _ChapterScreenState extends State<ChapterScreen>
 
   Widget build(BuildContext context) {
     final _dayData = Provider.of<DayData>(context).items;
+
+    //  final routArgs =
+    //     ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+    // final dayId = routArgs['id'];
+    // final _dayData = Provider.of<DayData>(context)
+    //     .items
+    //     .firstWhere((day) => day.id == dayId);
     return Scaffold(
       body: FutureBuilder(
         future: _getData(),
