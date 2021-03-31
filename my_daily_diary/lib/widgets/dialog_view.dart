@@ -143,103 +143,100 @@ class _DialogViewState extends State<DialogView> {
           padding: const EdgeInsets.all(16.0),
           child: Form(
             key: _form,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text.rich(
-                    TextSpan(
-                      text: widget.name,
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                      children: [
-                        TextSpan(
-                          text: ' *',
-                          style: TextStyle(color: Colors.red),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        hintText: widget.hint,
-                      ),
-                      onSaved: (newValue) {
-                        switch (widget.action) {
-                          case AddAction.diary:
-                            _newDiary = Diary(
-                              id: DateTime.now().toString(),
-                              name: newValue,
-                              customColor: _newDiary.customColor,
-                              image: _newDiary.image,
-                            );
-                            break;
-                          case AddAction.chapter:
-                            _newChapter = Chapter(
-                              id: DateTime.now().toString(),
-                              name: newValue,
-                              customColor: _newChapter.customColor,
-                              image: _newChapter.image,
-                            );
-                            break;
-                          case AddAction.day:
-                            _newDay = Day(
-                              id: DateTime.now().toString(),
-                              name: newValue,
-                              date: DateTime.now(),
-                              customColor: _newDay.customColor,
-                              image: _newDay.image,
-                            );
-                            break;
-                          default:
-                        }
-                      },
-                    ),
-                  ),
-                  Text.rich(
-                    TextSpan(
-                      text: widget.coverName,
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                      children: [
-                        TextSpan(
-                          text: ' *',
-                          style: TextStyle(color: Colors.red),
-                        ),
-                      ],
-                    ),
-                  ),
-                  CoverPicker(_getCover),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text.rich(
+                  TextSpan(
+                    text: widget.name,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                     children: [
-                      ElevatedButton(
-                        child: Text('Cancel'),
-                        style: ButtonStyle(
-                          elevation: MaterialStateProperty.all<double>(3.0),
-                        ),
-                        onPressed: () {
-                          _close(context);
-                        },
-                      ),
-                      ElevatedButton(
-                        child: Text('Save'),
-                        style: ButtonStyle(
-                          elevation: MaterialStateProperty.all<double>(3.0),
-                        ),
-                        onPressed: () {
-                          _saveForm(context);
-                        },
+                      TextSpan(
+                        text: ' *',
+                        style: TextStyle(color: Colors.red),
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: widget.hint,
+                    ),
+                    onSaved: (newValue) {
+                      switch (widget.action) {
+                        case AddAction.diary:
+                          _newDiary = Diary(
+                            id: DateTime.now().toString(),
+                            name: newValue,
+                            customColor: _newDiary.customColor,
+                            image: _newDiary.image,
+                          );
+                          break;
+                        case AddAction.chapter:
+                          _newChapter = Chapter(
+                            id: DateTime.now().toString(),
+                            name: newValue,
+                            customColor: _newChapter.customColor,
+                            image: _newChapter.image,
+                          );
+                          break;
+                        case AddAction.day:
+                          _newDay = Day(
+                            id: DateTime.now().toString(),
+                            name: newValue,
+                            date: DateTime.now(),
+                            customColor: _newDay.customColor,
+                            image: _newDay.image,
+                          );
+                          break;
+                        default:
+                      }
+                    },
+                  ),
+                ),
+                Text.rich(
+                  TextSpan(
+                    text: widget.coverName,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                    children: [
+                      TextSpan(
+                        text: ' *',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ],
+                  ),
+                ),
+                CoverPicker(_getCover),
+                Expanded(child: Container()),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      child: Text('Cancel'),
+                      style: ButtonStyle(
+                        elevation: MaterialStateProperty.all<double>(3.0),
+                      ),
+                      onPressed: () {
+                        _close(context);
+                      },
+                    ),
+                    ElevatedButton(
+                      child: Text('Save'),
+                      style: ButtonStyle(
+                        elevation: MaterialStateProperty.all<double>(3.0),
+                      ),
+                      onPressed: () {
+                        _saveForm(context);
+                      },
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
