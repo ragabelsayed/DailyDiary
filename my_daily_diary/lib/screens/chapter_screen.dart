@@ -149,7 +149,7 @@ class _ChapterScreenState extends State<ChapterScreen>
                                   Navigator.pop(context);
                                 },
                                 child: Icon(
-                                  Icons.arrow_back_ios,
+                                  Icons.arrow_back,
                                   color: Colors.black,
                                 ),
                               ),
