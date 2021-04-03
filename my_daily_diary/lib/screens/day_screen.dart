@@ -104,141 +104,164 @@ class DayScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: MediaQuery.of(context).padding.top),
-          Padding(
-            padding: const EdgeInsets.only(left: 5, top: 5, bottom: 5),
-            child: SizedBox(
-              width: 30,
-              height: 30,
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(30),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.black,
+          Expanded(
+            child: CustomScrollView(
+              slivers: [
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 5, top: 5, bottom: 5),
+                            child: SizedBox(
+                              width: 30,
+                              height: 30,
+                              child: Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(30),
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Icon(
+                                    Icons.arrow_back_ios,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Text(
+                              DateFormat('EEEE').format(_dayData.date!),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 25,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, top: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  DateFormat('MMMM').format(_dayData.date!),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.grey.withOpacity(0.7),
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: Text(
+                                    DateFormat.d().format(_dayData.date!),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.grey.withOpacity(0.7),
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          FontFeatures(),
+                        ],
+                      );
+                    },
+                    childCount: 1,
                   ),
                 ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Text(
-              DateFormat('EEEE').format(_dayData.date!),
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-                fontSize: 25,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, top: 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  DateFormat('MMMM').format(_dayData.date!),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.grey.withOpacity(0.7),
-                    fontWeight: FontWeight.w300,
-                    fontSize: 18,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 5),
-                  child: Text(
-                    DateFormat.d().format(_dayData.date!),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.grey.withOpacity(0.7),
-                      fontWeight: FontWeight.w300,
-                      fontSize: 18,
+                SliverFillRemaining(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 5, right: 5),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(15))),
+                      child: Form(
+                        key: _form,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: 20.0, left: 15, right: 15),
+                                child: TextFormField(
+                                  minLines: 1,
+                                  maxLines: 3,
+                                  textAlign: TextAlign.center,
+                                  keyboardType: TextInputType.multiline,
+                                  cursorColor: Color(0xFF3C4858),
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  decoration: InputDecoration(
+                                    hintText:
+                                        'What\'s our topic of discussion?',
+                                  ),
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(100),
+                                  ],
+                                  // validator: InputValidator.title,
+                                  onSaved: (value) =>
+                                      _formData['title'] = value!,
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 15),
+                                child: TextFormField(
+                                  maxLines: null,
+                                  // expands: true,
+                                  textAlign: _textAlign,
+                                  style: textStyle(
+                                    font: _fontName,
+                                    color: _currentColor,
+                                    fontWeight: _fontWeight
+                                        // _fontweightBool
+                                        // ? _fontweight
+                                        ? FontWeight.bold
+                                        : FontWeight.normal,
+                                    fontStyle: _fontStyle
+                                        ? FontStyle.italic
+                                        : FontStyle.normal,
+                                  ),
+                                  cursorColor: Color(0xFF3C4858),
+                                  keyboardType: TextInputType.multiline,
+
+                                  decoration: InputDecoration.collapsed(
+                                      hintText:
+                                          'Tell me about it, I don\'t snitch 🤐..'),
+                                  // validator: InputValidator.content,
+                                  onSaved: (value) =>
+                                      _formData['content'] = value!,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
           ),
-          FontFeatures(),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 5, right: 5),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.all(Radius.circular(15))),
-                child: Form(
-                  key: _form,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                              bottom: 20.0, left: 15, right: 15),
-                          child: TextFormField(
-                            minLines: 1,
-                            maxLines: 3,
-                            textAlign: TextAlign.center,
-                            keyboardType: TextInputType.multiline,
-                            cursorColor: Color(0xFF3C4858),
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                            decoration: InputDecoration(
-                              hintText: 'What\'s our topic of discussion?',
-                            ),
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(100),
-                            ],
-                            // validator: InputValidator.title,
-                            onSaved: (value) => _formData['title'] = value!,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15, right: 15),
-                          child: TextFormField(
-                            maxLines: null,
-                            // expands: true,
-                            textAlign: _textAlign,
-                            style: textStyle(
-                              font: _fontName,
-                              color: _currentColor,
-                              fontWeight: _fontWeight
-                                  // _fontweightBool
-                                  // ? _fontweight
-                                  ? FontWeight.bold
-                                  : FontWeight.normal,
-                              fontStyle: _fontStyle
-                                  ? FontStyle.italic
-                                  : FontStyle.normal,
-                            ),
-                            cursorColor: Color(0xFF3C4858),
-                            keyboardType: TextInputType.multiline,
-
-                            decoration: InputDecoration.collapsed(
-                                hintText:
-                                    'Tell me about it, I don\'t snitch 🤐..'),
-                            // validator: InputValidator.content,
-                            onSaved: (value) => _formData['content'] = value!,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 5),
+          // const SizedBox(height: 5),
           SizedBox(height: MediaQuery.of(context).padding.bottom),
         ],
       ),
