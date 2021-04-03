@@ -200,6 +200,44 @@ class DayScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 3, bottom: 3),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.horizontal(
+                                      right: Radius.circular(50),
+                                      left: Radius.circular(50),
+                                    ),
+                                    color: Colors.grey.withOpacity(0.5),
+                                  ),
+                                  height: 5,
+                                  width: 200,
+                                  child: Divider(
+                                    color: Colors.white,
+                                    thickness: 1,
+                                    indent: 20,
+                                    endIndent: 20,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.horizontal(
+                                    right: Radius.circular(50),
+                                    left: Radius.circular(50),
+                                  ),
+                                  color: Colors.grey.withOpacity(0.5),
+                                ),
+                                height: 5,
+                                width: 150,
+                                child: Divider(
+                                  color: Colors.white,
+                                  thickness: 1,
+                                  indent: 20,
+                                  endIndent: 20,
+                                ),
+                              ),
+                              Padding(
                                 padding: EdgeInsets.only(
                                     bottom: 20.0, left: 15, right: 15),
                                 child: TextFormField(
