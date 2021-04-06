@@ -10,21 +10,21 @@ class Diary {
   final File? image;
   final Color? customColor;
   final String? password;
-  final List<Chapter>? chapters;
+  final List<Chapter> chapters;
   Diary({
     this.id,
     this.name,
     this.image,
     this.customColor,
     this.password,
-    this.chapters,
+    required this.chapters,
   });
 
-  static List<Diary> diaryData = [
-    Diary(
-      id: DateTime.now().toString(),
-      name: '2020',
-      customColor: Colors.amber,
-    ),
-  ];
+  // static List<Diary> diaryData = [
+  //   Diary(
+  //     id: DateTime.now().toString(),
+  //     name: '2020',
+  //     customColor: Colors.amber,
+  //   ),
+  // ];
 }

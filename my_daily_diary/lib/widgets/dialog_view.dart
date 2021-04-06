@@ -30,6 +30,7 @@ class _DialogViewState extends State<DialogView> {
     name: '',
     customColor: Colors.cyan,
     image: null,
+    chapters: [],
   );
 
   Chapter _newChapter = Chapter(
@@ -77,6 +78,7 @@ class _DialogViewState extends State<DialogView> {
             id: _newDiary.id,
             name: _newDiary.name,
             customColor: pickcolor,
+            chapters: _newDiary.chapters,
           );
         } else if (pickcolor == null && image != null) {
           setState(() {
@@ -84,6 +86,7 @@ class _DialogViewState extends State<DialogView> {
               id: _newDiary.id,
               name: _newDiary.name,
               image: image,
+              chapters: _newDiary.chapters,
             );
           });
         }
@@ -174,6 +177,7 @@ class _DialogViewState extends State<DialogView> {
                             name: newValue,
                             customColor: _newDiary.customColor,
                             image: _newDiary.image,
+                            chapters: _newDiary.chapters,
                           );
                           break;
                         case AddAction.chapter:

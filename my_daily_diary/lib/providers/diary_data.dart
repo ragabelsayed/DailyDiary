@@ -7,6 +7,7 @@ class DiaryData with ChangeNotifier {
       id: DateTime.now().toString(),
       name: '2020',
       customColor: Colors.amber,
+      chapters: [],
     ),
   ];
 
@@ -16,6 +17,7 @@ class DiaryData with ChangeNotifier {
 
   void addDiary(Diary diary) {
     _items.add(diary);
+
     notifyListeners();
   }
 

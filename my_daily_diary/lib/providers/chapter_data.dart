@@ -1,69 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:my_daily_diary/models/chapter.dart';
+import 'package:my_daily_diary/models/diary.dart';
 
 class ChapterData with ChangeNotifier {
-  List<Chapter> _items = [
-    Chapter(
-        id: DateTime.now().toString(),
-        name: 'January',
-        backgroundImage: 'lib/assets/images/winter.png'),
-    Chapter(
-        id: DateTime.now().toString(),
-        name: 'February',
-        backgroundImage: 'lib/assets/images/winter.png'),
-    Chapter(
-        id: DateTime.now().toString(),
-        name: 'March',
-        backgroundImage: 'lib/assets/images/spring.png'),
-    Chapter(
-        id: DateTime.now().toString(),
-        name: 'April',
-        backgroundImage: 'lib/assets/images/spring.png'),
-    Chapter(
-        id: DateTime.now().toString(),
-        name: 'May',
-        backgroundImage: 'lib/assets/images/spring.png'),
-    Chapter(
-        id: DateTime.now().toString(),
-        name: 'June',
-        backgroundImage: 'lib/assets/images/summer.png'),
-    Chapter(
-        id: DateTime.now().toString(),
-        name: 'July',
-        backgroundImage: 'lib/assets/images/summer.png'),
-    Chapter(
-        id: DateTime.now().toString(),
-        name: 'August',
-        backgroundImage: 'lib/assets/images/summer.png'),
-    Chapter(
-        id: DateTime.now().toString(),
-        name: 'September',
-        backgroundImage: 'lib/assets/images/autumn.png'),
-    Chapter(
-        id: DateTime.now().toString(),
-        name: 'October',
-        backgroundImage: 'lib/assets/images/autumn.png'),
-    Chapter(
-        id: DateTime.now().toString(),
-        name: 'November',
-        backgroundImage: 'lib/assets/images/autumn.png'),
-    Chapter(
-        id: DateTime.now().toString(),
-        name: 'December',
-        backgroundImage: 'lib/assets/images/winter.png'),
-  ];
+  late Diary _diary;
+  List<Chapter> _items = [];
+  //  = [
+  //   Chapter(
+  //       id: DateTime.now().toString(),
+  //       name: 'January',
+  //       backgroundImage: 'lib/assets/images/winter.png'),
+  //   Chapter(
+  //       id: DateTime.now().toString(),
+  //       name: 'February',
+  //       backgroundImage: 'lib/assets/images/winter.png'),
+  //   Chapter(
+  //       id: DateTime.now().toString(),
+  //       name: 'March',
+  //       backgroundImage: 'lib/assets/images/spring.png'),
+  // Chapter(
+  //     id: DateTime.now().toString(),
+  //     name: 'April',
+  //     backgroundImage: 'lib/assets/images/spring.png'),
+  // Chapter(
+  //     id: DateTime.now().toString(),
+  //     name: 'May',
+  //     backgroundImage: 'lib/assets/images/spring.png'),
+  // Chapter(
+  //     id: DateTime.now().toString(),
+  //     name: 'June',
+  //     backgroundImage: 'lib/assets/images/summer.png'),
+  // Chapter(
+  //     id: DateTime.now().toString(),
+  //     name: 'July',
+  //     backgroundImage: 'lib/assets/images/summer.png'),
+  // Chapter(
+  //     id: DateTime.now().toString(),
+  //     name: 'August',
+  //     backgroundImage: 'lib/assets/images/summer.png'),
+  // Chapter(
+  //     id: DateTime.now().toString(),
+  //     name: 'September',
+  //     backgroundImage: 'lib/assets/images/autumn.png'),
+  // Chapter(
+  //     id: DateTime.now().toString(),
+  //     name: 'October',
+  //     backgroundImage: 'lib/assets/images/autumn.png'),
+  // Chapter(
+  //     id: DateTime.now().toString(),
+  //     name: 'November',
+  //     backgroundImage: 'lib/assets/images/autumn.png'),
+  // Chapter(
+  //     id: DateTime.now().toString(),
+  //     name: 'December',
+  //     backgroundImage: 'lib/assets/images/winter.png'),
+  // ];
 
   List<Chapter> get items {
     return [..._items];
   }
 
   void addChapter(Chapter chapter) {
-    _items.add(chapter);
+    // _items.add(chapter);
+    _diary.chapters.add(chapter);
     notifyListeners();
   }
 
   void removeChapter(String? id) {
     _items.removeWhere((chapter) => chapter.id == id);
+    notifyListeners();
+  }
+
+  void diaryChapters(List<Chapter> chapters, Diary diary) {
+    _items = chapters;
+    _diary = diary;
     notifyListeners();
   }
 }

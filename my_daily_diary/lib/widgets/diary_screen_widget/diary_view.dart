@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_daily_diary/models/diary.dart';
+import 'package:my_daily_diary/providers/chapter_data.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
 import 'package:my_daily_diary/widgets/Lock_view.dart';
 import 'package:provider/provider.dart';
@@ -29,53 +30,61 @@ class DiaryView extends StatelessWidget {
                   Expanded(
                     child: Stack(
                       children: [
-                        InkWell(
-                          onTap: () {},
-                          child: Container(
-                            width: 130,
-                            height: double.infinity,
-                            decoration: BoxDecoration(
-                              color: diaryData!.customColor,
-                              borderRadius: const BorderRadius.only(
-                                topRight: Radius.circular(15),
-                                bottomRight: Radius.circular(15),
-                                topLeft: Radius.circular(3),
-                                bottomLeft: Radius.circular(3),
-                              ),
-                              gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.topRight,
-                                colors: [
-                                  diaryData!.customColor != null
-                                      ? diaryData!.customColor!.withAlpha(255)
-                                      : Colors.pink,
-                                  diaryData!.customColor != null
-                                      ? diaryData!.customColor!.withAlpha(50)
-                                      : Colors.pink.withRed(5),
+                        Material(
+                          child: InkWell(
+                            onTap: () {
+                              Provider.of<ChapterData>(context, listen: false)
+                                  .diaryChapters(
+                                diaryData!.chapters,
+                                diaryData!,
+                              );
+                            },
+                            child: Container(
+                              width: 130,
+                              height: double.infinity,
+                              decoration: BoxDecoration(
+                                color: diaryData!.customColor,
+                                borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(15),
+                                  bottomRight: Radius.circular(15),
+                                  topLeft: Radius.circular(3),
+                                  bottomLeft: Radius.circular(3),
+                                ),
+                                gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.topRight,
+                                  colors: [
+                                    diaryData!.customColor != null
+                                        ? diaryData!.customColor!.withAlpha(255)
+                                        : Colors.pink,
+                                    diaryData!.customColor != null
+                                        ? diaryData!.customColor!.withAlpha(50)
+                                        : Colors.pink.withRed(5),
+                                  ],
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.7),
+                                    offset: const Offset(2.0, 2.0),
+                                    blurRadius: 10,
+                                  ),
                                 ],
                               ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.7),
-                                  offset: const Offset(2.0, 2.0),
-                                  blurRadius: 10,
-                                ),
-                              ],
+                              child: diaryData!.image == null
+                                  ? Text('')
+                                  : ClipRRect(
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(15),
+                                        bottomRight: Radius.circular(15),
+                                        topLeft: Radius.circular(3),
+                                        bottomLeft: Radius.circular(3),
+                                      ),
+                                      child: Image.file(
+                                        diaryData!.image!,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                             ),
-                            child: diaryData!.image == null
-                                ? Text('')
-                                : ClipRRect(
-                                    borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(15),
-                                      bottomRight: Radius.circular(15),
-                                      topLeft: Radius.circular(3),
-                                      bottomLeft: Radius.circular(3),
-                                    ),
-                                    child: Image.file(
-                                      diaryData!.image!,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
                           ),
                         ),
                         Positioned(
