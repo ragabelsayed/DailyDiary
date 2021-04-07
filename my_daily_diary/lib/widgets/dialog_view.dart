@@ -6,8 +6,9 @@ import 'package:my_daily_diary/models/chapter.dart';
 import 'package:my_daily_diary/models/diary.dart';
 import 'package:my_daily_diary/models/page.dart';
 import 'package:my_daily_diary/providers/chapter_data.dart';
-import 'package:my_daily_diary/providers/Page_data.dart';
+
 import 'package:my_daily_diary/providers/diary_data.dart';
+import 'package:my_daily_diary/providers/page_data.dart';
 import 'package:my_daily_diary/widgets/cover_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -39,6 +40,7 @@ class _DialogViewState extends State<DialogView> {
     name: '',
     image: null,
     customColor: Colors.cyan,
+    pages: [],
   );
 
   ChapterPage _newPage = ChapterPage(
@@ -99,6 +101,7 @@ class _DialogViewState extends State<DialogView> {
             id: _newChapter.id,
             name: _newChapter.name,
             customColor: pickcolor,
+            pages: _newChapter.pages,
           );
         } else if (pickcolor == null && image != null) {
           setState(() {
@@ -106,6 +109,7 @@ class _DialogViewState extends State<DialogView> {
               id: _newChapter.id,
               name: _newChapter.name,
               image: image,
+              pages: _newChapter.pages,
             );
           });
         }
@@ -183,11 +187,11 @@ class _DialogViewState extends State<DialogView> {
                           break;
                         case AddAction.chapter:
                           _newChapter = Chapter(
-                            id: DateTime.now().toString(),
-                            name: newValue,
-                            customColor: _newChapter.customColor,
-                            image: _newChapter.image,
-                          );
+                              id: DateTime.now().toString(),
+                              name: newValue,
+                              customColor: _newChapter.customColor,
+                              image: _newChapter.image,
+                              pages: _newChapter.pages);
                           break;
                         case AddAction.page:
                           _newPage = ChapterPage(

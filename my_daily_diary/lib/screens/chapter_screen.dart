@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_daily_diary/providers/Page_data.dart';
+import 'package:my_daily_diary/providers/page_data.dart';
+
 import 'package:my_daily_diary/widgets/chapter_screen_widget/Page_view.dart';
 
 import 'package:my_daily_diary/widgets/dialog_view.dart';
@@ -39,7 +40,7 @@ class _ChapterScreenState extends State<ChapterScreen>
   }
 
   Widget build(BuildContext context) {
-    final _dayData = Provider.of<PageData>(context).items;
+    final _pageData = Provider.of<PageData>(context).items;
 
     //  final routArgs =
     //     ModalRoute.of(context)!.settings.arguments as Map<String, String>;
@@ -53,7 +54,7 @@ class _ChapterScreenState extends State<ChapterScreen>
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(
-              child: Text('Add Your frist day in this chapter 😀'),
+              child: Text('Add Your frist Page in this chapter 😀'),
             );
           } else {
             return Column(
@@ -76,7 +77,6 @@ class _ChapterScreenState extends State<ChapterScreen>
                       //     // renderChildrenOutsideViewport: false,
                       //     // squeeze: 5.0,
                       //     // useMagnifier: false,
-
                       //     children: _dayData
                       //         .map((day) => DaysView(
                       //               dayData: day,
@@ -87,32 +87,39 @@ class _ChapterScreenState extends State<ChapterScreen>
                       //         .toList(),
                       //   ),
                       // ),
-                      ListView.builder(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 5,
-                          vertical: 5,
-                        ),
-                        itemCount: _dayData.length,
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) {
-                          final int count =
-                              _dayData.length > 10 ? 10 : _dayData.length;
-                          final Animation<double> animation =
-                              Tween<double>(begin: 0.0, end: 1.0).animate(
-                            CurvedAnimation(
-                              parent: _animationController,
-                              curve: Interval((1 / count) * index, 1.0,
-                                  curve: Curves.fastOutSlowIn),
+
+                      _pageData.isNotEmpty
+                          ? ListView.builder(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 5,
+                                vertical: 5,
+                              ),
+                              itemCount: _pageData.length,
+                              scrollDirection: Axis.vertical,
+                              itemBuilder: (context, index) {
+                                final int count = _pageData.length > 10
+                                    ? 10
+                                    : _pageData.length;
+                                final Animation<double> animation =
+                                    Tween<double>(begin: 0.0, end: 1.0).animate(
+                                  CurvedAnimation(
+                                    parent: _animationController,
+                                    curve: Interval((1 / count) * index, 1.0,
+                                        curve: Curves.fastOutSlowIn),
+                                  ),
+                                );
+                                _animationController.forward();
+                                return PagesView(
+                                  pageData: _pageData[index],
+                                  animation: animation,
+                                  animationController: _animationController,
+                                );
+                              },
+                            )
+                          : Center(
+                              child:
+                                  Text('Add Your frist page in this chapter😀'),
                             ),
-                          );
-                          _animationController.forward();
-                          return PagesView(
-                            pageData: _dayData[index],
-                            animation: animation,
-                            animationController: _animationController,
-                          );
-                        },
-                      ),
                       Positioned(
                         right: 10,
                         bottom: 10,
@@ -123,9 +130,9 @@ class _ChapterScreenState extends State<ChapterScreen>
                               context: context,
                               builder: (context) {
                                 return DialogView(
-                                  name: 'Day Name',
+                                  name: 'Page Name',
                                   hint: 'Ex: 1, 2 ...30 ets',
-                                  coverName: 'Day Cover',
+                                  coverName: 'Page Cover',
                                   action: AddAction.page,
                                 );
                               },

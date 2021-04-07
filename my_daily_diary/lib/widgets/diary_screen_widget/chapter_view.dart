@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:my_daily_diary/models/chapter.dart';
 import 'package:my_daily_diary/providers/chapter_data.dart';
+import 'package:my_daily_diary/providers/page_data.dart';
 import 'package:my_daily_diary/screens/chapter_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -153,9 +154,13 @@ class ChapterView extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pushNamed(
                       ChapterScreen.routName,
-                      arguments: {
-                        'id': '${chapterData!.id}',
-                      },
+                      // arguments: {
+                      //   'id': '${chapterData!.id}',
+                      // },
+                    );
+                    Provider.of<PageData>(context, listen: false).setPages(
+                      chapterData!.pages,
+                      chapterData!,
                     );
                   },
                 ),

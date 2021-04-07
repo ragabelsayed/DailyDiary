@@ -10,7 +10,7 @@ class Chapter {
   final File? image;
   final Color? customColor;
   final String? password;
-  final List<ChapterPage>? day;
+  final List<ChapterPage> pages;
   const Chapter({
     this.id,
     this.name,
@@ -18,6 +18,6 @@ class Chapter {
     this.image,
     this.customColor,
     this.password,
-    this.day,
+    required this.pages,
   });
 }

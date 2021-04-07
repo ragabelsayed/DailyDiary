@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:my_daily_diary/providers/chapter_data.dart';
 
 import 'package:my_daily_diary/providers/diary_data.dart';
+import 'package:my_daily_diary/providers/page_data.dart';
 import 'package:my_daily_diary/screens/chapter_screen.dart';
 
 import 'package:provider/provider.dart';
 import './screens/my_diary_screen.dart';
-import 'providers/Page_data.dart';
+
 import 'screens/page_screen.dart';
 
 void main() {
