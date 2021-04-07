@@ -67,7 +67,8 @@ class ChapterData with ChangeNotifier {
   }
 
   void removeChapter(String? id) {
-    _items.removeWhere((chapter) => chapter.id == id);
+    // _items.removeWhere((chapter) => chapter.id == id);
+    _diary.chapters.removeWhere((chapter) => chapter.id == id);
     notifyListeners();
   }
 
