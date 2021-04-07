@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:my_daily_diary/providers/day_data.dart';
+import 'package:my_daily_diary/providers/Page_data.dart';
+
 import 'package:provider/provider.dart';
 
 class FontFeatures extends StatefulWidget {
@@ -23,14 +24,14 @@ class _FontFeaturesState extends State<FontFeatures> {
   ];
 
   void changeColor(Color color) {
-    Provider.of<DayData>(context, listen: false).setCurrentColor(color);
+    Provider.of<PageData>(context, listen: false).setCurrentColor(color);
   }
 
   @override
   Widget build(BuildContext context) {
     String _dropdownValue =
-        Provider.of<DayData>(context, listen: false).fontName;
-    Color _currentColor = Provider.of<DayData>(context).currentColor;
+        Provider.of<PageData>(context, listen: false).fontName;
+    Color _currentColor = Provider.of<PageData>(context).currentColor;
 
     return Padding(
       padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20, right: 20),
@@ -53,15 +54,15 @@ class _FontFeaturesState extends State<FontFeatures> {
                   setState(() {
                     if (index == 0 && newIndex == 0) {
                       _isSelected1[index] = !_isSelected1[index];
-                      Provider.of<DayData>(context, listen: false)
+                      Provider.of<PageData>(context, listen: false)
                           .setTextAlign(TextAlign.left);
                     } else if (index == 1 && newIndex == 1) {
                       _isSelected1[index] = !_isSelected1[index];
-                      Provider.of<DayData>(context, listen: false)
+                      Provider.of<PageData>(context, listen: false)
                           .setTextAlign(TextAlign.center);
                     } else if (index == 2 && newIndex == 2) {
                       _isSelected1[index] = !_isSelected1[index];
-                      Provider.of<DayData>(context, listen: false)
+                      Provider.of<PageData>(context, listen: false)
                           .setTextAlign(TextAlign.right);
                     } else {
                       _isSelected1[index] = false;
@@ -88,11 +89,11 @@ class _FontFeaturesState extends State<FontFeatures> {
                   setState(() {
                     if (index == 0 && newIndex == 0) {
                       _isSelected2[index] = !_isSelected2[index];
-                      Provider.of<DayData>(context, listen: false)
+                      Provider.of<PageData>(context, listen: false)
                           .setFontweight();
                     } else if (index == 1 && newIndex == 1) {
                       _isSelected2[index] = !_isSelected2[index];
-                      Provider.of<DayData>(context, listen: false)
+                      Provider.of<PageData>(context, listen: false)
                           .setFontStyle();
                     } else if (index == 2 && newIndex == 2) {
                       _isSelected2[index] = !_isSelected2[index];
@@ -128,7 +129,7 @@ class _FontFeaturesState extends State<FontFeatures> {
                 color: Colors.blueAccent,
               ),
               onChanged: (String? newValue) {
-                Provider.of<DayData>(context, listen: false)
+                Provider.of<PageData>(context, listen: false)
                     .setFontName(newValue!);
               },
               items: fontMenu

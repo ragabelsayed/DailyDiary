@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
-import 'package:my_daily_diary/models/days.dart';
-import 'package:my_daily_diary/providers/day_data.dart';
-import 'package:my_daily_diary/screens/day_screen.dart';
+import 'package:my_daily_diary/models/page.dart';
+
+import 'package:my_daily_diary/providers/page_data.dart';
+import 'package:my_daily_diary/screens/page_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../Lock_view.dart';
 
 class DaysView extends StatelessWidget {
-  final Day? dayData;
+  final ChapterPage? pageData;
   final AnimationController? animationController;
   final Animation? animation;
 
   DaysView({
-    this.dayData,
+    this.pageData,
     this.animationController,
     this.animation,
   });
@@ -34,24 +35,24 @@ class DaysView extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).pushNamed(
                       DayScreen.routName,
-                      arguments: {'id': '${dayData!.id}'},
+                      arguments: {'id': '${pageData!.id}'},
                     );
                   },
                   child: Container(
                     height: 250,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: dayData!.customColor,
+                      color: pageData!.customColor,
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.topRight,
                         colors: [
-                          dayData!.customColor != null
-                              ? dayData!.customColor!.withAlpha(255)
+                          pageData!.customColor != null
+                              ? pageData!.customColor!.withAlpha(255)
                               : Colors.pink,
-                          dayData!.customColor != null
-                              ? dayData!.customColor!.withAlpha(50)
+                          pageData!.customColor != null
+                              ? pageData!.customColor!.withAlpha(50)
                               : Colors.pink.withRed(5),
                         ],
                       ),
@@ -63,13 +64,13 @@ class DaysView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: dayData!.image == null
+                    child: pageData!.image == null
                         ? Text('')
                         : ClipRRect(
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(20)),
                             child: Image.file(
-                              dayData!.image!,
+                              pageData!.image!,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -116,9 +117,9 @@ class DaysView extends StatelessWidget {
                                       TextButton(
                                         child: Text('Yes'),
                                         onPressed: () {
-                                          Provider.of<DayData>(context,
+                                          Provider.of<PageData>(context,
                                                   listen: false)
-                                              .removeDay(dayData!.id);
+                                              .removePage(pageData!.id);
 
                                           Navigator.of(context).pop();
                                           ScaffoldMessenger.of(context)
@@ -167,7 +168,7 @@ class DaysView extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 2),
                         child: Text(
-                          dayData!.name!,
+                          pageData!.name!,
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           // softWrap: false,

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:my_daily_diary/models/days.dart';
+import 'package:my_daily_diary/models/page.dart';
 
 class Chapter {
   final String? id;
@@ -10,7 +10,7 @@ class Chapter {
   final File? image;
   final Color? customColor;
   final String? password;
-  final List<Day>? day;
+  final List<ChapterPage>? day;
   const Chapter({
     this.id,
     this.name,

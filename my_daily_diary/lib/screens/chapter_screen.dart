@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:my_daily_diary/providers/Page_data.dart';
 
-import 'package:my_daily_diary/providers/day_data.dart';
-
-import 'package:my_daily_diary/widgets/chapter_screen_widget/dayes_view.dart';
+import 'package:my_daily_diary/widgets/chapter_screen_widget/Pages_view.dart';
 import 'package:my_daily_diary/widgets/dialog_view.dart';
 
 import 'package:provider/provider.dart';
@@ -40,7 +39,7 @@ class _ChapterScreenState extends State<ChapterScreen>
   }
 
   Widget build(BuildContext context) {
-    final _dayData = Provider.of<DayData>(context).items;
+    final _dayData = Provider.of<PageData>(context).items;
 
     //  final routArgs =
     //     ModalRoute.of(context)!.settings.arguments as Map<String, String>;
@@ -127,7 +126,7 @@ class _ChapterScreenState extends State<ChapterScreen>
                                   name: 'Day Name',
                                   hint: 'Ex: 1, 2 ...30 ets',
                                   coverName: 'Day Cover',
-                                  action: AddAction.day,
+                                  action: AddAction.page,
                                 );
                               },
                             );

@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:my_daily_diary/providers/Page_data.dart';
 
-import 'package:my_daily_diary/providers/day_data.dart';
 import 'package:my_daily_diary/widgets/day_screen_widget/font_features_view.dart';
 import 'package:provider/provider.dart';
 
@@ -89,18 +89,18 @@ class DayScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color _currentColor = Provider.of<DayData>(context).currentColor;
-    TextAlign _textAlign = Provider.of<DayData>(context).textAlign;
-    bool _fontWeight = Provider.of<DayData>(context).fontWeight;
-    bool _fontStyle = Provider.of<DayData>(context).fontStyle;
-    String _fontName = Provider.of<DayData>(context).fontName;
+    Color _currentColor = Provider.of<PageData>(context).currentColor;
+    TextAlign _textAlign = Provider.of<PageData>(context).textAlign;
+    bool _fontWeight = Provider.of<PageData>(context).fontWeight;
+    bool _fontStyle = Provider.of<PageData>(context).fontStyle;
+    String _fontName = Provider.of<PageData>(context).fontName;
 
     final routArgs =
         ModalRoute.of(context)!.settings.arguments as Map<String, String>;
-    final dayId = routArgs['id'];
-    final _dayData = Provider.of<DayData>(context)
+    final pagesId = routArgs['id'];
+    final _pagesData = Provider.of<PageData>(context)
         .items
-        .firstWhere((day) => day.id == dayId);
+        .firstWhere((pages) => pages.id == pagesId);
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: Column(
@@ -140,7 +140,7 @@ class DayScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: Text(
-                              DateFormat('EEEE').format(_dayData.date!),
+                              DateFormat('EEEE').format(_pagesData.date!),
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.black,
@@ -156,7 +156,7 @@ class DayScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  DateFormat('MMMM').format(_dayData.date!),
+                                  DateFormat('MMMM').format(_pagesData.date!),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.grey.withOpacity(0.7),
@@ -167,7 +167,7 @@ class DayScreen extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 5),
                                   child: Text(
-                                    DateFormat.d().format(_dayData.date!),
+                                    DateFormat.d().format(_pagesData.date!),
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Colors.grey.withOpacity(0.7),

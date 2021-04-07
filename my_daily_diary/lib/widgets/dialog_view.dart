@@ -2,15 +2,16 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:my_daily_diary/models/chapter.dart';
-import 'package:my_daily_diary/models/days.dart';
+
 import 'package:my_daily_diary/models/diary.dart';
+import 'package:my_daily_diary/models/page.dart';
 import 'package:my_daily_diary/providers/chapter_data.dart';
-import 'package:my_daily_diary/providers/day_data.dart';
+import 'package:my_daily_diary/providers/Page_data.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
 import 'package:my_daily_diary/widgets/cover_picker.dart';
 import 'package:provider/provider.dart';
 
-enum AddAction { diary, chapter, day }
+enum AddAction { diary, chapter, page }
 
 class DialogView extends StatefulWidget {
   final String? name;
@@ -40,7 +41,7 @@ class _DialogViewState extends State<DialogView> {
     customColor: Colors.cyan,
   );
 
-  Day _newDay = Day(
+  ChapterPage _newPage = ChapterPage(
     id: null,
     name: '',
     date: null,
@@ -61,9 +62,9 @@ class _DialogViewState extends State<DialogView> {
             .addChapter(_newChapter);
         Navigator.pop(context);
         break;
-      case AddAction.day:
+      case AddAction.page:
         _form.currentState!.save();
-        Provider.of<DayData>(context, listen: false).addDay(_newDay);
+        Provider.of<PageData>(context, listen: false).addPage(_newPage);
         Navigator.pop(context);
         break;
       default:
@@ -110,20 +111,20 @@ class _DialogViewState extends State<DialogView> {
         }
         break;
 
-      case AddAction.day:
+      case AddAction.page:
         if (pickcolor != null && image == null) {
-          _newDay = Day(
-            id: _newDay.id,
-            name: _newDay.name,
-            date: _newDay.date,
+          _newPage = ChapterPage(
+            id: _newPage.id,
+            name: _newPage.name,
+            date: _newPage.date,
             customColor: pickcolor,
           );
         } else if (pickcolor == null && image != null) {
           setState(() {
-            _newDay = Day(
-              id: _newDay.id,
-              name: _newDay.name,
-              date: _newDay.date,
+            _newPage = ChapterPage(
+              id: _newPage.id,
+              name: _newPage.name,
+              date: _newPage.date,
               image: image,
             );
           });
@@ -188,13 +189,13 @@ class _DialogViewState extends State<DialogView> {
                             image: _newChapter.image,
                           );
                           break;
-                        case AddAction.day:
-                          _newDay = Day(
+                        case AddAction.page:
+                          _newPage = ChapterPage(
                             id: DateTime.now().toString(),
                             name: newValue,
                             date: DateTime.now(),
-                            customColor: _newDay.customColor,
-                            image: _newDay.image,
+                            customColor: _newPage.customColor,
+                            image: _newPage.image,
                           );
                           break;
                         default:

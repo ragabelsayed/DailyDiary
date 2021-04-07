@@ -72,7 +72,7 @@ class ChapterData with ChangeNotifier {
     notifyListeners();
   }
 
-  void diaryChapters(List<Chapter> chapters, Diary diary) {
+  void setChapters(List<Chapter> chapters, Diary diary) {
     _items = chapters;
     _diary = diary;
     notifyListeners();

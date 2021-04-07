@@ -34,7 +34,7 @@ class DiaryView extends StatelessWidget {
                           child: InkWell(
                             onTap: () {
                               Provider.of<ChapterData>(context, listen: false)
-                                  .diaryChapters(
+                                  .setChapters(
                                 diaryData!.chapters,
                                 diaryData!,
                               );

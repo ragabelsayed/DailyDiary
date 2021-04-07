@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-class Day {
+class ChapterPage {
   final String? id;
   final String? name;
   final DateTime? date;
@@ -11,7 +11,7 @@ class Day {
   final Color? customColor;
   final String? password;
 
-  const Day({
+  const ChapterPage({
     this.id,
     this.name,
     this.date,
