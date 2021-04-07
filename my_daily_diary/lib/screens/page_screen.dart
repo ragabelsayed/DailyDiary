@@ -8,8 +8,8 @@ import 'package:my_daily_diary/providers/page_data.dart';
 import 'package:my_daily_diary/widgets/day_screen_widget/font_features_view.dart';
 import 'package:provider/provider.dart';
 
-class DayScreen extends StatelessWidget {
-  static const routName = '/day_screen';
+class PageScreen extends StatelessWidget {
+  static const routName = '/page_screen';
 
   final Map<String, String> _formData = {};
   final _form = GlobalKey<FormState>();

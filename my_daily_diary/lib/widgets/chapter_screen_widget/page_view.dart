@@ -34,7 +34,7 @@ class PagesView extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     Navigator.of(context).pushNamed(
-                      DayScreen.routName,
+                      PageScreen.routName,
                       arguments: {'id': '${pageData!.id}'},
                     );
                   },

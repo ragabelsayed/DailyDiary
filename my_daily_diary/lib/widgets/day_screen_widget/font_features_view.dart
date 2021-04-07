@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:my_daily_diary/providers/Page_data.dart';
+import 'package:my_daily_diary/providers/page_data.dart';
 
 import 'package:provider/provider.dart';
 

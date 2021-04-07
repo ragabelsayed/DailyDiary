@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         routes: {
           MyDiaryScreen.routName: (ctx) => MyDiaryScreen(),
           ChapterScreen.routName: (ctx) => ChapterScreen(),
-          DayScreen.routName: (ctx) => DayScreen(),
+          PageScreen.routName: (ctx) => PageScreen(),
         },
       ),
     );
