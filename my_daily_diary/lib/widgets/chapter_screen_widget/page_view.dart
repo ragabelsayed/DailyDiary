@@ -8,12 +8,12 @@ import 'package:provider/provider.dart';
 
 import '../Lock_view.dart';
 
-class DaysView extends StatelessWidget {
+class PagesView extends StatelessWidget {
   final ChapterPage? pageData;
   final AnimationController? animationController;
   final Animation? animation;
 
-  DaysView({
+  PagesView({
     this.pageData,
     this.animationController,
     this.animation,

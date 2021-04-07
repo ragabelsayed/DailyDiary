@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_daily_diary/providers/Page_data.dart';
+import 'package:my_daily_diary/widgets/chapter_screen_widget/Page_view.dart';
 
-import 'package:my_daily_diary/widgets/chapter_screen_widget/Pages_view.dart';
 import 'package:my_daily_diary/widgets/dialog_view.dart';
 
 import 'package:provider/provider.dart';
@@ -106,8 +106,8 @@ class _ChapterScreenState extends State<ChapterScreen>
                             ),
                           );
                           _animationController.forward();
-                          return DaysView(
-                            dayData: _dayData[index],
+                          return PagesView(
+                            pageData: _dayData[index],
                             animation: animation,
                             animationController: _animationController,
                           );
