@@ -88,6 +88,10 @@ class PageScreen extends StatelessWidget {
     return null;
   }
 
+  void _saveForm() {
+    _form.currentState!.save();
+  }
+
   @override
   Widget build(BuildContext context) {
     Color _currentColor = Provider.of<PageData>(context).currentColor;
@@ -98,13 +102,6 @@ class PageScreen extends StatelessWidget {
 
     final _pagesData =
         ModalRoute.of(context)!.settings.arguments as ChapterPage;
-
-    // final routArgs =
-    //     ModalRoute.of(context)!.settings.arguments as Map<String, String>;
-    // final pagesId = routArgs['id'];
-    // final _pagesData = Provider.of<PageData>(context)
-    //     .items
-    //     .firstWhere((pages) => pages.id == pagesId);
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: Column(
@@ -121,24 +118,41 @@ class PageScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(
-                                left: 5, top: 5, bottom: 5),
-                            child: SizedBox(
-                              width: 30,
-                              height: 30,
-                              child: Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(30),
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Icon(
-                                    Icons.arrow_back,
-                                    color: Colors.black,
+                            padding: const EdgeInsets.all(5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: 30,
+                                  height: 30,
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      borderRadius: BorderRadius.circular(30),
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Icon(
+                                        Icons.arrow_back,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
+                                SizedBox(
+                                  width: 30,
+                                  height: 30,
+                                  child: IconButton(
+                                    padding: const EdgeInsets.only(left: 5),
+                                    icon: Icon(
+                                      Icons.save,
+                                      size: 25,
+                                    ),
+                                    onPressed: _saveForm,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                           Padding(
