@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:my_daily_diary/models/page.dart';
 import 'package:my_daily_diary/providers/page_data.dart';
 
 import 'package:my_daily_diary/widgets/day_screen_widget/font_features_view.dart';
@@ -11,7 +12,7 @@ import 'package:provider/provider.dart';
 class PageScreen extends StatelessWidget {
   static const routName = '/page_screen';
 
-  final Map<String, String> _formData = {};
+  // final Map<String, String> _formData = {};
   final _form = GlobalKey<FormState>();
 
   TextStyle? textStyle({
@@ -95,12 +96,15 @@ class PageScreen extends StatelessWidget {
     bool _fontStyle = Provider.of<PageData>(context).fontStyle;
     String _fontName = Provider.of<PageData>(context).fontName;
 
-    final routArgs =
-        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
-    final pagesId = routArgs['id'];
-    final _pagesData = Provider.of<PageData>(context)
-        .items
-        .firstWhere((pages) => pages.id == pagesId);
+    final _pagesData =
+        ModalRoute.of(context)!.settings.arguments as ChapterPage;
+
+    // final routArgs =
+    //     ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+    // final pagesId = routArgs['id'];
+    // final _pagesData = Provider.of<PageData>(context)
+    //     .items
+    //     .firstWhere((pages) => pages.id == pagesId);
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: Column(
@@ -246,6 +250,8 @@ class PageScreen extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                   keyboardType: TextInputType.multiline,
                                   cursorColor: Color(0xFF3C4858),
+                                  initialValue: _pagesData.writingArea[0]
+                                      ['title'],
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                   decoration: InputDecoration(
                                     hintText:
@@ -256,7 +262,9 @@ class PageScreen extends StatelessWidget {
                                   ],
                                   // validator: InputValidator.title,
                                   onSaved: (value) =>
-                                      _formData['title'] = value!,
+                                      // _formData['title'] = value!,
+                                      _pagesData.writingArea[0]['title'] =
+                                          value!,
                                 ),
                               ),
                               Padding(
@@ -280,13 +288,16 @@ class PageScreen extends StatelessWidget {
                                   ),
                                   cursorColor: Color(0xFF3C4858),
                                   keyboardType: TextInputType.multiline,
-
+                                  initialValue: _pagesData.writingArea[1]
+                                      ['content'],
                                   decoration: InputDecoration.collapsed(
                                       hintText:
                                           'Tell me about it, I don\'t snitch 🤐..'),
                                   // validator: InputValidator.content,
                                   onSaved: (value) =>
-                                      _formData['content'] = value!,
+                                      // _formData['content'] = value!,
+                                      _pagesData.writingArea[1]['content'] =
+                                          value!,
                                 ),
                               ),
                             ],

@@ -49,6 +49,10 @@ class _DialogViewState extends State<DialogView> {
     date: null,
     image: null,
     customColor: Colors.cyan,
+    writingArea: [
+      {'title': ''},
+      {'content': ''},
+    ],
   );
 
   void _saveForm(BuildContext context) {
@@ -122,6 +126,7 @@ class _DialogViewState extends State<DialogView> {
             name: _newPage.name,
             date: _newPage.date,
             customColor: pickcolor,
+            writingArea: _newPage.writingArea,
           );
         } else if (pickcolor == null && image != null) {
           setState(() {
@@ -130,6 +135,7 @@ class _DialogViewState extends State<DialogView> {
               name: _newPage.name,
               date: _newPage.date,
               image: image,
+              writingArea: _newPage.writingArea,
             );
           });
         }
@@ -187,11 +193,12 @@ class _DialogViewState extends State<DialogView> {
                           break;
                         case AddAction.chapter:
                           _newChapter = Chapter(
-                              id: DateTime.now().toString(),
-                              name: newValue,
-                              customColor: _newChapter.customColor,
-                              image: _newChapter.image,
-                              pages: _newChapter.pages);
+                            id: DateTime.now().toString(),
+                            name: newValue,
+                            customColor: _newChapter.customColor,
+                            image: _newChapter.image,
+                            pages: _newChapter.pages,
+                          );
                           break;
                         case AddAction.page:
                           _newPage = ChapterPage(
@@ -200,6 +207,7 @@ class _DialogViewState extends State<DialogView> {
                             date: DateTime.now(),
                             customColor: _newPage.customColor,
                             image: _newPage.image,
+                            writingArea: _newPage.writingArea,
                           );
                           break;
                         default:

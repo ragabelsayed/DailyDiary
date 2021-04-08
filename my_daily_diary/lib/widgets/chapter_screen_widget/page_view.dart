@@ -35,8 +35,14 @@ class PagesView extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).pushNamed(
                       PageScreen.routName,
-                      arguments: {'id': '${pageData!.id}'},
+                      // arguments: {'id': '${pageData!.id}'},
+                      // arguments: {'pageData': '${pageData!}'},
+                      arguments: pageData!,
                     );
+                    //  Provider.of<PageData>(context, listen: false).setPages(
+                    //   chapterData!.pages,
+                    //   chapterData!,
+                    // );
                   },
                   child: Container(
                     height: 250,

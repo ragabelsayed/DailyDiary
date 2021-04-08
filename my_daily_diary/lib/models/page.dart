@@ -9,6 +9,9 @@ class ChapterPage {
   final String? backgroundImage;
   final File? image;
   final Color? customColor;
+  final List<Map<String, String>> writingArea;
+  // final String pageTitle;
+  // final String pageContent;
   final String? password;
 
   const ChapterPage({
@@ -18,6 +21,9 @@ class ChapterPage {
     this.backgroundImage,
     this.image,
     this.customColor,
+    required this.writingArea,
+    // required this.pageTitle,
+    // required this.pageContent,
     this.password,
   });
 }
