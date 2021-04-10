@@ -5,6 +5,8 @@ import 'package:my_daily_diary/models/page.dart';
 
 class PageData with ChangeNotifier {
   late Chapter _chapter;
+  // late ChapterPage _newPage;
+  late ChapterPage _currentPage;
   List<ChapterPage> _items = [];
   // [
   // ChapterPage(
@@ -69,11 +71,11 @@ class PageData with ChangeNotifier {
   //     backgroundImage: 'lib/assets/images/winter.png'),
   // ];
 
-  Color _currentColor = Colors.black;
-  TextAlign _textAlign = TextAlign.left;
-  bool _fontweight = false;
-  bool _fontStyle = false;
-  String _dropdownValue = 'lato';
+  // Color _currentColor = Colors.black;
+  // TextAlign _textAlign = TextAlign.left;
+  // bool _fontweight = false;
+  // bool _fontStyle = false;
+  // String _dropdownValue = 'lato';
 
   List<ChapterPage> get items {
     return [..._items];
@@ -82,6 +84,7 @@ class PageData with ChangeNotifier {
   void addPage(ChapterPage page) {
     // _items.add(page);
     _chapter.pages.add(page);
+    // _newPage = page;
     notifyListeners();
   }
 
@@ -97,47 +100,63 @@ class PageData with ChangeNotifier {
     notifyListeners();
   }
 
+  void currentPage(String id) {
+    _currentPage = _items.firstWhere((page) => page.id == id);
+    notifyListeners();
+  }
+
   void setCurrentColor(Color currentColor) {
-    _currentColor = currentColor;
+    // _currentColor = currentColor;
+    _currentPage.currenTextColor = currentColor;
     notifyListeners();
   }
 
   Color get currentColor {
-    return _currentColor;
+    // return _currentColor;
+    return _currentPage.currenTextColor;
   }
 
   void setTextAlign(TextAlign textAlign) {
-    _textAlign = textAlign;
+    // _textAlign = textAlign;
+    _currentPage.textAlign = textAlign;
     notifyListeners();
   }
 
   TextAlign get textAlign {
-    return _textAlign;
+    // return _textAlign;
+    return _currentPage.textAlign;
   }
 
   void setFontweight() {
-    _fontweight = !_fontweight;
+    // _fontweight = !_fontweight;
+    _currentPage.fontweight = !_currentPage.fontweight;
     notifyListeners();
   }
 
   bool get fontWeight {
-    return _fontweight;
+    // return _fontweight;
+    return _currentPage.fontweight;
   }
 
   void setFontStyle() {
-    _fontStyle = !_fontStyle;
+    // _fontStyle = !_fontStyle;
+    _currentPage.fontStyle = !_currentPage.fontStyle;
     notifyListeners();
   }
 
   bool get fontStyle {
-    return _fontStyle;
+    // return _fontStyle;
+    return _currentPage.fontStyle;
   }
 
   void setFontName(String fontName) {
-    _dropdownValue = fontName;
+    // _dropdownValue = fontName;
+    _currentPage.fontName = fontName;
+    notifyListeners();
   }
 
   String get fontName {
-    return _dropdownValue;
+    // return _dropdownValue;
+    return _currentPage.fontName;
   }
 }

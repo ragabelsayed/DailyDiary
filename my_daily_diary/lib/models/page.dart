@@ -9,17 +9,36 @@ class ChapterPage {
   final String? backgroundImage;
   final File? image;
   final Color? customColor;
-  final List<Map<String, String>> writingArea;
   final String? password;
-
-  const ChapterPage({
+  final List<Map<String, String>> writingArea;
+  // Color currenTextColor = Colors.black;
+  // TextAlign textAlign = TextAlign.left;
+  // bool fontweight = false;
+  // bool fontStyle = false;
+  // String fontName = 'lato';
+  Color currenTextColor;
+  TextAlign textAlign;
+  bool fontweight;
+  bool fontStyle;
+  String fontName;
+  // List<bool> isSelected1;
+  List<bool> isSelected1 = [true, false, false];
+  List<bool> isSelected2 = [false, false, false];
+  // List<bool> isSelected2;
+  ChapterPage({
     this.id,
     this.name,
     this.date,
     this.backgroundImage,
     this.image,
     this.customColor,
-    required this.writingArea,
     this.password,
+    required this.writingArea,
+    required this.currenTextColor,
+    required this.textAlign,
+    required this.fontweight,
+    required this.fontStyle,
+    required this.fontName,
+    // required this._isSelected1,
   });
 }

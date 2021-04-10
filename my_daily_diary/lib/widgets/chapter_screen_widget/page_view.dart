@@ -37,6 +37,8 @@ class PagesView extends StatelessWidget {
                       PageScreen.routName,
                       arguments: pageData!,
                     );
+                    Provider.of<PageData>(context, listen: false)
+                        .currentPage(pageData!.id!);
                   },
                   child: Container(
                     height: 250,

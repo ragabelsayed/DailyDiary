@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:my_daily_diary/models/page.dart';
 import 'package:my_daily_diary/providers/page_data.dart';
 
 import 'package:provider/provider.dart';
 
 class FontFeatures extends StatefulWidget {
+  final ChapterPage pageData;
+  FontFeatures({required this.pageData});
   @override
   _FontFeaturesState createState() => _FontFeaturesState();
 }
 
 class _FontFeaturesState extends State<FontFeatures> {
-  List<bool> _isSelected1 = [true, false, false];
-  List<bool> _isSelected2 = [false, false, false];
+  // List<bool> _isSelected1 = [true, false, false];
+  // List<bool> _isSelected2 = [false, false, false];
   List<String> fontMenu = [
     'lato',
     'roboto',
@@ -50,27 +53,37 @@ class _FontFeaturesState extends State<FontFeatures> {
                 Icon(Icons.format_align_right),
               ],
               onPressed: (newIndex) {
-                for (var index = 0; index < _isSelected1.length; index++) {
+                for (var index = 0;
+                    index < widget.pageData.isSelected1.length;
+                    index++) {
                   setState(() {
                     if (index == 0 && newIndex == 0) {
-                      _isSelected1[index] = !_isSelected1[index];
+                      // _isSelected1[index] = !_isSelected1[index];
+                      widget.pageData.isSelected1[index] =
+                          !widget.pageData.isSelected1[index];
                       Provider.of<PageData>(context, listen: false)
                           .setTextAlign(TextAlign.left);
                     } else if (index == 1 && newIndex == 1) {
-                      _isSelected1[index] = !_isSelected1[index];
+                      // _isSelected1[index] = !_isSelected1[index];
+                      widget.pageData.isSelected1[index] =
+                          !widget.pageData.isSelected1[index];
                       Provider.of<PageData>(context, listen: false)
                           .setTextAlign(TextAlign.center);
                     } else if (index == 2 && newIndex == 2) {
-                      _isSelected1[index] = !_isSelected1[index];
+                      // _isSelected1[index] = !_isSelected1[index];
+                      widget.pageData.isSelected1[index] =
+                          !widget.pageData.isSelected1[index];
                       Provider.of<PageData>(context, listen: false)
                           .setTextAlign(TextAlign.right);
                     } else {
-                      _isSelected1[index] = false;
+                      // _isSelected1[index] = false;
+                      widget.pageData.isSelected1[index] = false;
                     }
                   });
                 }
               },
-              isSelected: _isSelected1,
+              // isSelected: _isSelected1,
+              isSelected: widget.pageData.isSelected1,
             ),
             const SizedBox(width: 10),
             ToggleButtons(
@@ -85,18 +98,26 @@ class _FontFeaturesState extends State<FontFeatures> {
                 // Icon(Icons.format_underline),
               ],
               onPressed: (newIndex) {
-                for (var index = 0; index < _isSelected2.length; index++) {
+                for (var index = 0;
+                    index < widget.pageData.isSelected2.length;
+                    index++) {
                   setState(() {
                     if (index == 0 && newIndex == 0) {
-                      _isSelected2[index] = !_isSelected2[index];
+                      // _isSelected2[index] = !_isSelected2[index];
+                      widget.pageData.isSelected2[index] =
+                          !widget.pageData.isSelected2[index];
                       Provider.of<PageData>(context, listen: false)
                           .setFontweight();
                     } else if (index == 1 && newIndex == 1) {
-                      _isSelected2[index] = !_isSelected2[index];
+                      // _isSelected2[index] = !_isSelected2[index];
+                      widget.pageData.isSelected2[index] =
+                          !widget.pageData.isSelected2[index];
                       Provider.of<PageData>(context, listen: false)
                           .setFontStyle();
                     } else if (index == 2 && newIndex == 2) {
-                      _isSelected2[index] = !_isSelected2[index];
+                      // _isSelected2[index] = !_isSelected2[index];
+                      widget.pageData.isSelected2[index] =
+                          !widget.pageData.isSelected2[index];
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -112,13 +133,16 @@ class _FontFeaturesState extends State<FontFeatures> {
                         },
                       );
                     } else {
-                      _isSelected2[index] = false;
+                      // _isSelected2[index] = false;
+                      widget.pageData.isSelected2[index] = false;
                     }
                   });
                 }
               },
-              isSelected: _isSelected2,
+              // isSelected: _isSelected2,
+              isSelected: widget.pageData.isSelected2,
             ),
+            const SizedBox(width: 10),
             const SizedBox(width: 10),
             DropdownButton(
               value: _dropdownValue,

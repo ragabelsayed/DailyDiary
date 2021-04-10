@@ -53,6 +53,11 @@ class _DialogViewState extends State<DialogView> {
       {'title': ''},
       {'content': ''},
     ],
+    currenTextColor: Colors.black,
+    textAlign: TextAlign.left,
+    fontweight: false,
+    fontStyle: false,
+    fontName: 'lato',
   );
 
   void _saveForm(BuildContext context) {
@@ -127,6 +132,11 @@ class _DialogViewState extends State<DialogView> {
             date: _newPage.date,
             customColor: pickcolor,
             writingArea: _newPage.writingArea,
+            currenTextColor: _newPage.currenTextColor,
+            textAlign: _newPage.textAlign,
+            fontweight: _newPage.fontweight,
+            fontStyle: _newPage.fontStyle,
+            fontName: _newPage.fontName,
           );
         } else if (pickcolor == null && image != null) {
           setState(() {
@@ -136,6 +146,11 @@ class _DialogViewState extends State<DialogView> {
               date: _newPage.date,
               image: image,
               writingArea: _newPage.writingArea,
+              currenTextColor: _newPage.currenTextColor,
+              textAlign: _newPage.textAlign,
+              fontweight: _newPage.fontweight,
+              fontStyle: _newPage.fontStyle,
+              fontName: _newPage.fontName,
             );
           });
         }
@@ -208,6 +223,11 @@ class _DialogViewState extends State<DialogView> {
                             customColor: _newPage.customColor,
                             image: _newPage.image,
                             writingArea: _newPage.writingArea,
+                            currenTextColor: _newPage.currenTextColor,
+                            textAlign: _newPage.textAlign,
+                            fontweight: _newPage.fontweight,
+                            fontStyle: _newPage.fontStyle,
+                            fontName: _newPage.fontName,
                           );
                           break;
                         default:

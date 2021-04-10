@@ -12,8 +12,15 @@ import 'package:provider/provider.dart';
 class PageScreen extends StatelessWidget {
   static const routName = '/page_screen';
 
-  // final Map<String, String> _formData = {};
   final _form = GlobalKey<FormState>();
+  // late final _pagesData;
+
+  // @override
+  // void didChangeDependencies() {
+  //   _pagesData = ModalRoute.of(context)!.settings.arguments as ChapterPage;
+  //   Provider.of<PageData>(context, listen: false).currentPage(_pagesData.id!);
+  //   super.didChangeDependencies();
+  // }
 
   TextStyle? textStyle({
     required String font,
@@ -94,14 +101,20 @@ class PageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _pagesData =
+        ModalRoute.of(context)!.settings.arguments as ChapterPage;
+
+    // _pagesData.currenTextColor = Provider.of<PageData>(context).currentColor;
+    // _pagesData.textAlign = Provider.of<PageData>(context).textAlign;
+    // _pagesData.fontweight = Provider.of<PageData>(context).fontWeight;
+    // _pagesData.fontStyle = Provider.of<PageData>(context).fontStyle;
+    // _pagesData.fontName = Provider.of<PageData>(context).fontName;
     Color _currentColor = Provider.of<PageData>(context).currentColor;
     TextAlign _textAlign = Provider.of<PageData>(context).textAlign;
     bool _fontWeight = Provider.of<PageData>(context).fontWeight;
     bool _fontStyle = Provider.of<PageData>(context).fontStyle;
     String _fontName = Provider.of<PageData>(context).fontName;
 
-    final _pagesData =
-        ModalRoute.of(context)!.settings.arguments as ChapterPage;
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: Column(
@@ -197,7 +210,7 @@ class PageScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          FontFeatures(),
+                          FontFeatures(pageData: _pagesData),
                         ],
                       );
                     },
@@ -292,8 +305,6 @@ class PageScreen extends StatelessWidget {
                                     font: _fontName,
                                     color: _currentColor,
                                     fontWeight: _fontWeight
-                                        // _fontweightBool
-                                        // ? _fontweight
                                         ? FontWeight.bold
                                         : FontWeight.normal,
                                     fontStyle: _fontStyle
