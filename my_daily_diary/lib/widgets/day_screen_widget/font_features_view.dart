@@ -87,12 +87,12 @@ class _FontFeaturesState extends State<FontFeatures> {
             ),
             const SizedBox(width: 10),
             ToggleButtons(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
+              borderRadius: const BorderRadius.all(Radius.circular(15)),
               borderWidth: 0,
               children: [
                 Icon(Icons.format_bold),
                 Icon(Icons.format_italic),
-                Icon(Icons.format_color_text),
+                // Icon(Icons.format_color_text),
                 // Icon(Icons.font_download),
                 // Icon(Icons.format_size),
                 // Icon(Icons.format_underline),
@@ -114,25 +114,27 @@ class _FontFeaturesState extends State<FontFeatures> {
                           !widget.pageData.isSelected2[index];
                       Provider.of<PageData>(context, listen: false)
                           .setFontStyle();
-                    } else if (index == 2 && newIndex == 2) {
-                      // _isSelected2[index] = !_isSelected2[index];
-                      widget.pageData.isSelected2[index] =
-                          !widget.pageData.isSelected2[index];
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text('Select a color'),
-                            content: SingleChildScrollView(
-                              child: BlockPicker(
-                                pickerColor: _currentColor,
-                                onColorChanged: changeColor,
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    } else {
+                    }
+                    // else if (index == 2 && newIndex == 2) {
+                    //   // _isSelected2[index] = !_isSelected2[index];
+                    //   widget.pageData.isSelected2[index] =
+                    //       !widget.pageData.isSelected2[index];
+                    //   showDialog(
+                    //     context: context,
+                    //     builder: (BuildContext context) {
+                    //       return AlertDialog(
+                    //         title: Text('Select a color'),
+                    //         content: SingleChildScrollView(
+                    //           child: BlockPicker(
+                    //             pickerColor: _currentColor,
+                    //             onColorChanged: changeColor,
+                    //           ),
+                    //         ),
+                    //       );
+                    //     },
+                    //   );
+                    // }
+                    else {
                       // _isSelected2[index] = false;
                       widget.pageData.isSelected2[index] = false;
                     }
@@ -143,6 +145,24 @@ class _FontFeaturesState extends State<FontFeatures> {
               isSelected: widget.pageData.isSelected2,
             ),
             const SizedBox(width: 10),
+            IconButton(
+                icon: Icon(Icons.format_color_text),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Select a color'),
+                        content: SingleChildScrollView(
+                          child: BlockPicker(
+                            pickerColor: _currentColor,
+                            onColorChanged: changeColor,
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                }),
             const SizedBox(width: 10),
             DropdownButton(
               value: _dropdownValue,

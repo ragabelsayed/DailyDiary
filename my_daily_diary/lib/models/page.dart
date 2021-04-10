@@ -23,7 +23,8 @@ class ChapterPage {
   String fontName;
   // List<bool> isSelected1;
   List<bool> isSelected1 = [true, false, false];
-  List<bool> isSelected2 = [false, false, false];
+  List<bool> isSelected2 = [false, false];
+
   // List<bool> isSelected2;
   ChapterPage({
     this.id,
