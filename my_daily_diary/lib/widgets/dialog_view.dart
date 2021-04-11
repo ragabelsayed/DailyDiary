@@ -14,24 +14,21 @@ import 'package:provider/provider.dart';
 
 enum AddAction { diary, chapter, page }
 
-class DialogView extends StatefulWidget {
+// ignore: must_be_immutable
+class DialogView extends StatelessWidget {
   final String? name;
   final String? hint;
   final String? coverName;
   final AddAction? action;
-  const DialogView({this.name, this.hint, this.coverName, this.action});
-  @override
-  _DialogViewState createState() => _DialogViewState();
-}
+  DialogView({this.name, this.hint, this.coverName, this.action});
 
-class _DialogViewState extends State<DialogView> {
   final _form = GlobalKey<FormState>();
   Diary _newDiary = Diary();
   Chapter _newChapter = Chapter();
   ChapterPage _newPage = ChapterPage();
 
   void _saveForm(BuildContext context) {
-    switch (widget.action) {
+    switch (action) {
       case AddAction.diary:
         _form.currentState!.save();
         Provider.of<DiaryData>(context, listen: false).addDiary(_newDiary);
@@ -53,7 +50,7 @@ class _DialogViewState extends State<DialogView> {
   }
 
   void _getCover(Color? pickcolor, File? image) {
-    switch (widget.action) {
+    switch (action) {
       case AddAction.diary:
         if (pickcolor != null && image == null) {
           _newDiary = Diary(customColor: pickcolor, image: null);
@@ -100,7 +97,7 @@ class _DialogViewState extends State<DialogView> {
               children: [
                 Text.rich(
                   TextSpan(
-                    text: widget.name,
+                    text: name,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                     children: [
                       TextSpan(
@@ -115,10 +112,10 @@ class _DialogViewState extends State<DialogView> {
                       const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      hintText: widget.hint,
+                      hintText: hint,
                     ),
                     onSaved: (newValue) {
-                      switch (widget.action) {
+                      switch (action) {
                         case AddAction.diary:
                           _newDiary = Diary(
                             name: newValue!,
@@ -147,7 +144,7 @@ class _DialogViewState extends State<DialogView> {
                 ),
                 Text.rich(
                   TextSpan(
-                    text: widget.coverName,
+                    text: coverName,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                     children: [
                       TextSpan(
