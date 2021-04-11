@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class ChapterPage {
-  String? id;
+  String id = DateTime.now().toString();
   String name;
-  DateTime? date;
+  DateTime date = DateTime.now();
   File? image;
   Color customColor;
   // String? password;
@@ -22,9 +22,9 @@ class ChapterPage {
   List<bool> isSelected2 = [false, false];
 
   ChapterPage({
-    this.id,
+    // this.id,
     this.name = '',
-    this.date,
+    // this.date,
     this.image,
     this.customColor = Colors.cyan,
     // this.password,

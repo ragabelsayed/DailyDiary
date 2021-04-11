@@ -171,7 +171,7 @@ class PageScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: Text(
-                              DateFormat('EEEE').format(_pagesData.date!),
+                              DateFormat('EEEE').format(_pagesData.date),
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.black,
@@ -187,7 +187,7 @@ class PageScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  DateFormat('MMMM').format(_pagesData.date!),
+                                  DateFormat('MMMM').format(_pagesData.date),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.grey.withOpacity(0.7),
@@ -198,7 +198,7 @@ class PageScreen extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 5),
                                   child: Text(
-                                    DateFormat.d().format(_pagesData.date!),
+                                    DateFormat.d().format(_pagesData.date),
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Colors.grey.withOpacity(0.7),

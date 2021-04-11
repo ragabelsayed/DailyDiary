@@ -43,7 +43,7 @@ class _DialogViewState extends State<DialogView> {
     pages: [],
   );
 
-  late ChapterPage _newPage;
+  ChapterPage _newPage = ChapterPage();
 
   void _saveForm(BuildContext context) {
     switch (widget.action) {
@@ -178,8 +178,6 @@ class _DialogViewState extends State<DialogView> {
                           break;
                         case AddAction.page:
                           _newPage = ChapterPage(
-                            id: DateTime.now().toString(),
-                            date: DateTime.now(),
                             name: newValue!,
                             customColor: _newPage.customColor,
                             image: _newPage.image,
