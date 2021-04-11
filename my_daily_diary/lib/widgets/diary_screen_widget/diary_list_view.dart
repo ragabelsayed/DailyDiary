@@ -116,7 +116,7 @@ class _DiaryListViewState extends State<DiaryListView>
                             return ChapterView(
                               chapterData: _chapterData[index],
                               animation: animation,
-                              animationController: _animationController,
+                              animationController: _animationController!,
                             );
                           },
                         ),

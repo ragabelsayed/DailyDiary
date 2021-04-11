@@ -35,13 +35,7 @@ class _DialogViewState extends State<DialogView> {
     chapters: [],
   );
 
-  Chapter _newChapter = Chapter(
-    id: null,
-    name: '',
-    image: null,
-    customColor: Colors.cyan,
-    pages: [],
-  );
+  Chapter _newChapter = Chapter();
 
   ChapterPage _newPage = ChapterPage();
 
@@ -91,21 +85,9 @@ class _DialogViewState extends State<DialogView> {
 
       case AddAction.chapter:
         if (pickcolor != null && image == null) {
-          _newChapter = Chapter(
-            id: _newChapter.id,
-            name: _newChapter.name,
-            customColor: pickcolor,
-            pages: _newChapter.pages,
-          );
+          _newChapter = Chapter(customColor: pickcolor, image: null);
         } else if (pickcolor == null && image != null) {
-          setState(() {
-            _newChapter = Chapter(
-              id: _newChapter.id,
-              name: _newChapter.name,
-              image: image,
-              pages: _newChapter.pages,
-            );
-          });
+          _newChapter = Chapter(image: image);
         }
         break;
 
@@ -169,11 +151,9 @@ class _DialogViewState extends State<DialogView> {
                           break;
                         case AddAction.chapter:
                           _newChapter = Chapter(
-                            id: DateTime.now().toString(),
-                            name: newValue,
+                            name: newValue!,
                             customColor: _newChapter.customColor,
                             image: _newChapter.image,
-                            pages: _newChapter.pages,
                           );
                           break;
                         case AddAction.page:

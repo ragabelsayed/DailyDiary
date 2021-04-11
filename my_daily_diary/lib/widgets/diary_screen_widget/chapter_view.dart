@@ -9,25 +9,25 @@ import 'package:provider/provider.dart';
 enum SlidableAction { lock, delete }
 
 class ChapterView extends StatelessWidget {
-  final Chapter? chapterData;
-  final Animation? animation;
-  final AnimationController? animationController;
+  final Chapter chapterData;
+  final Animation animation;
+  final AnimationController animationController;
   final Function(SlidableAction action)? onDismissed;
 
   const ChapterView(
-      {this.chapterData,
-      this.animation,
-      this.animationController,
+      {required this.chapterData,
+      required this.animation,
+      required this.animationController,
       this.onDismissed});
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: animationController!,
+      animation: animationController,
       builder: (context, child) => FadeTransition(
         opacity: animation as Animation<double>,
         child: Transform(
           transform: Matrix4.translationValues(
-              0.0, 25 * (-1.0 * animation!.value), 0.0),
+              0.0, 25 * (-1.0 * animation.value), 0.0),
           child: Slidable(
             actionPane: SlidableBehindActionPane(),
             actions: [
@@ -91,7 +91,7 @@ class ChapterView extends StatelessWidget {
                                 onPressed: () {
                                   Provider.of<ChapterData>(context,
                                           listen: false)
-                                      .removeChapter(chapterData!.id);
+                                      .removeChapter(chapterData.id);
 
                                   Navigator.of(context).pop();
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -133,20 +133,21 @@ class ChapterView extends StatelessWidget {
                 leading: CircleAvatar(
                     radius: 25,
                     //backgroundImage: AssetImage(chapterData.backgroundImage),
-                    backgroundColor: chapterData!.customColor != null
-                        ? chapterData!.customColor!.withAlpha(255)
-                        : Colors.pink.shade700,
-                    child: chapterData!.image == null
+                    backgroundColor: chapterData.customColor.withAlpha(255),
+                    // chapterData!.customColor != null
+                    //     ? chapterData!.customColor.withAlpha(255)
+                    //     : Colors.pink.shade700,
+                    child: chapterData.image == null
                         ? Text('')
                         : ClipRRect(
                             borderRadius: BorderRadius.circular(25),
                             child: Image.file(
-                              chapterData!.image!,
+                              chapterData.image!,
                               fit: BoxFit.cover,
                             ),
                           )),
                 title: Text(
-                  chapterData!.name!,
+                  chapterData.name,
                   style: TextStyle(fontSize: 18),
                 ),
                 trailing: IconButton(
@@ -159,8 +160,8 @@ class ChapterView extends StatelessWidget {
                       // },
                     );
                     Provider.of<PageData>(context, listen: false).setPages(
-                      chapterData!.pages,
-                      chapterData!,
+                      chapterData.pages,
+                      chapterData,
                     );
                   },
                 ),
