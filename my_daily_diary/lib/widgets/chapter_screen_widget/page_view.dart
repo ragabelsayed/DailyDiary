@@ -9,24 +9,24 @@ import 'package:provider/provider.dart';
 import '../Lock_view.dart';
 
 class PagesView extends StatelessWidget {
-  final ChapterPage? pageData;
-  final AnimationController? animationController;
-  final Animation? animation;
+  final ChapterPage pageData;
+  final AnimationController animationController;
+  final Animation animation;
 
   PagesView({
-    this.pageData,
-    this.animationController,
-    this.animation,
+    required this.pageData,
+    required this.animationController,
+    required this.animation,
   });
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: animationController!,
+      animation: animationController,
       builder: (context, child) => FadeTransition(
         opacity: animation as Animation<double>,
         child: Transform(
           transform: Matrix4.translationValues(
-              0.0, 25 * (-0.1 * animation!.value), 0.0),
+              0.0, 25 * (-0.1 * animation.value), 0.0),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Stack(
@@ -35,27 +35,29 @@ class PagesView extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).pushNamed(
                       PageScreen.routName,
-                      arguments: pageData!,
+                      arguments: pageData,
                     );
                     Provider.of<PageData>(context, listen: false)
-                        .currentPage(pageData!.id!);
+                        .currentPage(pageData.id!);
                   },
                   child: Container(
                     height: 250,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: pageData!.customColor,
+                      color: pageData.customColor,
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.topRight,
                         colors: [
-                          pageData!.customColor != null
-                              ? pageData!.customColor!.withAlpha(255)
-                              : Colors.pink,
-                          pageData!.customColor != null
-                              ? pageData!.customColor!.withAlpha(50)
-                              : Colors.pink.withRed(5),
+                          pageData.customColor.withAlpha(255),
+                          pageData.customColor.withAlpha(50),
+                          // pageData.customColor != null
+                          //     ? pageData.customColor!.withAlpha(255)
+                          //     : Colors.pink,
+                          // pageData.customColor != null
+                          //     ? pageData.customColor!.withAlpha(50)
+                          //     : Colors.pink.withRed(5),
                         ],
                       ),
                       boxShadow: [
@@ -66,13 +68,13 @@ class PagesView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: pageData!.image == null
+                    child: pageData.image == null
                         ? Text('')
                         : ClipRRect(
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(20)),
                             child: Image.file(
-                              pageData!.image!,
+                              pageData.image!,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -121,7 +123,7 @@ class PagesView extends StatelessWidget {
                                         onPressed: () {
                                           Provider.of<PageData>(context,
                                                   listen: false)
-                                              .removePage(pageData!.id);
+                                              .removePage(pageData.id);
 
                                           Navigator.of(context).pop();
                                           ScaffoldMessenger.of(context)
@@ -170,7 +172,7 @@ class PagesView extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 2),
                         child: Text(
-                          pageData!.name!,
+                          pageData.name,
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           // softWrap: false,

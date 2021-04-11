@@ -43,22 +43,7 @@ class _DialogViewState extends State<DialogView> {
     pages: [],
   );
 
-  ChapterPage _newPage = ChapterPage(
-    id: null,
-    name: '',
-    date: null,
-    image: null,
-    customColor: Colors.cyan,
-    writingArea: [
-      {'title': ''},
-      {'content': ''},
-    ],
-    currenTextColor: Colors.black,
-    textAlign: TextAlign.left,
-    fontweight: false,
-    fontStyle: false,
-    fontName: 'lato',
-  );
+  late ChapterPage _newPage;
 
   void _saveForm(BuildContext context) {
     switch (widget.action) {
@@ -126,33 +111,9 @@ class _DialogViewState extends State<DialogView> {
 
       case AddAction.page:
         if (pickcolor != null && image == null) {
-          _newPage = ChapterPage(
-            id: _newPage.id,
-            name: _newPage.name,
-            date: _newPage.date,
-            customColor: pickcolor,
-            writingArea: _newPage.writingArea,
-            currenTextColor: _newPage.currenTextColor,
-            textAlign: _newPage.textAlign,
-            fontweight: _newPage.fontweight,
-            fontStyle: _newPage.fontStyle,
-            fontName: _newPage.fontName,
-          );
+          _newPage = ChapterPage(customColor: pickcolor, image: null);
         } else if (pickcolor == null && image != null) {
-          setState(() {
-            _newPage = ChapterPage(
-              id: _newPage.id,
-              name: _newPage.name,
-              date: _newPage.date,
-              image: image,
-              writingArea: _newPage.writingArea,
-              currenTextColor: _newPage.currenTextColor,
-              textAlign: _newPage.textAlign,
-              fontweight: _newPage.fontweight,
-              fontStyle: _newPage.fontStyle,
-              fontName: _newPage.fontName,
-            );
-          });
+          _newPage = ChapterPage(image: image);
         }
         break;
       default:
@@ -218,16 +179,10 @@ class _DialogViewState extends State<DialogView> {
                         case AddAction.page:
                           _newPage = ChapterPage(
                             id: DateTime.now().toString(),
-                            name: newValue,
                             date: DateTime.now(),
+                            name: newValue!,
                             customColor: _newPage.customColor,
                             image: _newPage.image,
-                            writingArea: _newPage.writingArea,
-                            currenTextColor: _newPage.currenTextColor,
-                            textAlign: _newPage.textAlign,
-                            fontweight: _newPage.fontweight,
-                            fontStyle: _newPage.fontStyle,
-                            fontName: _newPage.fontName,
                           );
                           break;
                         default:
