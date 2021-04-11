@@ -79,7 +79,7 @@ class _DiaryListViewState extends State<DiaryListView>
                       _animationController!.forward();
                       return DiaryView(
                         diaryData: _diaryData[index],
-                        animationController: _animationController,
+                        animationController: _animationController!,
                         animation: animation,
                       );
                     },

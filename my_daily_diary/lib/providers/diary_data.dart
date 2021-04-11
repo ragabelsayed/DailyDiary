@@ -4,10 +4,10 @@ import 'package:my_daily_diary/models/diary.dart';
 class DiaryData with ChangeNotifier {
   List<Diary> _items = [
     Diary(
-      id: DateTime.now().toString(),
+      // id: DateTime.now().toString(),
       name: '2020',
       customColor: Colors.amber,
-      chapters: [],
+      // chapters: [],
     ),
   ];
 

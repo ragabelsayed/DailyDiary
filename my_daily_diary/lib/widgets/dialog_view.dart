@@ -26,17 +26,8 @@ class DialogView extends StatefulWidget {
 
 class _DialogViewState extends State<DialogView> {
   final _form = GlobalKey<FormState>();
-
-  Diary _newDiary = Diary(
-    id: null,
-    name: '',
-    customColor: Colors.cyan,
-    image: null,
-    chapters: [],
-  );
-
+  Diary _newDiary = Diary();
   Chapter _newChapter = Chapter();
-
   ChapterPage _newPage = ChapterPage();
 
   void _saveForm(BuildContext context) {
@@ -65,21 +56,9 @@ class _DialogViewState extends State<DialogView> {
     switch (widget.action) {
       case AddAction.diary:
         if (pickcolor != null && image == null) {
-          _newDiary = Diary(
-            id: _newDiary.id,
-            name: _newDiary.name,
-            customColor: pickcolor,
-            chapters: _newDiary.chapters,
-          );
+          _newDiary = Diary(customColor: pickcolor, image: null);
         } else if (pickcolor == null && image != null) {
-          setState(() {
-            _newDiary = Diary(
-              id: _newDiary.id,
-              name: _newDiary.name,
-              image: image,
-              chapters: _newDiary.chapters,
-            );
-          });
+          _newDiary = Diary(image: image);
         }
         break;
 
@@ -142,11 +121,9 @@ class _DialogViewState extends State<DialogView> {
                       switch (widget.action) {
                         case AddAction.diary:
                           _newDiary = Diary(
-                            id: DateTime.now().toString(),
-                            name: newValue,
+                            name: newValue!,
                             customColor: _newDiary.customColor,
                             image: _newDiary.image,
-                            chapters: _newDiary.chapters,
                           );
                           break;
                         case AddAction.chapter:
