@@ -5,6 +5,7 @@ import 'package:my_daily_diary/models/diary.dart';
 class ChapterData with ChangeNotifier {
   late Diary _diary;
   List<Chapter> _items = [];
+  bool _onClickDiary = false;
   //  = [
   //   Chapter(
   //       id: DateTime.now().toString(),
@@ -76,6 +77,15 @@ class ChapterData with ChangeNotifier {
     _items = chapters;
     _diary = diary;
     notifyListeners();
+  }
+
+  void setClick(bool click) {
+    _onClickDiary = click;
+    notifyListeners();
+  }
+
+  bool get getClick {
+    return _onClickDiary;
   }
 }
 // January - 31 days

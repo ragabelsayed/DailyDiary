@@ -86,13 +86,16 @@ class _DiaryListViewState extends State<DiaryListView>
                   ),
                 ),
                 const SizedBox(height: 16),
-                TitleView(
-                  titleName: 'Chapters',
-                  inputDialogName: 'Chapter Name',
-                  inputDialogHint: 'Ex: January, February, Collection ...ets',
-                  inputDialogCoverName: 'Chapter Cover',
-                  inputDialogAction: AddAction.chapter,
-                ),
+                Provider.of<ChapterData>(context).getClick
+                    ? TitleView(
+                        titleName: 'Chapters',
+                        inputDialogName: 'Chapter Name',
+                        inputDialogHint:
+                            'Ex: January, February, Collection ...ets',
+                        inputDialogCoverName: 'Chapter Cover',
+                        inputDialogAction: AddAction.chapter,
+                      )
+                    : const SizedBox(),
                 const SizedBox(height: 5),
                 // height: MediaQuery.of(context).size.height / 2,
                 _chapterData.isNotEmpty

@@ -10,11 +10,13 @@ class Diary {
   final File? image;
   final Color customColor;
   final List<Chapter> chapters = [];
+  final bool onClickDiary;
   // final String? password;
   Diary({
     this.name = '',
     this.image,
     this.customColor = Colors.cyan,
+    this.onClickDiary = false,
     // this.password,
   });
 }
