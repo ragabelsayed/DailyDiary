@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:my_daily_diary/app_theme.dart';
+import 'package:my_daily_diary/providers/diary_data.dart';
 import 'package:my_daily_diary/widgets/dialog_view.dart';
 import 'package:my_daily_diary/widgets/diary_screen_widget/diary_list_view.dart';
 import 'package:my_daily_diary/widgets/diary_screen_widget/title_view.dart';
+import 'package:provider/provider.dart';
 
 class MyDiaryScreen extends StatelessWidget {
   static const routName = '/';
@@ -71,7 +73,9 @@ class MyDiaryScreen extends StatelessWidget {
           inputDialogAction: AddAction.diary,
         ),
         const SizedBox(height: 16),
-        DiaryListView(),
+        Provider.of<DiaryData>(context).items.isNotEmpty
+            ? DiaryListView()
+            : Expanded(child: Center(child: Text('Add Your frist Diary 😀'))),
       ],
     );
   }
