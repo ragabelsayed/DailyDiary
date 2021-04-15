@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:my_daily_diary/models/diary.dart';
 
@@ -15,9 +17,19 @@ class DiaryData with ChangeNotifier {
     return [..._items];
   }
 
-  void addDiary(Diary diary) {
-    _items.add(diary);
-
+  void addDiary({
+    required String name,
+    required Color color,
+    File? image,
+  }) {
+    final _newDiary = Diary(
+      id: DateTime.now().toString(),
+      name: name,
+      customColor: color,
+      image: image,
+      chapters: [],
+    );
+    _items.add(_newDiary);
     notifyListeners();
   }
 

@@ -40,7 +40,7 @@ class DiaryView extends StatelessWidget {
                                   .setClick(true);
                               Provider.of<ChapterData>(context, listen: false)
                                   .setChapters(
-                                diaryData.chapters,
+                                diaryData.chapters!,
                                 diaryData,
                               );
                             },
@@ -59,8 +59,8 @@ class DiaryView extends StatelessWidget {
                                   begin: Alignment.topLeft,
                                   end: Alignment.topRight,
                                   colors: [
-                                    diaryData.customColor.withAlpha(255),
-                                    diaryData.customColor.withAlpha(50),
+                                    diaryData.customColor!.withAlpha(255),
+                                    diaryData.customColor!.withAlpha(50),
                                     // diaryData!.customColor != null
                                     //     ? diaryData!.customColor.withAlpha(255)
                                     //     : Colors.pink,
@@ -172,7 +172,7 @@ class DiaryView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 15),
-                  Text(diaryData.name),
+                  Text(diaryData.name!),
                 ],
               ),
             ),

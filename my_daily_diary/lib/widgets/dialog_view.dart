@@ -23,7 +23,11 @@ class DialogView extends StatelessWidget {
   DialogView({this.name, this.hint, this.coverName, this.action});
 
   final _form = GlobalKey<FormState>();
-  Diary _newDiary = Diary();
+  // Diary _newDiary = Diary();
+  String _diaryName = '';
+  Color _diaryColor = Colors.cyan;
+  // ignore: avoid_init_to_null
+  File? _diaryImage = null;
   Chapter _newChapter = Chapter();
   ChapterPage _newPage = ChapterPage();
 
@@ -31,7 +35,11 @@ class DialogView extends StatelessWidget {
     switch (action) {
       case AddAction.diary:
         _form.currentState!.save();
-        Provider.of<DiaryData>(context, listen: false).addDiary(_newDiary);
+        Provider.of<DiaryData>(context, listen: false).addDiary(
+          name: _diaryName,
+          color: _diaryColor,
+          image: _diaryImage,
+        );
         Navigator.pop(context);
         break;
       case AddAction.chapter:
@@ -53,9 +61,11 @@ class DialogView extends StatelessWidget {
     switch (action) {
       case AddAction.diary:
         if (pickcolor != null && image == null) {
-          _newDiary = Diary(customColor: pickcolor, image: null);
+          // _newDiary = Diary(customColor: pickcolor, image: null);
+          _diaryColor = pickcolor;
         } else if (pickcolor == null && image != null) {
-          _newDiary = Diary(image: image);
+          // _newDiary = Diary(image: image);
+          _diaryImage = image;
         }
         break;
 
@@ -117,11 +127,12 @@ class DialogView extends StatelessWidget {
                     onSaved: (newValue) {
                       switch (action) {
                         case AddAction.diary:
-                          _newDiary = Diary(
-                            name: newValue!,
-                            customColor: _newDiary.customColor,
-                            image: _newDiary.image,
-                          );
+                          // _newDiary = Diary(
+                          //   name: newValue!,
+                          //   customColor: _newDiary.customColor,
+                          //   image: _newDiary.image,
+                          // );
+                          _diaryName = newValue!;
                           break;
                         case AddAction.chapter:
                           _newChapter = Chapter(
