@@ -1,15 +1,27 @@
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_daily_diary/models/chapter.dart';
+import 'package:hive/hive.dart';
+part 'diary.g.dart';
 
-class Diary {
+@HiveType(typeId: 0)
+class Diary extends HiveObject {
+  @HiveField(0)
   final String? id;
+
+  @HiveField(1)
   final String? name;
+
+  @HiveField(2)
   final File? image;
+
+  @HiveField(3)
   final Color? customColor;
+
+  @HiveField(4)
   final List<Chapter>? chapters;
+
+  @HiveField(5)
   final bool onClickDiary;
   // final String? password;
   Diary({

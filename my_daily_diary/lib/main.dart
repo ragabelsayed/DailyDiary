@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_daily_diary/providers/chapter_data.dart';
 
 import 'package:my_daily_diary/providers/diary_data.dart';
@@ -10,7 +12,9 @@ import './screens/my_diary_screen.dart';
 
 import 'screens/page_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
   runApp(MyApp());
 }
 
