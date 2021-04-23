@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:my_daily_diary/providers/chapter_data.dart';
 
+import 'package:my_daily_diary/providers/chapter_data.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
 import 'package:my_daily_diary/providers/page_data.dart';
 import 'package:my_daily_diary/screens/chapter_screen.dart';
@@ -10,11 +10,13 @@ import 'package:my_daily_diary/screens/chapter_screen.dart';
 import 'package:provider/provider.dart';
 import './screens/my_diary_screen.dart';
 
+import 'models/diary.dart';
 import 'screens/page_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+  Hive.registerAdapter(DiaryAdapter());
   runApp(MyApp());
 }
 
