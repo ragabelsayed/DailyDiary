@@ -107,14 +107,14 @@ class PageData with ChangeNotifier {
       isSelected2: [false, false],
     );
     // _items.add(page);
-    _chapter.pages!.add(_newPage);
+    _chapter.pages.add(_newPage);
     // _newPage = page;
     notifyListeners();
   }
 
   void removePage(String? id) {
     // _items.removeWhere((page) => page.id == id);
-    _chapter.pages!.removeWhere((page) => page.id == id);
+    _chapter.pages.removeWhere((page) => page.id == id);
     notifyListeners();
   }
 

@@ -17,11 +17,11 @@ class DiaryAdapter extends TypeAdapter<Diary> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Diary(
-      id: fields[0] as String?,
-      name: fields[1] as String?,
-      image: fields[2] as File?,
-      customColor: fields[3] as Color?,
-      chapters: (fields[4] as List?)?.cast<Chapter>(),
+      id: fields[0] as String,
+      name: fields[1] as String,
+      image: fields[2] as File,
+      customColor: fields[3] as Color,
+      chapters: (fields[4] as List).cast<Chapter>(),
       onClickDiary: fields[5] as bool,
     );
   }

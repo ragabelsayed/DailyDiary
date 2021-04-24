@@ -76,13 +76,13 @@ class ChapterData with ChangeNotifier {
       image: image,
       pages: [],
     );
-    _diary.chapters!.add(_newChapter);
+    _diary.chapters.add(_newChapter);
     notifyListeners();
   }
 
   void removeChapter(String? id) {
     // _items.removeWhere((chapter) => chapter.id == id);
-    _diary.chapters!.removeWhere((chapter) => chapter.id == id);
+    _diary.chapters.removeWhere((chapter) => chapter.id == id);
     notifyListeners();
   }
 

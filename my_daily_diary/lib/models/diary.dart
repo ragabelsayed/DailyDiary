@@ -7,29 +7,29 @@ part 'diary.g.dart';
 @HiveType(typeId: 0)
 class Diary extends HiveObject {
   @HiveField(0)
-  final String? id;
+  final String id;
 
   @HiveField(1)
-  final String? name;
+  final String name;
 
   @HiveField(2)
   final File? image;
 
   @HiveField(3)
-  final Color? customColor;
+  final Color customColor;
 
   @HiveField(4)
-  final List<Chapter>? chapters;
+  final List<Chapter> chapters;
 
   @HiveField(5)
   final bool onClickDiary;
   // final String? password;
   Diary({
-    this.id,
-    this.name,
+    required this.id,
+    required this.name,
     this.image,
-    this.customColor,
-    this.chapters,
+    required this.customColor,
+    required this.chapters,
     this.onClickDiary = false,
     // this.password,
   });

@@ -24,48 +24,48 @@ class DialogView extends StatelessWidget {
 
   final _form = GlobalKey<FormState>();
   // Diary _newDiary = Diary();
-  String _diaryName = '';
-  Color _diaryColor = Colors.cyan;
+  String _name = '';
+  Color _coverColor = Colors.cyan;
   // ignore: avoid_init_to_null
-  File? _diaryImage = null;
+  File? _coverImage = null;
 
-  // Chapter _newChapter = Chapter();
-  String _chapterName = '';
-  Color _chapterColor = Colors.cyan;
-  // ignore: avoid_init_to_null
-  File? _chapterImage = null;
-  // ChapterPage _newPage = ChapterPage();
-  String _pageName = '';
-  Color _pageColor = Colors.cyan;
-  // ignore: avoid_init_to_null
-  File? _pageImage = null;
+  // // Chapter _newChapter = Chapter();
+  // String _chapterName = '';
+  // Color _chapterColor = Colors.cyan;
+  // // ignore: avoid_init_to_null
+  // File? _chapterImage = null;
+  // // ChapterPage _newPage = ChapterPage();
+  // String _pageName = '';
+  // Color _pageColor = Colors.cyan;
+  // // ignore: avoid_init_to_null
+  // File? _pageImage = null;
 
   void _saveForm(BuildContext context) {
     switch (action) {
       case AddAction.diary:
         _form.currentState!.save();
         Provider.of<DiaryData>(context, listen: false).addDiary(
-          name: _diaryName,
-          color: _diaryColor,
-          image: _diaryImage,
+          name: _name,
+          color: _coverColor,
+          image: _coverImage,
         );
         Navigator.pop(context);
         break;
       case AddAction.chapter:
         _form.currentState!.save();
         Provider.of<ChapterData>(context, listen: false).addChapter(
-          name: _chapterName,
-          color: _chapterColor,
-          image: _chapterImage,
+          name: _name,
+          color: _coverColor,
+          image: _coverImage,
         );
         Navigator.pop(context);
         break;
       case AddAction.page:
         _form.currentState!.save();
         Provider.of<PageData>(context, listen: false).addPage(
-          name: _pageName,
-          color: _pageColor,
-          image: _pageImage,
+          name: _name,
+          color: _coverColor,
+          image: _coverImage,
         );
         Navigator.pop(context);
         break;
@@ -78,30 +78,30 @@ class DialogView extends StatelessWidget {
       case AddAction.diary:
         if (pickcolor != null && image == null) {
           // _newDiary = Diary(customColor: pickcolor, image: null);
-          _diaryColor = pickcolor;
+          _coverColor = pickcolor;
         } else if (pickcolor == null && image != null) {
           // _newDiary = Diary(image: image);
-          _diaryImage = image;
+          _coverImage = image;
         }
         break;
 
       case AddAction.chapter:
         if (pickcolor != null && image == null) {
           // _newChapter = Chapter(customColor: pickcolor, image: null);
-          _chapterColor = pickcolor;
+          _coverColor = pickcolor;
         } else if (pickcolor == null && image != null) {
           // _newChapter = Chapter(image: image);
-          _chapterImage = image;
+          _coverImage = image;
         }
         break;
 
       case AddAction.page:
         if (pickcolor != null && image == null) {
           // _newPage = ChapterPage(customColor: pickcolor, image: null);
-          _pageColor = pickcolor;
+          _coverColor = pickcolor;
         } else if (pickcolor == null && image != null) {
           // _newPage = ChapterPage(image: image);
-          _pageImage = image;
+          _coverImage = image;
         }
         break;
       default:
@@ -152,7 +152,7 @@ class DialogView extends StatelessWidget {
                           //   customColor: _newDiary.customColor,
                           //   image: _newDiary.image,
                           // );
-                          _diaryName = newValue!;
+                          _name = newValue!;
                           break;
                         case AddAction.chapter:
                           // _newChapter = Chapter(
@@ -160,7 +160,7 @@ class DialogView extends StatelessWidget {
                           //   customColor: _newChapter.customColor,
                           //   image: _newChapter.image,
                           // );
-                          _chapterName = newValue!;
+                          _name = newValue!;
                           break;
                         case AddAction.page:
                           // _newPage = ChapterPage(
@@ -168,7 +168,7 @@ class DialogView extends StatelessWidget {
                           //   customColor: _newPage.customColor,
                           //   image: _newPage.image,
                           // );
-                          _pageName = newValue!;
+                          _name = newValue!;
                           break;
                         default:
                       }
