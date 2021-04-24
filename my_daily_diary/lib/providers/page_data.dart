@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:my_daily_diary/models/chapter.dart';
 
@@ -81,9 +83,31 @@ class PageData with ChangeNotifier {
     return [..._items];
   }
 
-  void addPage(ChapterPage page) {
+  void addPage({
+    required String name,
+    required Color color,
+    File? image,
+  }) {
+    final _newPage = ChapterPage(
+      id: DateTime.now().toString(),
+      name: name,
+      date: DateTime.now(),
+      customColor: color,
+      image: image,
+      writingArea: [
+        {'title': ''},
+        {'content': ''},
+      ],
+      currenTextColor: Colors.black,
+      textAlign: TextAlign.left,
+      fontweight: false,
+      fontStyle: false,
+      fontName: 'lato',
+      isSelected1: [true, false, false],
+      isSelected2: [false, false],
+    );
     // _items.add(page);
-    _chapter.pages!.add(page);
+    _chapter.pages!.add(_newPage);
     // _newPage = page;
     notifyListeners();
   }

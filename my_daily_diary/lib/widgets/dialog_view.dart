@@ -34,7 +34,11 @@ class DialogView extends StatelessWidget {
   Color _chapterColor = Colors.cyan;
   // ignore: avoid_init_to_null
   File? _chapterImage = null;
-  ChapterPage _newPage = ChapterPage();
+  // ChapterPage _newPage = ChapterPage();
+  String _pageName = '';
+  Color _pageColor = Colors.cyan;
+  // ignore: avoid_init_to_null
+  File? _pageImage = null;
 
   void _saveForm(BuildContext context) {
     switch (action) {
@@ -58,7 +62,11 @@ class DialogView extends StatelessWidget {
         break;
       case AddAction.page:
         _form.currentState!.save();
-        Provider.of<PageData>(context, listen: false).addPage(_newPage);
+        Provider.of<PageData>(context, listen: false).addPage(
+          name: _pageName,
+          color: _pageColor,
+          image: _pageImage,
+        );
         Navigator.pop(context);
         break;
       default:
@@ -89,9 +97,11 @@ class DialogView extends StatelessWidget {
 
       case AddAction.page:
         if (pickcolor != null && image == null) {
-          _newPage = ChapterPage(customColor: pickcolor, image: null);
+          // _newPage = ChapterPage(customColor: pickcolor, image: null);
+          _pageColor = pickcolor;
         } else if (pickcolor == null && image != null) {
-          _newPage = ChapterPage(image: image);
+          // _newPage = ChapterPage(image: image);
+          _pageImage = image;
         }
         break;
       default:
@@ -153,11 +163,12 @@ class DialogView extends StatelessWidget {
                           _chapterName = newValue!;
                           break;
                         case AddAction.page:
-                          _newPage = ChapterPage(
-                            name: newValue!,
-                            customColor: _newPage.customColor,
-                            image: _newPage.image,
-                          );
+                          // _newPage = ChapterPage(
+                          //   name: newValue!,
+                          //   customColor: _newPage.customColor,
+                          //   image: _newPage.image,
+                          // );
+                          _pageName = newValue!;
                           break;
                         default:
                       }
