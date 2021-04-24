@@ -133,7 +133,7 @@ class ChapterView extends StatelessWidget {
                 leading: CircleAvatar(
                     radius: 25,
                     //backgroundImage: AssetImage(chapterData.backgroundImage),
-                    backgroundColor: chapterData.customColor.withAlpha(255),
+                    backgroundColor: chapterData.customColor!.withAlpha(255),
                     // chapterData!.customColor != null
                     //     ? chapterData!.customColor.withAlpha(255)
                     //     : Colors.pink.shade700,
@@ -147,7 +147,7 @@ class ChapterView extends StatelessWidget {
                             ),
                           )),
                 title: Text(
-                  chapterData.name,
+                  chapterData.name!,
                   style: TextStyle(fontSize: 18),
                 ),
                 trailing: IconButton(
@@ -160,7 +160,7 @@ class ChapterView extends StatelessWidget {
                       // },
                     );
                     Provider.of<PageData>(context, listen: false).setPages(
-                      chapterData.pages,
+                      chapterData.pages!,
                       chapterData,
                     );
                   },

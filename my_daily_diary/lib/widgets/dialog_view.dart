@@ -28,7 +28,12 @@ class DialogView extends StatelessWidget {
   Color _diaryColor = Colors.cyan;
   // ignore: avoid_init_to_null
   File? _diaryImage = null;
-  Chapter _newChapter = Chapter();
+
+  // Chapter _newChapter = Chapter();
+  String _chapterName = '';
+  Color _chapterColor = Colors.cyan;
+  // ignore: avoid_init_to_null
+  File? _chapterImage = null;
   ChapterPage _newPage = ChapterPage();
 
   void _saveForm(BuildContext context) {
@@ -44,8 +49,11 @@ class DialogView extends StatelessWidget {
         break;
       case AddAction.chapter:
         _form.currentState!.save();
-        Provider.of<ChapterData>(context, listen: false)
-            .addChapter(_newChapter);
+        Provider.of<ChapterData>(context, listen: false).addChapter(
+          name: _chapterName,
+          color: _chapterColor,
+          image: _chapterImage,
+        );
         Navigator.pop(context);
         break;
       case AddAction.page:
@@ -71,9 +79,11 @@ class DialogView extends StatelessWidget {
 
       case AddAction.chapter:
         if (pickcolor != null && image == null) {
-          _newChapter = Chapter(customColor: pickcolor, image: null);
+          // _newChapter = Chapter(customColor: pickcolor, image: null);
+          _chapterColor = pickcolor;
         } else if (pickcolor == null && image != null) {
-          _newChapter = Chapter(image: image);
+          // _newChapter = Chapter(image: image);
+          _chapterImage = image;
         }
         break;
 
@@ -135,11 +145,12 @@ class DialogView extends StatelessWidget {
                           _diaryName = newValue!;
                           break;
                         case AddAction.chapter:
-                          _newChapter = Chapter(
-                            name: newValue!,
-                            customColor: _newChapter.customColor,
-                            image: _newChapter.image,
-                          );
+                          // _newChapter = Chapter(
+                          //   name: newValue!,
+                          //   customColor: _newChapter.customColor,
+                          //   image: _newChapter.image,
+                          // );
+                          _chapterName = newValue!;
                           break;
                         case AddAction.page:
                           _newPage = ChapterPage(

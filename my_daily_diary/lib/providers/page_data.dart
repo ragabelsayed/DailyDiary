@@ -83,14 +83,14 @@ class PageData with ChangeNotifier {
 
   void addPage(ChapterPage page) {
     // _items.add(page);
-    _chapter.pages.add(page);
+    _chapter.pages!.add(page);
     // _newPage = page;
     notifyListeners();
   }
 
   void removePage(String? id) {
     // _items.removeWhere((page) => page.id == id);
-    _chapter.pages.removeWhere((page) => page.id == id);
+    _chapter.pages!.removeWhere((page) => page.id == id);
     notifyListeners();
   }
 

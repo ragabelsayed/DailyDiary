@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:my_daily_diary/models/chapter.dart';
 import 'package:my_daily_diary/models/diary.dart';
@@ -61,9 +63,20 @@ class ChapterData with ChangeNotifier {
     return [..._items];
   }
 
-  void addChapter(Chapter chapter) {
+  void addChapter({
+    required String name,
+    required Color color,
+    File? image,
+  }) {
     // _items.add(chapter);
-    _diary.chapters!.add(chapter);
+    final _newChapter = Chapter(
+      id: DateTime.now().toString(),
+      name: name,
+      customColor: color,
+      image: image,
+      pages: [],
+    );
+    _diary.chapters!.add(_newChapter);
     notifyListeners();
   }
 
