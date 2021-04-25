@@ -23,6 +23,7 @@ void main() async {
     ..registerAdapter(ChapterAdapter())
     ..registerAdapter(ChapterPageAdapter());
 
+  await Hive.openBox<Diary>('diaries');
   runApp(MyApp());
 }
 
