@@ -12,12 +12,16 @@ import './screens/my_diary_screen.dart';
 
 import 'models/chapter.dart';
 import 'models/diary.dart';
+import 'models/page.dart';
 import 'screens/page_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  Hive..registerAdapter(DiaryAdapter())..registerAdapter(ChapterAdapter());
+  Hive
+    ..registerAdapter(DiaryAdapter())
+    ..registerAdapter(ChapterAdapter())
+    ..registerAdapter(ChapterPageAdapter());
 
   runApp(MyApp());
 }
