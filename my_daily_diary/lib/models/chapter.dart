@@ -2,12 +2,24 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:my_daily_diary/models/page.dart';
+import 'package:hive/hive.dart';
+part 'chapter.g.dart';
 
-class Chapter {
+@HiveType(typeId: 1)
+class Chapter extends HiveObject {
+  @HiveField(0)
   final String id;
+
+  @HiveField(1)
   final String name;
+
+  @HiveField(2)
   final File? image;
+
+  @HiveField(3)
   final Color customColor;
+
+  @HiveField(4)
   final List<ChapterPage> pages;
   // final String? password;
   Chapter({
