@@ -10,13 +10,15 @@ import 'package:my_daily_diary/screens/chapter_screen.dart';
 import 'package:provider/provider.dart';
 import './screens/my_diary_screen.dart';
 
+import 'models/chapter.dart';
 import 'models/diary.dart';
 import 'screens/page_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  Hive.registerAdapter(DiaryAdapter());
+  Hive..registerAdapter(DiaryAdapter())..registerAdapter(ChapterAdapter());
+
   runApp(MyApp());
 }
 
