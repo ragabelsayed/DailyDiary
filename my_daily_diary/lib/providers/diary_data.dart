@@ -10,7 +10,7 @@ class DiaryData with ChangeNotifier {
 
   List<Diary> get items => [..._items];
 
-  getItemsFormDB() async {
+  void getItemsFormDB() async {
     if (box.values.isNotEmpty) {
       _items = box.values.toList();
     }
@@ -35,8 +35,10 @@ class DiaryData with ChangeNotifier {
     // print(box.getAt(0)!.name);
   }
 
-  void removeDiary(String? id) {
-    _items.removeWhere((diary) => diary.id == id);
+  void removeDiary(Diary diary) {
+    // _items.removeWhere((diary) => diary.id == id);
+    _items.remove(diary);
     notifyListeners();
+    diary.delete();
   }
 }

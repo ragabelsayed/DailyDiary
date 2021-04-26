@@ -139,8 +139,7 @@ class DiaryView extends StatelessWidget {
                                                   Provider.of<DiaryData>(
                                                           context,
                                                           listen: false)
-                                                      .removeDiary(
-                                                          diaryData.id);
+                                                      .removeDiary(diaryData);
                                                   Navigator.of(context)
                                                       .pop(false);
                                                   ScaffoldMessenger.of(context)
