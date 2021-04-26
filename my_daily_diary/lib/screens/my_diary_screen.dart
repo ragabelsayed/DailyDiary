@@ -24,6 +24,7 @@ class _MyDiaryScreenState extends State<MyDiaryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<DiaryData>(context).getItemsFormDB();
     return Container(
       color: AppTheme.background,
       child: Scaffold(

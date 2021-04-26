@@ -1,20 +1,20 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:my_daily_diary/helper/box.dart';
 import 'package:my_daily_diary/models/diary.dart';
 
 class DiaryData with ChangeNotifier {
-  List<Diary> _items = [
-    Diary(
-      id: DateTime.now().toString(),
-      name: '2020',
-      customColor: Colors.amber,
-      chapters: [],
-    ),
-  ];
+  final box = Boxes.getDiaries();
+  List<Diary> _items = [];
 
-  List<Diary> get items {
-    return [..._items];
+  List<Diary> get items => [..._items];
+
+  getItemsFormDB() async {
+    if (box.values.isNotEmpty) {
+      _items = box.values.toList();
+    }
+    // notifyListeners();
   }
 
   void addDiary({
@@ -31,6 +31,8 @@ class DiaryData with ChangeNotifier {
     );
     _items.add(_newDiary);
     notifyListeners();
+    box.add(_newDiary);
+    // print(box.getAt(0)!.name);
   }
 
   void removeDiary(String? id) {
