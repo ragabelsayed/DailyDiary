@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 import 'package:my_daily_diary/app_theme.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
@@ -7,13 +8,19 @@ import 'package:my_daily_diary/widgets/diary_screen_widget/diary_list_view.dart'
 import 'package:my_daily_diary/widgets/diary_screen_widget/title_view.dart';
 import 'package:provider/provider.dart';
 
-class MyDiaryScreen extends StatelessWidget {
+class MyDiaryScreen extends StatefulWidget {
   static const routName = '/';
 
-  // Future<bool> _getData() async {
-  //   await Future.delayed(const Duration(milliseconds: 50));
-  //   return true;
-  // }
+  @override
+  _MyDiaryScreenState createState() => _MyDiaryScreenState();
+}
+
+class _MyDiaryScreenState extends State<MyDiaryScreen> {
+  @override
+  void dispose() {
+    Hive.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
