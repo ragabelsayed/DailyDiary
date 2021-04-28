@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -17,7 +18,6 @@ class _CoverPickerState extends State<CoverPicker> {
   bool lightTheme = true;
   Color currentColor = Colors.limeAccent;
   List<Color> currentColors = [Colors.limeAccent, Colors.green];
-
   File? _image;
   final picker = ImagePicker();
   Future _getImage(ImageSource source) async {

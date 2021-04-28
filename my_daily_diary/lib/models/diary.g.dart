@@ -1,10 +1,4 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
-
 part of 'diary.dart';
-
-// **************************************************************************
-// TypeAdapterGenerator
-// **************************************************************************
 
 class DiaryAdapter extends TypeAdapter<Diary> {
   @override
@@ -19,8 +13,8 @@ class DiaryAdapter extends TypeAdapter<Diary> {
     return Diary(
       id: fields[0] as String,
       name: fields[1] as String,
-      image: fields[2] as File?,
-      customColor: fields[3] as Color,
+      image: fields[2] != null ? File(fields[2]) : null,
+      customColor: Color(fields[3]),
       chapters: (fields[4] as List).cast<Chapter>(),
       onClickDiary: fields[5] as bool,
     );
@@ -35,9 +29,9 @@ class DiaryAdapter extends TypeAdapter<Diary> {
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.image.toString())
+      ..write(obj.image?.path)
       ..writeByte(3)
-      ..write(obj.customColor.toString())
+      ..write(obj.customColor.value)
       ..writeByte(4)
       ..write(obj.chapters)
       ..writeByte(5)

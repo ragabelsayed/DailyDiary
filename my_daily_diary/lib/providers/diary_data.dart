@@ -40,5 +40,6 @@ class DiaryData with ChangeNotifier {
     _items.remove(diary);
     notifyListeners();
     diary.delete();
+    // box.delete(diary.key);
   }
 }
