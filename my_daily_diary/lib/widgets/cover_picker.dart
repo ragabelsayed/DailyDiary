@@ -2,6 +2,8 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart' as syspath;
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -25,11 +27,16 @@ class _CoverPickerState extends State<CoverPicker> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
-        widget.covor(null, _image);
+        // widget.covor(null, _image);
       } else {
-        print('No image selected.');
+        return;
       }
     });
+    final appDir = await syspath.getApplicationDocumentsDirectory();
+    final appDirPath = appDir.path;
+    final fileName = path.basename(pickedFile!.path);
+    final savedImage = await _image!.copy('$appDirPath/$fileName');
+    widget.covor(null, savedImage);
   }
 
   void changeColor(Color color) {

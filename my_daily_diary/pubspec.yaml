@@ -21,6 +21,7 @@ dependencies:
   #format dates
   intl: ^0.17.0
   path: ^1.8.0
+  path_provider: ^2.0.1
   #Nosql DB
   hive: ^2.0.4
   hive_flutter: ^1.0.0
