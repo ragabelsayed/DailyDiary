@@ -20,7 +20,7 @@ class Chapter extends HiveObject {
   final Color customColor;
 
   @HiveField(4)
-  final List<ChapterPage> pages;
+  final HiveList<ChapterPage> pages;
   // final String? password;
   Chapter({
     required this.id,

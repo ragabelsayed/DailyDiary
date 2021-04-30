@@ -1,10 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:my_daily_diary/helper/box.dart';
 import 'package:my_daily_diary/models/chapter.dart';
 import 'package:my_daily_diary/models/diary.dart';
 
 class ChapterData with ChangeNotifier {
+  final box = Boxes.getDiaries();
   late Diary _diary;
   List<Chapter> _items = [];
   bool _onClickDiary = false;
@@ -74,7 +77,7 @@ class ChapterData with ChangeNotifier {
       name: name,
       customColor: color,
       image: image,
-      pages: [],
+      pages: HiveList(box),
     );
     _diary.chapters.add(_newChapter);
     notifyListeners();
