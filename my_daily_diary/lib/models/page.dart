@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:hive/hive.dart';
-// part 'page.g.dart';
+part 'page.g.dart';
 
 @HiveType(typeId: 2)
 class ChapterPage extends HiveObject {
