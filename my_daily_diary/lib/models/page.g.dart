@@ -20,12 +20,12 @@ class ChapterPageAdapter extends TypeAdapter<ChapterPage> {
       id: fields[0] as String,
       name: fields[1] as String,
       date: fields[2] as DateTime,
-      image: fields[3] as File?,
-      customColor: fields[4] as Color,
+      image: fields[3] != null ? File(fields[3]) : null,
+      customColor: Color(fields[4]),
       writingArea: (fields[5] as List)
           .map((dynamic e) => (e as Map).cast<String, String>())
           .toList(),
-      currenTextColor: fields[6] as Color,
+      currenTextColor: Color(fields[6]),
       textAlign: fields[7] as TextAlign,
       fontweight: fields[8] as bool,
       fontStyle: fields[9] as bool,
@@ -46,13 +46,13 @@ class ChapterPageAdapter extends TypeAdapter<ChapterPage> {
       ..writeByte(2)
       ..write(obj.date)
       ..writeByte(3)
-      ..write(obj.image)
+      ..write(obj.image?.path)
       ..writeByte(4)
-      ..write(obj.customColor)
+      ..write(obj.customColor.value)
       ..writeByte(5)
       ..write(obj.writingArea)
       ..writeByte(6)
-      ..write(obj.currenTextColor)
+      ..write(obj.currenTextColor.value)
       ..writeByte(7)
       ..write(obj.textAlign)
       ..writeByte(8)
