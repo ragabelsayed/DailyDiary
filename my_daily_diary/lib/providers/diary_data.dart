@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:my_daily_diary/helper/box.dart';
+import 'package:my_daily_diary/models/chapter.dart';
 import 'package:my_daily_diary/models/diary.dart';
 
 class DiaryData with ChangeNotifier {
@@ -27,7 +29,7 @@ class DiaryData with ChangeNotifier {
       name: name,
       customColor: color,
       image: image,
-      chapters: [],
+      chapters: HiveList(box),
     );
     _items.add(_newDiary);
     notifyListeners();

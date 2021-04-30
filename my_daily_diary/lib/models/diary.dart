@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-
 import 'package:my_daily_diary/models/chapter.dart';
 import 'package:hive/hive.dart';
 part 'diary.g.dart';
@@ -21,7 +19,7 @@ class Diary extends HiveObject {
   final Color customColor;
 
   @HiveField(4)
-  final List<Chapter> chapters;
+  final HiveList<Chapter> chapters;
 
   @HiveField(5)
   final bool onClickDiary;
