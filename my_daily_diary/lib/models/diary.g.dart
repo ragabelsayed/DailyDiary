@@ -19,8 +19,8 @@ class DiaryAdapter extends TypeAdapter<Diary> {
     return Diary(
       id: fields[0] as String,
       name: fields[1] as String,
-      image: fields[2] as File?,
-      customColor: fields[3] as Color,
+      image: fields[2] != null ? File(fields[2]) : null,
+      customColor: Color(fields[3]),
       chapters: (fields[4] as HiveList).castHiveList(),
       onClickDiary: fields[5] as bool,
     );
@@ -35,9 +35,9 @@ class DiaryAdapter extends TypeAdapter<Diary> {
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.image)
+      ..write(obj.image?.path)
       ..writeByte(3)
-      ..write(obj.customColor)
+      ..write(obj.customColor.value)
       ..writeByte(4)
       ..write(obj.chapters)
       ..writeByte(5)
