@@ -160,9 +160,8 @@ class ChapterView extends StatelessWidget {
                       // },
                     );
                     Provider.of<PageData>(context, listen: false).setPages(
-                      chapterData.pages,
-                      chapterData,
-                    );
+                        // chapterData.pages,
+                        chapterData);
                   },
                 ),
               ),

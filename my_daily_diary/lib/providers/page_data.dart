@@ -122,11 +122,9 @@ class PageData with ChangeNotifier {
     notifyListeners();
   }
 
-  void setPages(List<ChapterPage> pages, Chapter chapter) {
-    if (pages.isNotEmpty) {
-      _items = pages;
-    }
+  void setPages(Chapter chapter) {
     _chapter = chapter;
+    _items = chapter.pages.toList();
     notifyListeners();
   }
 

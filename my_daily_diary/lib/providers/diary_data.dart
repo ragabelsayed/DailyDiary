@@ -34,7 +34,6 @@ class DiaryData with ChangeNotifier {
     );
     _items.add(_newDiary);
     notifyListeners();
-    // _newDiary.save();
     diaryBox.add(_newDiary);
 
     // print(box.getAt(0)!.name);

@@ -100,11 +100,8 @@ class ChapterData with ChangeNotifier {
   }
 
   void setChapters(Diary diary) {
-    // _items = chapters;
     _diary = diary;
-    if (diary.chapters.isNotEmpty) {
-      _items = diary.chapters.toList();
-    }
+    _items = diary.chapters.toList();
     notifyListeners();
   }
 
