@@ -26,7 +26,9 @@ class ChapterPageAdapter extends TypeAdapter<ChapterPage> {
           .map((dynamic e) => (e as Map).cast<String, String>())
           .toList(),
       currenTextColor: Color(fields[6]),
-      textAlign: fields[7] as TextAlign,
+      // textAlign: fields[7] as TextAlign,
+      textAlign: TextAlign.values
+          .firstWhere((textAlign) => textAlign.index == fields[7]),
       fontweight: fields[8] as bool,
       fontStyle: fields[9] as bool,
       fontName: fields[10] as String,
@@ -54,7 +56,7 @@ class ChapterPageAdapter extends TypeAdapter<ChapterPage> {
       ..writeByte(6)
       ..write(obj.currenTextColor.value)
       ..writeByte(7)
-      ..write(obj.textAlign)
+      ..write(obj.textAlign.index)
       ..writeByte(8)
       ..write(obj.fontweight)
       ..writeByte(9)
