@@ -116,10 +116,12 @@ class PageData with ChangeNotifier {
     _chapter.save();
   }
 
-  void removePage(String? id) {
+  void removePage(ChapterPage page) {
     // _items.removeWhere((page) => page.id == id);
-    _chapter.pages.removeWhere((page) => page.id == id);
+    // _chapter.pages.removeWhere((page) => page.id == id);
+    _items.remove(page);
     notifyListeners();
+    page.delete();
   }
 
   void setPages(Chapter chapter) {

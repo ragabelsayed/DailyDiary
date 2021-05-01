@@ -123,7 +123,7 @@ class PagesView extends StatelessWidget {
                                         onPressed: () {
                                           Provider.of<PageData>(context,
                                                   listen: false)
-                                              .removePage(pageData.id);
+                                              .removePage(pageData);
 
                                           Navigator.of(context).pop();
                                           ScaffoldMessenger.of(context)
