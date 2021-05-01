@@ -7,14 +7,15 @@ import 'package:my_daily_diary/models/chapter.dart';
 import 'package:my_daily_diary/models/diary.dart';
 
 class DiaryData with ChangeNotifier {
-  final box = Boxes.getDiaries();
+  final diaryBox = Boxes.getDiariesBox();
+  final chapterBox = Boxes.getChaptersBox();
   List<Diary> _items = [];
 
   List<Diary> get items => [..._items];
 
   void getItemsFormDB() async {
-    if (box.values.isNotEmpty) {
-      _items = box.values.toList();
+    if (diaryBox.values.isNotEmpty) {
+      _items = diaryBox.values.toList();
     }
     // notifyListeners();
   }
@@ -29,11 +30,13 @@ class DiaryData with ChangeNotifier {
       name: name,
       customColor: color,
       image: image,
-      chapters: HiveList(box),
+      chapters: HiveList(chapterBox),
     );
     _items.add(_newDiary);
     notifyListeners();
-    box.add(_newDiary);
+    // _newDiary.save();
+    diaryBox.add(_newDiary);
+
     // print(box.getAt(0)!.name);
   }
 

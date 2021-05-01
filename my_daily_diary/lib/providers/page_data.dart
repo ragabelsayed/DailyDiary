@@ -1,11 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:my_daily_diary/helper/box.dart';
 import 'package:my_daily_diary/models/chapter.dart';
 
 import 'package:my_daily_diary/models/page.dart';
 
 class PageData with ChangeNotifier {
+  final pagesBox = Boxes.getPagesBox();
   late Chapter _chapter;
   // late ChapterPage _newPage;
   late ChapterPage _currentPage;
@@ -106,10 +108,12 @@ class PageData with ChangeNotifier {
       isSelected1: [true, false, false],
       isSelected2: [false, false],
     );
-    // _items.add(page);
-    _chapter.pages.add(_newPage);
+    _items.add(_newPage);
     // _newPage = page;
     notifyListeners();
+    pagesBox.add(_newPage);
+    _chapter.pages.add(_newPage);
+    _chapter.save();
   }
 
   void removePage(String? id) {
@@ -119,7 +123,9 @@ class PageData with ChangeNotifier {
   }
 
   void setPages(List<ChapterPage> pages, Chapter chapter) {
-    _items = pages;
+    if (pages.isNotEmpty) {
+      _items = pages;
+    }
     _chapter = chapter;
     notifyListeners();
   }

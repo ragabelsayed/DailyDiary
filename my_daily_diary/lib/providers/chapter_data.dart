@@ -7,7 +7,9 @@ import 'package:my_daily_diary/models/chapter.dart';
 import 'package:my_daily_diary/models/diary.dart';
 
 class ChapterData with ChangeNotifier {
-  final box = Boxes.getDiaries();
+  final diaryBox = Boxes.getDiariesBox();
+  final chapterBox = Boxes.getChaptersBox();
+  final pageBox = Boxes.getPagesBox();
   late Diary _diary;
   List<Chapter> _items = [];
   bool _onClickDiary = false;
@@ -66,21 +68,29 @@ class ChapterData with ChangeNotifier {
     return [..._items];
   }
 
+//  void getItemsFormDB() async {
+//     if (_diary.chapters.isNotEmpty) {
+//       _items = _diary.chapters.toList();
+//     }
+//     // notifyListeners();
+//   }
   void addChapter({
     required String name,
     required Color color,
     File? image,
   }) {
-    // _items.add(chapter);
     final _newChapter = Chapter(
       id: DateTime.now().toString(),
       name: name,
       customColor: color,
       image: image,
-      pages: HiveList(box),
+      pages: HiveList(pageBox),
     );
-    _diary.chapters.add(_newChapter);
+    _items.add(_newChapter);
     notifyListeners();
+    chapterBox.add(_newChapter);
+    _diary.chapters.add(_newChapter);
+    _diary.save();
   }
 
   void removeChapter(String? id) {
@@ -89,9 +99,12 @@ class ChapterData with ChangeNotifier {
     notifyListeners();
   }
 
-  void setChapters(List<Chapter> chapters, Diary diary) {
-    _items = chapters;
+  void setChapters(Diary diary) {
+    // _items = chapters;
     _diary = diary;
+    if (diary.chapters.isNotEmpty) {
+      _items = diary.chapters.toList();
+    }
     notifyListeners();
   }
 

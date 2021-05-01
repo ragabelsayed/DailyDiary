@@ -24,6 +24,8 @@ void main() async {
     ..registerAdapter(ChapterPageAdapter());
 
   await Hive.openBox<Diary>('diaries');
+  await Hive.openBox<Chapter>('chapters');
+  await Hive.openBox<ChapterPage>('pages');
   runApp(MyApp());
 }
 
