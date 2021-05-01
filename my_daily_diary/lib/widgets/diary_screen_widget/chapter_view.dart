@@ -91,7 +91,7 @@ class ChapterView extends StatelessWidget {
                                 onPressed: () {
                                   Provider.of<ChapterData>(context,
                                           listen: false)
-                                      .removeChapter(chapterData.id);
+                                      .removeChapter(chapterData);
 
                                   Navigator.of(context).pop();
                                   ScaffoldMessenger.of(context).showSnackBar(
