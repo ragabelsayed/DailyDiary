@@ -139,6 +139,7 @@ class PageData with ChangeNotifier {
     // _currentColor = currentColor;
     _currentPage.currenTextColor = currentColor;
     notifyListeners();
+    _currentPage.save();
   }
 
   Color get currentColor {
@@ -150,6 +151,7 @@ class PageData with ChangeNotifier {
     // _textAlign = textAlign;
     _currentPage.textAlign = textAlign;
     notifyListeners();
+    _currentPage.save();
   }
 
   TextAlign get textAlign {
@@ -161,6 +163,7 @@ class PageData with ChangeNotifier {
     // _fontweight = !_fontweight;
     _currentPage.fontweight = !_currentPage.fontweight;
     notifyListeners();
+    _currentPage.save();
   }
 
   bool get fontWeight {
@@ -172,6 +175,7 @@ class PageData with ChangeNotifier {
     // _fontStyle = !_fontStyle;
     _currentPage.fontStyle = !_currentPage.fontStyle;
     notifyListeners();
+    _currentPage.save();
   }
 
   bool get fontStyle {
@@ -183,6 +187,7 @@ class PageData with ChangeNotifier {
     // _dropdownValue = fontName;
     _currentPage.fontName = fontName;
     notifyListeners();
+    _currentPage.save();
   }
 
   String get fontName {

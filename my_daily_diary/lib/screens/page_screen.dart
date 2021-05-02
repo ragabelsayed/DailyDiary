@@ -145,6 +145,7 @@ class PageScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(30),
                                       onTap: () {
                                         Navigator.pop(context);
+                                        _pagesData.save();
                                       },
                                       child: Icon(
                                         Icons.arrow_back,
@@ -162,7 +163,10 @@ class PageScreen extends StatelessWidget {
                                       Icons.save,
                                       size: 25,
                                     ),
-                                    onPressed: _saveForm,
+                                    onPressed: () {
+                                      _saveForm();
+                                      _pagesData.save();
+                                    },
                                   ),
                                 ),
                               ],
