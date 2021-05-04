@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 
 import 'package:my_daily_diary/app_theme.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
+import 'package:my_daily_diary/widgets/change_theme_btn_widget.dart';
 import 'package:my_daily_diary/widgets/dialog_view.dart';
 import 'package:my_daily_diary/widgets/diary_screen_widget/diary_list_view.dart';
 import 'package:my_daily_diary/widgets/diary_screen_widget/title_view.dart';
@@ -26,9 +27,11 @@ class _MyDiaryScreenState extends State<MyDiaryScreen> {
   Widget build(BuildContext context) {
     Provider.of<DiaryData>(context).getItemsFormDB();
     return Container(
-      color: AppTheme.background,
+      // color: AppTheme.background,
+      color: Theme.of(context).primaryColor,
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        // appBar: _getAppBarUI(),
+        // backgroundColor: Colors.transparent,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,6 +57,22 @@ class _MyDiaryScreenState extends State<MyDiaryScreen> {
   }
 
   Widget _getAppBarUI() {
+    // return AppBar(
+    //   title: Text(
+    //     'My Diaries',
+    //     style: TextStyle(
+    //       color: Theme.of(context).textTheme.headline6!.color,
+    //       fontSize: 20,
+    //       fontWeight: FontWeight.w500,
+    //     ),
+    //   ),
+    //   shape: RoundedRectangleBorder(
+    //     borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
+    //   ),
+    //   // backgroundColor: Colors.white,
+    //   // elevation: 0,
+    //   actions: [ChangeThemeButtonWidget()],
+    // );
     return Padding(
       padding: const EdgeInsets.only(top: 15, left: 16, right: 16),
       child: Center(
@@ -83,7 +102,16 @@ class _MyDiaryScreenState extends State<MyDiaryScreen> {
         const SizedBox(height: 16),
         Provider.of<DiaryData>(context).items.isNotEmpty
             ? DiaryListView()
-            : Expanded(child: Center(child: Text('Add Your frist Diary 😀'))),
+            : Expanded(
+                child: Center(
+                    child: Text(
+                'Add Your frist Diary 😀',
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.headline5!.color,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+              ))),
       ],
     );
   }

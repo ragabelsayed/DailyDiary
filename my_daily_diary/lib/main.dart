@@ -5,6 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_daily_diary/providers/chapter_data.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
 import 'package:my_daily_diary/providers/page_data.dart';
+import 'package:my_daily_diary/providers/theme.dart';
 import 'package:my_daily_diary/screens/chapter_screen.dart';
 
 import 'package:provider/provider.dart';
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
+          create: (context) => ThemeProvider(),
+        ),
+        ChangeNotifierProvider(
           create: (context) => DiaryData(),
         ),
         ChangeNotifierProvider(
@@ -44,21 +48,27 @@ class MyApp extends StatelessWidget {
           create: (context) => PageData(),
         ),
       ],
-      child: MaterialApp(
-        title: 'MyDiary',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        //home: UserColorPicker(),
-        initialRoute: MyDiaryScreen.routName,
-        routes: {
-          MyDiaryScreen.routName: (ctx) => MyDiaryScreen(),
-          ChapterScreen.routName: (ctx) => ChapterScreen(),
-          PageScreen.routName: (ctx) => PageScreen(),
-        },
-      ),
+      builder: (context, _) {
+        final themeProvider = Provider.of<ThemeProvider>(context);
+        return MaterialApp(
+          title: 'MyDiary',
+          debugShowCheckedModeBanner: false,
+          themeMode: themeProvider.themeMode,
+          theme: MyThemes.lightTheme,
+          darkTheme: MyThemes.darkTheme,
+          // ThemeData(
+          //   primarySwatch: Colors.blue,
+          //   visualDensity: VisualDensity.adaptivePlatformDensity,
+          // ),
+          //home: UserColorPicker(),
+          initialRoute: MyDiaryScreen.routName,
+          routes: {
+            MyDiaryScreen.routName: (ctx) => MyDiaryScreen(),
+            ChapterScreen.routName: (ctx) => ChapterScreen(),
+            PageScreen.routName: (ctx) => PageScreen(),
+          },
+        );
+      },
     );
   }
 }
