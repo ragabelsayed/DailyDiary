@@ -30,7 +30,7 @@ class _MyDiaryScreenState extends State<MyDiaryScreen> {
       // color: AppTheme.background,
       color: Theme.of(context).primaryColor,
       child: Scaffold(
-        // appBar: _getAppBarUI(),
+        appBar: _getAppBarUI(),
         // backgroundColor: Colors.transparent,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -44,7 +44,7 @@ class _MyDiaryScreenState extends State<MyDiaryScreen> {
                 height: MediaQuery.of(context).size.height,
                 child: Column(
                   children: [
-                    _getAppBarUI(),
+                    // _getAppBarUI(),
                     Expanded(child: _getNewDiary(context)),
                   ],
                 ),
@@ -56,37 +56,37 @@ class _MyDiaryScreenState extends State<MyDiaryScreen> {
     );
   }
 
-  Widget _getAppBarUI() {
-    // return AppBar(
-    //   title: Text(
-    //     'My Diaries',
-    //     style: TextStyle(
-    //       color: Theme.of(context).textTheme.headline6!.color,
-    //       fontSize: 20,
-    //       fontWeight: FontWeight.w500,
-    //     ),
-    //   ),
-    //   shape: RoundedRectangleBorder(
-    //     borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
-    //   ),
-    //   // backgroundColor: Colors.white,
-    //   // elevation: 0,
-    //   actions: [ChangeThemeButtonWidget()],
-    // );
-    return Padding(
-      padding: const EdgeInsets.only(top: 15, left: 16, right: 16),
-      child: Center(
-        child: Text(
-          'My Diaries',
-          style: TextStyle(
-            color: Colors.black.withOpacity(0.5),
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-          ),
-          textAlign: TextAlign.center,
+  PreferredSizeWidget _getAppBarUI() {
+    return AppBar(
+      title: Text(
+        'My Diaries',
+        style: TextStyle(
+          color: Theme.of(context).textTheme.headline6!.color,
+          fontSize: 20,
+          fontWeight: FontWeight.w500,
         ),
       ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
+      ),
+      // backgroundColor: Colors.white,
+      // elevation: 0,
+      actions: [ChangeThemeButtonWidget()],
     );
+    // return Padding(
+    //   padding: const EdgeInsets.only(top: 15, left: 16, right: 16),
+    //   child: Center(
+    //     child: Text(
+    //       'My Diaries',
+    //       style: TextStyle(
+    //         color: Colors.black.withOpacity(0.5),
+    //         fontSize: 20,
+    //         fontWeight: FontWeight.w500,
+    //       ),
+    //       textAlign: TextAlign.center,
+    //     ),
+    //   ),
+    // );
   }
 
   Widget _getNewDiary(BuildContext context) {
