@@ -128,7 +128,8 @@ class DialogView extends StatelessWidget {
                 Text.rich(
                   TextSpan(
                     text: name,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                    style: Theme.of(context).textTheme.headline6,
+                    // style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                     children: [
                       TextSpan(
                         text: ' *',
@@ -178,7 +179,8 @@ class DialogView extends StatelessWidget {
                 Text.rich(
                   TextSpan(
                     text: coverName,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                    style: Theme.of(context).textTheme.headline6,
+                    // style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                     children: [
                       TextSpan(
                         text: ' *',
@@ -195,18 +197,20 @@ class DialogView extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       child: Text('Cancel'),
-                      style: ButtonStyle(
-                        elevation: MaterialStateProperty.all<double>(3.0),
-                      ),
+                      style: Theme.of(context).elevatedButtonTheme.style,
+                      // ButtonStyle(
+                      //   elevation: MaterialStateProperty.all<double>(3.0),
+                      // ),
                       onPressed: () {
                         _close(context);
                       },
                     ),
                     ElevatedButton(
                       child: Text('Save'),
-                      style: ButtonStyle(
-                        elevation: MaterialStateProperty.all<double>(3.0),
-                      ),
+                      style: Theme.of(context).elevatedButtonTheme.style,
+                      // ButtonStyle(
+                      //   elevation: MaterialStateProperty.all<double>(3.0),
+                      // ),
                       onPressed: () {
                         _saveForm(context);
                       },
