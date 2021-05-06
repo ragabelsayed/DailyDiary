@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:my_daily_diary/providers/page_data.dart';
+import 'package:my_daily_diary/widgets/change_theme_btn_widget.dart';
 
 import 'package:my_daily_diary/widgets/chapter_screen_widget/Page_view.dart';
 
@@ -10,7 +11,6 @@ import 'package:provider/provider.dart';
 
 class ChapterScreen extends StatefulWidget {
   static const routName = '/chapter_screen';
-
   @override
   _ChapterScreenState createState() => _ChapterScreenState();
 }
@@ -49,6 +49,7 @@ class _ChapterScreenState extends State<ChapterScreen>
     //     .items
     //     .firstWhere((day) => day.id == dayId);
     return Scaffold(
+      appBar: _appBar(),
       body: FutureBuilder(
         future: _getData(),
         builder: (context, snapshot) {
@@ -140,29 +141,29 @@ class _ChapterScreenState extends State<ChapterScreen>
                           },
                         ),
                       ),
-                      Positioned(
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.only(left: 5, top: 5, bottom: 5),
-                          child: SizedBox(
-                            width: 30,
-                            height: 30,
-                            child: Material(
-                              color: Colors.transparent,
-                              child: InkWell(
-                                borderRadius: BorderRadius.circular(30),
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Icon(
-                                  Icons.arrow_back,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      // Positioned(
+                      //   child: Padding(
+                      //     padding:
+                      //         const EdgeInsets.only(left: 5, top: 5, bottom: 5),
+                      //     child: SizedBox(
+                      //       width: 30,
+                      //       height: 30,
+                      //       child: Material(
+                      //         color: Colors.transparent,
+                      //         child: InkWell(
+                      //           borderRadius: BorderRadius.circular(30),
+                      //           onTap: () {
+                      //             Navigator.pop(context);
+                      //           },
+                      //           child: Icon(
+                      //             Icons.arrow_back,
+                      //             color: Colors.black,
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -172,6 +173,24 @@ class _ChapterScreenState extends State<ChapterScreen>
           }
         },
       ),
+    );
+  }
+
+  PreferredSizeWidget _appBar() {
+    return AppBar(
+      title: Text(
+        'Pages',
+        style: Theme.of(context).textTheme.headline6,
+      ),
+      centerTitle: true,
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+      // elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(15),
+        ),
+      ),
+      actions: [ChangeThemeButtonWidget()],
     );
   }
 }
