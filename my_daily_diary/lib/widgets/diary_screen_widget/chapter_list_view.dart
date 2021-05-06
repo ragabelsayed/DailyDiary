@@ -39,12 +39,13 @@ class ChapterListView extends StatelessWidget {
         : Expanded(
             child: Center(
               child: Text(
-                'Add Your frist chapter in this diary😀',
-                style: TextStyle(
-                  color: Theme.of(context).textTheme.headline5!.color,
-                  // fontSize: 15,
-                  // fontWeight: FontWeight.w500,
-                ),
+                'Add Your frist chapter in this diary 😀',
+                style: Theme.of(context).textTheme.bodyText1,
+                // style: TextStyle(
+                //   color: Theme.of(context).textTheme.headline5!.color,
+                //   // fontSize: 15,
+                //   // fontWeight: FontWeight.w500,
+                // ),
               ),
             ),
           );

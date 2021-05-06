@@ -54,13 +54,9 @@ class MyApp extends StatelessWidget {
           title: 'MyDiary',
           debugShowCheckedModeBanner: false,
           themeMode: themeProvider.themeMode,
+          // theme: ThemeData.dark(),
           theme: MyThemes.lightTheme,
           darkTheme: MyThemes.darkTheme,
-          // ThemeData(
-          //   primarySwatch: Colors.blue,
-          //   visualDensity: VisualDensity.adaptivePlatformDensity,
-          // ),
-          //home: UserColorPicker(),
           initialRoute: MyDiaryScreen.routName,
           routes: {
             MyDiaryScreen.routName: (ctx) => MyDiaryScreen(),

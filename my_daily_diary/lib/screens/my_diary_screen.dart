@@ -42,7 +42,7 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
   Widget build(BuildContext context) {
     Provider.of<DiaryData>(context).getItemsFormDB();
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: _getAppBarUI(),
       // backgroundColor: Colors.transparent,
       body: _getNewDiary(context),
@@ -53,16 +53,19 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
     return AppBar(
       title: Text(
         'My Diaries',
-        style: TextStyle(
-          color: Theme.of(context).textTheme.headline6!.color,
-          fontSize: 20,
-          fontWeight: FontWeight.w500,
-        ),
+        style: Theme.of(context).textTheme.headline6,
+        // style: TextStyle(
+        //   // color: Theme.of(context).textTheme.headline6!.color,
+        //   fontSize: 20,
+        //   fontWeight: FontWeight.w500,
+        // ),
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(15),
+        ),
       ),
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       // elevation: 0,
       actions: [ChangeThemeButtonWidget()],
     );
@@ -104,11 +107,12 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
                 child: Center(
                   child: Text(
                     'Add Your frist Diary 😀',
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.headline5!.color,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText1,
+                    // style: TextStyle(
+                    //   color: Theme.of(context).textTheme.headline5!.color,
+                    //   fontSize: 20,
+                    //   fontWeight: FontWeight.w500,
+                    // ),
                   ),
                 ),
               ),

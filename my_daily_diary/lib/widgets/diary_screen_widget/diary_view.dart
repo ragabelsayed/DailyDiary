@@ -70,7 +70,10 @@ class DiaryView extends StatelessWidget {
                                 ),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.grey.withOpacity(0.7),
+                                    color: Theme.of(context)
+                                        .shadowColor
+                                        .withOpacity(0.4),
+                                    // color: Colors.grey.withOpacity(0.7),
                                     offset: const Offset(2.0, 2.0),
                                     blurRadius: 10,
                                   ),
@@ -150,7 +153,8 @@ class DiaryView extends StatelessWidget {
                                                             TextAlign.center,
                                                       ),
                                                       duration: const Duration(
-                                                          seconds: 1),
+                                                        seconds: 1,
+                                                      ),
                                                     ),
                                                   );
                                                 },
@@ -170,7 +174,13 @@ class DiaryView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 15),
-                  Text(diaryData.name),
+                  Text(
+                    diaryData.name,
+                    style: Theme.of(context)
+                        .textTheme
+                        .merge(TextTheme(caption: TextStyle(fontSize: 14)))
+                        .caption,
+                  ),
                 ],
               ),
             ),

@@ -24,15 +24,16 @@ class TitleView extends StatelessWidget {
         children: [
           Text(
             titleName!,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-            ),
+            style: Theme.of(context).textTheme.headline6,
             textAlign: TextAlign.center,
           ),
           FloatingActionButton.extended(
             heroTag: 'btn$inputDialogAction',
+            label: Icon(Icons.add),
+            backgroundColor:
+                Theme.of(context).floatingActionButtonTheme.backgroundColor,
+            foregroundColor:
+                Theme.of(context).floatingActionButtonTheme.foregroundColor,
             onPressed: () {
               showDialog(
                 context: context,
@@ -46,7 +47,6 @@ class TitleView extends StatelessWidget {
                 },
               );
             },
-            label: Icon(Icons.add),
           ),
           // PopupMenuButton(
           //   itemBuilder: (context) {

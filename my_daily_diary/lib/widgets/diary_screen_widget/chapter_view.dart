@@ -36,7 +36,8 @@ class ChapterView extends StatelessWidget {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
+                      // color: Colors.grey.withOpacity(0.5),
+                      color: Theme.of(context).shadowColor.withOpacity(0.3),
                       offset: const Offset(1.0, 2.0),
                       blurRadius: 10,
                     ),
@@ -59,7 +60,8 @@ class ChapterView extends StatelessWidget {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
+                      // color: Colors.grey.withOpacity(0.5),
+                      color: Theme.of(context).shadowColor.withOpacity(0.3),
                       offset: const Offset(1.0, 2.0),
                       blurRadius: 10,
                     ),
@@ -117,11 +119,13 @@ class ChapterView extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
               decoration: BoxDecoration(
-                color: Colors.white,
+                // color: Colors.white,
+                color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
+                    // color: Colors.grey.withOpacity(0.5),
+                    color: Theme.of(context).shadowColor.withOpacity(0.3),
                     offset: const Offset(1.0, 2.0),
                     blurRadius: 10,
                   ),
@@ -131,24 +135,26 @@ class ChapterView extends StatelessWidget {
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
                 leading: CircleAvatar(
-                    radius: 25,
-                    //backgroundImage: AssetImage(chapterData.backgroundImage),
-                    backgroundColor: chapterData.customColor.withAlpha(255),
-                    // chapterData!.customColor != null
-                    //     ? chapterData!.customColor.withAlpha(255)
-                    //     : Colors.pink.shade700,
-                    child: chapterData.image == null
-                        ? Text('')
-                        : ClipRRect(
-                            borderRadius: BorderRadius.circular(25),
-                            child: Image.file(
-                              chapterData.image!,
-                              fit: BoxFit.cover,
-                            ),
-                          )),
+                  radius: 25,
+                  //backgroundImage: AssetImage(chapterData.backgroundImage),
+                  backgroundColor: chapterData.customColor.withAlpha(255),
+                  // chapterData!.customColor != null
+                  //     ? chapterData!.customColor.withAlpha(255)
+                  //     : Colors.pink.shade700,
+                  child: chapterData.image == null
+                      ? Text('')
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(25),
+                          child: Image.file(
+                            chapterData.image!,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                ),
                 title: Text(
                   chapterData.name,
-                  style: TextStyle(fontSize: 18),
+                  style: Theme.of(context).textTheme.subtitle1,
+                  // style: TextStyle(fontSize: 18),
                 ),
                 trailing: IconButton(
                   icon: Icon(Icons.arrow_forward_ios),
