@@ -128,7 +128,15 @@ class DialogView extends StatelessWidget {
                 Text.rich(
                   TextSpan(
                     text: name,
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context)
+                        .textTheme
+                        .merge(
+                          TextTheme(
+                            headline6: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w500),
+                          ),
+                        )
+                        .headline6,
                     // style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                     children: [
                       TextSpan(
@@ -179,7 +187,15 @@ class DialogView extends StatelessWidget {
                 Text.rich(
                   TextSpan(
                     text: coverName,
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context)
+                        .textTheme
+                        .merge(
+                          TextTheme(
+                            headline6: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w500),
+                          ),
+                        )
+                        .headline6,
                     // style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                     children: [
                       TextSpan(

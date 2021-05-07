@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import 'package:my_daily_diary/models/page.dart';
@@ -48,7 +50,7 @@ class PagesView extends StatelessWidget {
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
-                        end: Alignment.topRight,
+                        end: Alignment.bottomRight,
                         colors: [
                           pageData.customColor.withAlpha(255),
                           pageData.customColor.withAlpha(50),
@@ -62,7 +64,8 @@ class PagesView extends StatelessWidget {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.withOpacity(0.7),
+                          // color: Colors.grey.withOpacity(0.7),
+                          color: Theme.of(context).shadowColor.withOpacity(0.4),
                           offset: const Offset(2.0, 4.0),
                           blurRadius: 10,
                         ),
@@ -110,7 +113,10 @@ class PagesView extends StatelessWidget {
                                 builder: (context) {
                                   return AlertDialog(
                                     content: Text(
-                                        'Are you sure that you want to delete this diary ?'),
+                                      'Are you sure that you want to delete this page ?',
+                                      // style:
+                                      //     Theme.of(context).textTheme.headline6,
+                                    ),
                                     actions: [
                                       TextButton(
                                         child: Text('No'),
@@ -150,42 +156,61 @@ class PagesView extends StatelessWidget {
                     },
                   ),
                 ),
-                Positioned(
-                  left: 10,
-                  top: 10,
-                  child: Container(
-                    width: 70,
-                    height: 70,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.grey.withOpacity(0.4)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.4),
-                          offset: const Offset(1, 2),
-                          blurRadius: 10,
-                        )
-                      ],
-                    ),
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 2),
-                        child: Text(
-                          pageData.name,
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          // softWrap: false,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 25,
+                pageData.name.isNotEmpty
+                    ? Positioned(
+                        left: 10,
+                        top: 10,
+                        // bottom: 10,
+                        child: Container(
+                          width: 250,
+                          alignment: Alignment.centerLeft,
+                          child: Chip(
+                            avatar: CircleAvatar(),
+                            backgroundColor:
+                                Theme.of(context).chipTheme.backgroundColor,
+                            labelStyle: Theme.of(context).textTheme.headline5,
+                            label: Text(
+                              pageData.name,
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                ),
+                      )
+                    : SizedBox()
+                // Container(
+                //   width: 70,
+                //   height: 70,
+                //   decoration: BoxDecoration(
+                //     // color: Colors.white,
+                // color: Theme.of(context).chipTheme.backgroundColor,
+                //     shape: BoxShape.circle,
+                //     border: Border.all(color: Colors.grey.withOpacity(0.4)),
+                //     boxShadow: [
+                //       BoxShadow(
+                //         color: Colors.grey.withOpacity(0.4),
+                //         offset: const Offset(1, 2),
+                //         blurRadius: 10,
+                //       )
+                //     ],
+                //   ),
+                //   child: Center(
+                //     child: Padding(
+                //       padding: const EdgeInsets.symmetric(horizontal: 2),
+                //       child: Text(
+                //         pageData.name,
+                //         textAlign: TextAlign.center,
+                //         overflow: TextOverflow.ellipsis,
+                //         // softWrap: false,
+                //         style: TextStyle(
+                //           color: Colors.black,
+                //           fontWeight: FontWeight.w500,
+                //           fontSize: 25,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

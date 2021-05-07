@@ -39,7 +39,10 @@ class PageListView extends StatelessWidget {
             },
           )
         : Center(
-            child: Text('Add Your frist page in this chapter😀'),
+            child: Text(
+              'Add Your frist page in this chapter😀',
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
           );
   }
   // Padding(

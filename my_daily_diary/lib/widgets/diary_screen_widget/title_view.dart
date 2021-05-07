@@ -37,6 +37,7 @@ class TitleView extends StatelessWidget {
             onPressed: () {
               showDialog(
                 context: context,
+                barrierDismissible: true,
                 builder: (context) {
                   return DialogView(
                     name: inputDialogName,

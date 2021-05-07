@@ -77,9 +77,16 @@ class _ChapterScreenState extends State<ChapterScreen>
                         bottom: 10,
                         child: FloatingActionButton(
                           child: Icon(Icons.add),
+                          backgroundColor: Theme.of(context)
+                              .floatingActionButtonTheme
+                              .backgroundColor,
+                          foregroundColor: Theme.of(context)
+                              .floatingActionButtonTheme
+                              .foregroundColor,
                           onPressed: () {
                             showDialog(
                               context: context,
+                              barrierDismissible: true,
                               builder: (context) {
                                 return DialogView(
                                   name: 'Page Name',
