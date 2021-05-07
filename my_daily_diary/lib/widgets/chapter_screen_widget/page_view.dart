@@ -6,6 +6,7 @@ import 'package:my_daily_diary/models/page.dart';
 
 import 'package:my_daily_diary/providers/page_data.dart';
 import 'package:my_daily_diary/screens/page_screen.dart';
+import 'package:my_daily_diary/widgets/popup_menu.dart';
 import 'package:provider/provider.dart';
 
 import '../Lock_view.dart';
@@ -86,73 +87,13 @@ class PagesView extends StatelessWidget {
                 Positioned(
                   top: 10,
                   right: 10,
-                  child: PopupMenuButton(
-                    itemBuilder: (context) {
-                      return [
-                        PopupMenuItem(
-                          child: ListTile(
-                            leading: Icon(Icons.lock),
-                            title: Text('Lock'),
-                            onTap: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return LockView();
-                                },
-                              );
-                            },
-                          ),
-                        ),
-                        PopupMenuItem(
-                          child: ListTile(
-                            leading: Icon(Icons.delete),
-                            title: Text('Delete'),
-                            onTap: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    content: Text(
-                                      'Are you sure that you want to delete this page ?',
-                                      // style:
-                                      //     Theme.of(context).textTheme.headline6,
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                        child: Text('No'),
-                                        onPressed: () {
-                                          Navigator.of(context).pop(false);
-                                        },
-                                      ),
-                                      TextButton(
-                                        child: Text('Yes'),
-                                        onPressed: () {
-                                          Provider.of<PageData>(context,
-                                                  listen: false)
-                                              .removePage(pageData);
-
-                                          Navigator.of(context).pop();
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'This day has been deleted',
-                                                textAlign: TextAlign.center,
-                                              ),
-                                              duration:
-                                                  const Duration(seconds: 1),
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        ),
-                      ];
+                  child: PopUpMenu(
+                    dialogContent:
+                        'Are you sure that you want to delete this page ?',
+                    snackBarContent: 'This page has been deleted',
+                    removeItem: () {
+                      Provider.of<PageData>(context, listen: false)
+                          .removePage(pageData);
                     },
                   ),
                 ),

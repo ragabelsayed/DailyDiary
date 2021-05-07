@@ -3,6 +3,7 @@ import 'package:my_daily_diary/models/diary.dart';
 import 'package:my_daily_diary/providers/chapter_data.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
 import 'package:my_daily_diary/widgets/Lock_view.dart';
+import 'package:my_daily_diary/widgets/popup_menu.dart';
 import 'package:provider/provider.dart';
 
 class DiaryView extends StatelessWidget {
@@ -99,74 +100,13 @@ class DiaryView extends StatelessWidget {
                         Positioned(
                           right: 1,
                           top: 1,
-                          child: PopupMenuButton(
-                            itemBuilder: (context) {
-                              return [
-                                PopupMenuItem(
-                                  child: ListTile(
-                                    leading: Icon(Icons.lock),
-                                    title: Text('Lock'),
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return LockView();
-                                        },
-                                      );
-                                    },
-                                  ),
-                                ),
-                                PopupMenuItem(
-                                  child: ListTile(
-                                    leading: Icon(Icons.delete),
-                                    title: Text('Delete'),
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            content: Text(
-                                                'Are you sure that you want to delete this diary ?'),
-                                            actions: [
-                                              TextButton(
-                                                child: Text('No'),
-                                                onPressed: () {
-                                                  Navigator.of(context)
-                                                      .pop(false);
-                                                },
-                                              ),
-                                              TextButton(
-                                                child: Text('Yes'),
-                                                onPressed: () {
-                                                  Provider.of<DiaryData>(
-                                                          context,
-                                                          listen: false)
-                                                      .removeDiary(diaryData);
-                                                  Navigator.of(context)
-                                                      .pop(false);
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                        'This diary has been deleted',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                      ),
-                                                      duration: const Duration(
-                                                        seconds: 1,
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ];
+                          child: PopUpMenu(
+                            dialogContent:
+                                'Are you sure that you want to delete this diary ?',
+                            snackBarContent: 'This diary has been deleted',
+                            removeItem: () {
+                              Provider.of<DiaryData>(context, listen: false)
+                                  .removeDiary(diaryData);
                             },
                           ),
                         ),
