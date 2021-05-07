@@ -118,8 +118,8 @@ class PageScreen extends StatelessWidget {
     String _fontName = Provider.of<PageData>(context).fontName;
 
     return Scaffold(
-      // backgroundColor: Colors.purple,
-      backgroundColor: Colors.grey[200],
+      backgroundColor:
+          Theme.of(context).scaffoldBackgroundColor.withOpacity(0.9),
       body: SafeArea(
         child: Column(
           children: [
@@ -134,32 +134,22 @@ class PageScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    width: 30,
-                                    height: 30,
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                        borderRadius: BorderRadius.circular(30),
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                          _saveForm();
-                                          _pagesData.save();
-                                        },
-                                        child: Icon(
-                                          Icons.arrow_back,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ),
+                              padding: const EdgeInsets.only(top: 10, left: 5),
+                              child: SizedBox(
+                                width: 30,
+                                height: 30,
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    borderRadius: BorderRadius.circular(30),
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                      _saveForm();
+                                      _pagesData.save();
+                                    },
+                                    child: Icon(Icons.arrow_back),
                                   ),
-                                ],
+                                ),
                               ),
                             ),
                             PageDateFormat(_pagesData.date),
@@ -175,7 +165,8 @@ class PageScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 5, right: 5),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).primaryColor,
+                          // color: Colors.white,
                           borderRadius:
                               const BorderRadius.all(Radius.circular(15)),
                         ),

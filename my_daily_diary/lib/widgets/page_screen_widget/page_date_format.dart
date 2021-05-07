@@ -20,18 +20,24 @@ class PageDateFormat extends StatelessWidget {
               Text(
                 DateFormat('EEEE').format(_dayDate),
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 25,
-                ),
+                style: Theme.of(context)
+                    .textTheme
+                    .merge(
+                      TextTheme(
+                        headline5: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 25,
+                        ),
+                      ),
+                    )
+                    .headline5,
               ),
               ChangeThemeButtonWidget(),
             ],
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 20, top: 5),
+          padding: const EdgeInsets.only(left: 20, top: 2),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -39,22 +45,34 @@ class PageDateFormat extends StatelessWidget {
               Text(
                 DateFormat('MMMM').format(_dayDate),
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.grey.withOpacity(0.7),
-                  fontWeight: FontWeight.w300,
-                  fontSize: 18,
-                ),
+                style: Theme.of(context)
+                    .textTheme
+                    .merge(
+                      TextTheme(
+                        caption: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          fontSize: 18,
+                        ),
+                      ),
+                    )
+                    .caption,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 5),
                 child: Text(
                   DateFormat.d().format(_dayDate),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.grey.withOpacity(0.7),
-                    fontWeight: FontWeight.w300,
-                    fontSize: 18,
-                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .merge(
+                        TextTheme(
+                          caption: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 18,
+                          ),
+                        ),
+                      )
+                      .caption,
                 ),
               ),
             ],
