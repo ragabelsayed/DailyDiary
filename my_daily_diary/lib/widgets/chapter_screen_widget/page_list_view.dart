@@ -9,7 +9,6 @@ class PageListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _pageData = Provider.of<PageData>(context).items;
-
     return _pageData.isNotEmpty
         ? ListView.builder(
             primary: false,
@@ -38,10 +37,13 @@ class PageListView extends StatelessWidget {
               );
             },
           )
-        : Center(
-            child: Text(
-              'Add Your frist page in this chapter😀',
-              style: Theme.of(context).textTheme.bodyText1,
+        : SizedBox(
+            height: MediaQuery.of(context).size.center(Offset(0.0, 200.0)).dy,
+            child: Center(
+              child: Text(
+                'Add Your frist page in this chapter😀',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
             ),
           );
   }

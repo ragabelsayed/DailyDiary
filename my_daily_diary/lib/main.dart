@@ -9,6 +9,7 @@ import 'package:my_daily_diary/providers/theme.dart';
 import 'package:my_daily_diary/screens/chapter_screen.dart';
 
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import './screens/my_diary_screen.dart';
 
 import 'models/chapter.dart';
@@ -27,16 +28,25 @@ void main() async {
   await Hive.openBox<Diary>('diaries');
   await Hive.openBox<Chapter>('chapters');
   await Hive.openBox<ChapterPage>('pages');
-  runApp(MyApp());
+  var theme = await SharedPreferences.getInstance().then(
+    (prefs) => ThemeMode.values.firstWhere(
+      (theme) => theme.index == prefs.getInt('currentTheme'),
+    ),
+  );
+  runApp(MyApp(theme));
 }
 
 class MyApp extends StatelessWidget {
+  final ThemeMode? _currrentTheme;
+  MyApp(this._currrentTheme);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => ThemeProvider(),
+          create: (context) =>
+              ThemeProvider(_currrentTheme ?? ThemeMode.system),
         ),
         ChangeNotifierProvider(
           create: (context) => DiaryData(),
