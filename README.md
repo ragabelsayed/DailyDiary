@@ -1,10 +1,11 @@
 # myDailyDiary
 MyDiary  app for stores.
+# Fearures in it:
+- CRUD operations.
+- local storge using NoSql packages.
+- Dark Theme.
+
 # Future plan to this project
-- Add the four operation (create,insert,update,delete) for diary, chapters, day.
-- Give users full control on how look and writing and cover should like with choices to help him.
-- Give users full control to Secure and lock his Diary or exact chapter or day.
-- Use bin code and fingerprint.
+- Use bin code and fingerprint to lock diary or chapter or day.
 - Choose to hide any diary or chapter or day. 
-- Multi themes to choose.
 
