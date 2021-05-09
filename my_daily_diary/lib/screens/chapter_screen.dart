@@ -19,7 +19,7 @@ class ChapterScreen extends StatefulWidget {
 class _ChapterScreenState extends State<ChapterScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
-
+  double _opacityLevel = 0.0;
   @override
   void initState() {
     super.initState();
@@ -75,28 +75,32 @@ class _ChapterScreenState extends State<ChapterScreen>
                       Positioned(
                         right: 10,
                         bottom: 10,
-                        child: FloatingActionButton(
-                          child: Icon(Icons.add),
-                          backgroundColor: Theme.of(context)
-                              .floatingActionButtonTheme
-                              .backgroundColor,
-                          foregroundColor: Theme.of(context)
-                              .floatingActionButtonTheme
-                              .foregroundColor,
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              barrierDismissible: true,
-                              builder: (context) {
-                                return DialogView(
-                                  name: 'Page Name',
-                                  hint: 'Ex: 1, 2 ...30 ets',
-                                  coverName: 'Page Cover',
-                                  action: AddAction.page,
-                                );
-                              },
-                            );
-                          },
+                        child: RotationTransition(
+                          turns: _animationController,
+                          child: FloatingActionButton(
+                            child: Icon(Icons.add),
+                            backgroundColor: Theme.of(context)
+                                .floatingActionButtonTheme
+                                .backgroundColor,
+                            foregroundColor: Theme.of(context)
+                                .floatingActionButtonTheme
+                                .foregroundColor,
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                builder: (context) {
+                                  return DialogView(
+                                    name: 'Page Name',
+                                    hint: 'Ex: 1, 2 ...30 ets',
+                                    coverName: 'Page Cover',
+                                    action: AddAction.page,
+                                    animationController: _animationController,
+                                  );
+                                },
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ],

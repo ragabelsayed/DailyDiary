@@ -21,7 +21,7 @@ class MyDiaryScreen extends StatefulWidget {
 class _MyDiaryScreenState extends State<MyDiaryScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
-
+  double _opacityLevel = 0.0;
   @override
   void initState() {
     super.initState();
@@ -29,6 +29,14 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
       vsync: this,
       duration: const Duration(milliseconds: 2000),
     );
+    _btnOpacity();
+  }
+
+  Future<void> _btnOpacity() async {
+    await Future.delayed(const Duration(milliseconds: 200));
+    setState(() {
+      _opacityLevel = 1.0;
+    });
   }
 
   @override
@@ -99,6 +107,7 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
           inputDialogHint: 'Ex: 2020, Secret ...ets',
           inputDialogCoverName: 'Diary Cover',
           inputDialogAction: AddAction.diary,
+          opacityLevel: _opacityLevel,
         ),
         const SizedBox(height: 16),
         Provider.of<DiaryData>(context).items.isNotEmpty
@@ -124,6 +133,7 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
                 inputDialogHint: 'Ex: January, February, Collection ...ets',
                 inputDialogCoverName: 'Chapter Cover',
                 inputDialogAction: AddAction.chapter,
+                opacityLevel: _opacityLevel,
               )
             : const SizedBox(),
         const SizedBox(height: 5),

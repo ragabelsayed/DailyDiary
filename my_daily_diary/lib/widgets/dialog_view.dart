@@ -20,7 +20,13 @@ class DialogView extends StatelessWidget {
   final String? hint;
   final String? coverName;
   final AddAction? action;
-  DialogView({this.name, this.hint, this.coverName, this.action});
+  final AnimationController? animationController;
+  DialogView(
+      {this.name,
+      this.hint,
+      this.coverName,
+      this.action,
+      this.animationController});
 
   final _form = GlobalKey<FormState>();
   // Diary _newDiary = Diary();

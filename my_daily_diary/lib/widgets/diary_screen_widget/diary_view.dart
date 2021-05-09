@@ -11,10 +11,12 @@ class DiaryView extends StatelessWidget {
   final AnimationController animationController;
   final Animation animation;
 
-  const DiaryView(
-      {required this.diaryData,
-      required this.animationController,
-      required this.animation});
+  const DiaryView({
+    required this.diaryData,
+    required this.animationController,
+    required this.animation,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
