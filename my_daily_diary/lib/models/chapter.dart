@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:my_daily_diary/models/page.dart';
 import 'package:hive/hive.dart';
-part 'chapter.g.dart';
+part '../helper/chapter.g.dart';
 
 @HiveType(typeId: 1)
 class Chapter extends HiveObject {

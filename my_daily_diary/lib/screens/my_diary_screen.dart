@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-import 'package:my_daily_diary/app_theme.dart';
+// import 'package:my_daily_diary/app_theme.dart';
 import 'package:my_daily_diary/providers/chapter_data.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
 import 'package:my_daily_diary/widgets/change_theme_btn_widget.dart';

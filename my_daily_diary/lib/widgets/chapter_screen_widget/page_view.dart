@@ -9,7 +9,7 @@ import 'package:my_daily_diary/screens/page_screen.dart';
 import 'package:my_daily_diary/widgets/popup_menu.dart';
 import 'package:provider/provider.dart';
 
-import '../Lock_view.dart';
+// import '../Lock_view.dart';
 
 class PagesView extends StatelessWidget {
   final ChapterPage pageData;

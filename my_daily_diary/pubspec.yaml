@@ -17,7 +17,6 @@ dependencies:
   flutter_colorpicker: ^0.4.0-nullsafety.0
   flutter_slidable: ^0.6.0-nullsafety.0
   google_fonts: ^2.0.0
-  local_auth: ^1.1.0
   shared_preferences: ^2.0.5
   #format dates
   intl: ^0.17.0
