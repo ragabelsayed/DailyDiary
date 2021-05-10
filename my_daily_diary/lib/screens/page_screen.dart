@@ -1,28 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import 'package:my_daily_diary/models/page.dart';
-import 'package:my_daily_diary/providers/page_data.dart';
-import 'package:my_daily_diary/widgets/page_screen_widget/drag_view.dart';
-
-import 'package:my_daily_diary/widgets/page_screen_widget/font_features_view.dart';
-import 'package:my_daily_diary/widgets/page_screen_widget/page_date_format.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../widgets/page_screen_widget/page_date_format.dart';
+import '../widgets/page_screen_widget/drag_view.dart';
+import '../widgets/page_screen_widget/font_features_view.dart';
+import '../providers/page_data.dart';
+import '../models/page.dart';
 
 class PageScreen extends StatelessWidget {
   static const routName = '/page_screen';
-
   final _form = GlobalKey<FormState>();
-  // late final _pagesData;
-
-  // @override
-  // void didChangeDependencies() {
-  //   _pagesData = ModalRoute.of(context)!.settings.arguments as ChapterPage;
-  //   Provider.of<PageData>(context, listen: false).currentPage(_pagesData.id!);
-  //   super.didChangeDependencies();
-  // }
 
   TextStyle? textStyle({
     required String font,
@@ -106,11 +95,6 @@ class PageScreen extends StatelessWidget {
     final _pagesData =
         ModalRoute.of(context)!.settings.arguments as ChapterPage;
 
-    // _pagesData.currenTextColor = Provider.of<PageData>(context).currentColor;
-    // _pagesData.textAlign = Provider.of<PageData>(context).textAlign;
-    // _pagesData.fontweight = Provider.of<PageData>(context).fontWeight;
-    // _pagesData.fontStyle = Provider.of<PageData>(context).fontStyle;
-    // _pagesData.fontName = Provider.of<PageData>(context).fontName;
     Color _currentColor = Provider.of<PageData>(context).currentColor;
     TextAlign _textAlign = Provider.of<PageData>(context).textAlign;
     bool _fontWeight = Provider.of<PageData>(context).fontWeight;
@@ -147,7 +131,7 @@ class PageScreen extends StatelessWidget {
                                       _saveForm();
                                       _pagesData.save();
                                     },
-                                    child: Icon(Icons.arrow_back),
+                                    child: const Icon(Icons.arrow_back),
                                   ),
                                 ),
                               ),
@@ -166,7 +150,6 @@ class PageScreen extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Theme.of(context).primaryColor,
-                          // color: Colors.white,
                           borderRadius:
                               const BorderRadius.all(Radius.circular(15)),
                         ),
@@ -196,11 +179,8 @@ class PageScreen extends StatelessWidget {
                                     inputFormatters: [
                                       LengthLimitingTextInputFormatter(100),
                                     ],
-                                    // validator: InputValidator.title,
-                                    onSaved: (value) =>
-                                        // _formData['title'] = value!,
-                                        _pagesData.writingArea[0]['title'] =
-                                            value!,
+                                    onSaved: (value) => _pagesData
+                                        .writingArea[0]['title'] = value!,
                                   ),
                                 ),
                                 Padding(
@@ -208,7 +188,6 @@ class PageScreen extends StatelessWidget {
                                       left: 15, right: 15),
                                   child: TextFormField(
                                     maxLines: null,
-                                    // expands: true,
                                     textAlign: _textAlign,
                                     style: textStyle(
                                       font: _fontName,
@@ -225,13 +204,11 @@ class PageScreen extends StatelessWidget {
                                     initialValue: _pagesData.writingArea[1]
                                         ['content'],
                                     decoration: InputDecoration.collapsed(
-                                        hintText:
-                                            'Tell me about it, I don\'t snitch 🤐..'),
-                                    // validator: InputValidator.content,
-                                    onSaved: (value) =>
-                                        // _formData['content'] = value!,
-                                        _pagesData.writingArea[1]['content'] =
-                                            value!,
+                                      hintText:
+                                          'Tell me about it, I don\'t snitch 🤐..',
+                                    ),
+                                    onSaved: (value) => _pagesData
+                                        .writingArea[1]['content'] = value!,
                                   ),
                                 ),
                               ],

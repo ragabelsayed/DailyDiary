@@ -40,9 +40,4 @@ dev_dependencies:
 flutter: 
   uses-material-design: true
 
-  assets:
-  
-    - lib/assets/images/winter.png
-    - lib/assets/images/summer.png
-    - lib/assets/images/autumn.png
-    - lib/assets/images/spring.png
+  # assets:

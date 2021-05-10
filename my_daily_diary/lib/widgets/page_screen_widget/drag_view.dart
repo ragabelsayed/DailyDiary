@@ -9,7 +9,7 @@ class DragView extends StatelessWidget {
           padding: const EdgeInsets.only(top: 3, bottom: 3),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.horizontal(
+              borderRadius: const BorderRadius.horizontal(
                 right: Radius.circular(50),
                 left: Radius.circular(50),
               ),
@@ -27,7 +27,7 @@ class DragView extends StatelessWidget {
         ),
         Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.horizontal(
+            borderRadius: const BorderRadius.horizontal(
               right: Radius.circular(50),
               left: Radius.circular(50),
             ),

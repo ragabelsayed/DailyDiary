@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+
+import 'package:my_daily_diary/screens/chapter_screen.dart';
 import 'package:my_daily_diary/models/chapter.dart';
 import 'package:my_daily_diary/providers/chapter_data.dart';
 import 'package:my_daily_diary/providers/page_data.dart';
-import 'package:my_daily_diary/screens/chapter_screen.dart';
-import 'package:provider/provider.dart';
 
 enum SlidableAction { lock, delete }
 
@@ -14,11 +15,12 @@ class ChapterView extends StatelessWidget {
   final AnimationController animationController;
   final Function(SlidableAction action)? onDismissed;
 
-  const ChapterView(
-      {required this.chapterData,
-      required this.animation,
-      required this.animationController,
-      this.onDismissed});
+  const ChapterView({
+    required this.chapterData,
+    required this.animation,
+    required this.animationController,
+    this.onDismissed,
+  });
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -36,7 +38,6 @@ class ChapterView extends StatelessWidget {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      // color: Colors.grey.withOpacity(0.5),
                       color: Theme.of(context).shadowColor.withOpacity(0.3),
                       offset: const Offset(1.0, 2.0),
                       blurRadius: 10,
@@ -60,7 +61,6 @@ class ChapterView extends StatelessWidget {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      // color: Colors.grey.withOpacity(0.5),
                       color: Theme.of(context).shadowColor.withOpacity(0.3),
                       offset: const Offset(1.0, 2.0),
                       blurRadius: 10,
@@ -80,7 +80,8 @@ class ChapterView extends StatelessWidget {
                         builder: (context) {
                           return AlertDialog(
                             content: Text(
-                                'Are you sure that you want to delete this chapter ?'),
+                              'Are you sure that you want to delete this chapter ?',
+                            ),
                             actions: [
                               TextButton(
                                 child: Text('No'),
@@ -126,12 +127,10 @@ class ChapterView extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
               decoration: BoxDecoration(
-                // color: Colors.white,
                 color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    // color: Colors.grey.withOpacity(0.5),
                     color: Theme.of(context).shadowColor.withOpacity(0.3),
                     offset: const Offset(1.0, 2.0),
                     blurRadius: 10,
@@ -143,11 +142,7 @@ class ChapterView extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
                 leading: CircleAvatar(
                   radius: 25,
-                  //backgroundImage: AssetImage(chapterData.backgroundImage),
                   backgroundColor: chapterData.customColor.withAlpha(255),
-                  // chapterData!.customColor != null
-                  //     ? chapterData!.customColor.withAlpha(255)
-                  //     : Colors.pink.shade700,
                   child: chapterData.image == null
                       ? Text('')
                       : ClipRRect(
@@ -161,20 +156,15 @@ class ChapterView extends StatelessWidget {
                 title: Text(
                   chapterData.name,
                   style: Theme.of(context).textTheme.subtitle1,
-                  // style: TextStyle(fontSize: 18),
                 ),
                 trailing: IconButton(
                   icon: Icon(Icons.arrow_forward_ios),
                   onPressed: () {
                     Navigator.of(context).pushNamed(
                       ChapterScreen.routName,
-                      // arguments: {
-                      //   'id': '${chapterData!.id}',
-                      // },
                     );
-                    Provider.of<PageData>(context, listen: false).setPages(
-                        // chapterData.pages,
-                        chapterData);
+                    Provider.of<PageData>(context, listen: false)
+                        .setPages(chapterData);
                   },
                 ),
               ),

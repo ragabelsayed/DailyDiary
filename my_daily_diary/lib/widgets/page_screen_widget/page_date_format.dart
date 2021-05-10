@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:my_daily_diary/widgets/change_theme_btn_widget.dart';
+import '../change_theme_btn_widget.dart';
 
 class PageDateFormat extends StatelessWidget {
   final DateTime _dayDate;

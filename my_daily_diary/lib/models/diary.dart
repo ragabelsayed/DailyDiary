@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:my_daily_diary/models/chapter.dart';
+
+import '../models/chapter.dart';
+
 import 'package:hive/hive.dart';
 part '../helper/diary.g.dart';
 
@@ -33,18 +35,4 @@ class Diary extends HiveObject {
     this.onClickDiary = false,
     // this.password,
   });
-  // final String id = DateTime.now().toString();
-  // final String name;
-  // final File? image;
-  // final Color customColor;
-  // final List<Chapter> chapters = [];
-  // final bool onClickDiary;
-  // // final String? password;
-  // Diary({
-  //   this.name = '',
-  //   this.image,
-  //   this.customColor = Colors.cyan,
-  //   this.onClickDiary = false,
-  //   // this.password,
-  // });
 }

@@ -1,15 +1,11 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
-import 'package:my_daily_diary/models/page.dart';
-
-import 'package:my_daily_diary/providers/page_data.dart';
-import 'package:my_daily_diary/screens/page_screen.dart';
-import 'package:my_daily_diary/widgets/popup_menu.dart';
 import 'package:provider/provider.dart';
 
-// import '../Lock_view.dart';
+import 'package:my_daily_diary/screens/page_screen.dart';
+import 'package:my_daily_diary/models/page.dart';
+import 'package:my_daily_diary/providers/page_data.dart';
+import 'package:my_daily_diary/widgets/popup_menu.dart';
 
 class PagesView extends StatelessWidget {
   final ChapterPage pageData;
@@ -55,17 +51,10 @@ class PagesView extends StatelessWidget {
                         colors: [
                           pageData.customColor.withAlpha(255),
                           pageData.customColor.withAlpha(50),
-                          // pageData.customColor != null
-                          //     ? pageData.customColor!.withAlpha(255)
-                          //     : Colors.pink,
-                          // pageData.customColor != null
-                          //     ? pageData.customColor!.withAlpha(50)
-                          //     : Colors.pink.withRed(5),
                         ],
                       ),
                       boxShadow: [
                         BoxShadow(
-                          // color: Colors.grey.withOpacity(0.7),
                           color: Theme.of(context).shadowColor.withOpacity(0.4),
                           offset: const Offset(2.0, 4.0),
                           blurRadius: 10,
@@ -101,7 +90,6 @@ class PagesView extends StatelessWidget {
                     ? Positioned(
                         left: 10,
                         top: 10,
-                        // bottom: 10,
                         child: Container(
                           width: 250,
                           alignment: Alignment.centerLeft,
@@ -118,40 +106,7 @@ class PagesView extends StatelessWidget {
                           ),
                         ),
                       )
-                    : SizedBox()
-                // Container(
-                //   width: 70,
-                //   height: 70,
-                //   decoration: BoxDecoration(
-                //     // color: Colors.white,
-                // color: Theme.of(context).chipTheme.backgroundColor,
-                //     shape: BoxShape.circle,
-                //     border: Border.all(color: Colors.grey.withOpacity(0.4)),
-                //     boxShadow: [
-                //       BoxShadow(
-                //         color: Colors.grey.withOpacity(0.4),
-                //         offset: const Offset(1, 2),
-                //         blurRadius: 10,
-                //       )
-                //     ],
-                //   ),
-                //   child: Center(
-                //     child: Padding(
-                //       padding: const EdgeInsets.symmetric(horizontal: 2),
-                //       child: Text(
-                //         pageData.name,
-                //         textAlign: TextAlign.center,
-                //         overflow: TextOverflow.ellipsis,
-                //         // softWrap: false,
-                //         style: TextStyle(
-                //           color: Colors.black,
-                //           fontWeight: FontWeight.w500,
-                //           fontSize: 25,
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
+                    : const SizedBox()
               ],
             ),
           ),

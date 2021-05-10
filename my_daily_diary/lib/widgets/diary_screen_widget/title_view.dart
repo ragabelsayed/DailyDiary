@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 import '../dialog_view.dart';
@@ -59,47 +57,6 @@ class TitleView extends StatelessWidget {
               },
             ),
           ),
-          // PopupMenuButton(
-          //   itemBuilder: (context) {
-          //     return [
-          //       PopupMenuItem(
-          //         child: ListTile(
-          //           leading: Icon(Icons.add),
-          //           title: Text(add),
-          //           onTap: () {
-          //             showDialog(
-          //               context: context,
-          //               builder: (context) {
-          //                 return DialogView(
-          //                   name: inputDialogName,
-          //                   hint: inputDialogHint,
-          //                   coverName: inputDialogCoverName,
-          //                   action: inputDialogAction,
-          //                 );
-          //               },
-          //             );
-          //           },
-          //         ),
-          //       ),
-          //       PopupMenuItem(
-          //         child: ListTile(
-          //           leading: Icon(Icons.delete),
-          //           title: Text(delete),
-          //           onTap: () {
-          //             showDialog(
-          //               context: context,
-          //               builder: (context) {
-          //                 return AlertDialog(
-          //                   title: Text(deleteMessage),
-          //                 );
-          //               },
-          //             );
-          //           },
-          //         ),
-          //       ),
-          //     ];
-          //   },
-          // ),
         ],
       ),
     );

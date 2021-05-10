@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
-import 'package:my_daily_diary/providers/diary_data.dart';
 
 import 'diary_view.dart';
+import 'package:my_daily_diary/providers/diary_data.dart';
 
 class DiaryListView extends StatelessWidget {
   final AnimationController _animationController;

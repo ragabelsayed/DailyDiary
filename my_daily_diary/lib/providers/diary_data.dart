@@ -1,10 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:my_daily_diary/helper/box.dart';
-import 'package:my_daily_diary/models/chapter.dart';
-import 'package:my_daily_diary/models/diary.dart';
+
+import '../helper/box.dart';
+import '../models/diary.dart';
 
 class DiaryData with ChangeNotifier {
   final diaryBox = Boxes.getDiariesBox();
@@ -17,7 +16,6 @@ class DiaryData with ChangeNotifier {
     if (diaryBox.values.isNotEmpty) {
       _items = diaryBox.values.toList();
     }
-    // notifyListeners();
   }
 
   void addDiary({
@@ -35,7 +33,6 @@ class DiaryData with ChangeNotifier {
     _items.add(_newDiary);
     notifyListeners();
     diaryBox.add(_newDiary);
-
     // print(box.getAt(0)!.name);
   }
 

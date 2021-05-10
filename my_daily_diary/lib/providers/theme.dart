@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,9 +30,6 @@ class MyThemes {
     colorScheme: ColorScheme.dark(),
     floatingActionButtonTheme:
         FloatingActionButtonThemeData(foregroundColor: Colors.white),
-    // scaffoldBackgroundColor: Colors.black,
-    // appBarTheme: AppBarTheme(backgroundColor: Colors.black12),
-    // primaryColor: Colors.black,
   );
 
   // static final lightTheme = ThemeData(

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_daily_diary/providers/page_data.dart';
-import 'package:my_daily_diary/widgets/chapter_screen_widget/page_view.dart';
 import 'package:provider/provider.dart';
+import 'package:my_daily_diary/providers/page_data.dart';
+import '../chapter_screen_widget/page_view.dart';
 
 class PageListView extends StatelessWidget {
   final AnimationController _animationController;
   PageListView(this._animationController);
+
   @override
   Widget build(BuildContext context) {
     final _pageData = Provider.of<PageData>(context).items;
@@ -47,27 +48,4 @@ class PageListView extends StatelessWidget {
             ),
           );
   }
-  // Padding(
-  //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-  //   child: ListWheelScrollView(
-  //     itemExtent: 250,
-  // diameterRatio: 0.1,
-  //magnification: 5.5,
-  // offAxisFraction: 0,
-  // overAndUnderCenterOpacity: 0.8,
-  // perspective: 0.01,
-  // renderChildrenOutsideViewport: false,
-  // squeeze: 5.0,
-  // useMagnifier: false,
-  //     children: _dayData
-  //         .map((day) => DaysView(
-  //               dayData: day,
-  //               click: () {
-  //                 print(day.name);
-  //               },
-  //             ))
-  //         .toList(),
-  //   ),
-  // ),
-
 }

@@ -1,11 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:my_daily_diary/models/chapter.dart';
 
-import 'package:my_daily_diary/models/diary.dart';
-import 'package:my_daily_diary/models/page.dart';
-import 'package:my_daily_diary/providers/chapter_data.dart';
+import '../providers/chapter_data.dart';
 
 import 'package:my_daily_diary/providers/diary_data.dart';
 import 'package:my_daily_diary/providers/page_data.dart';
@@ -20,31 +16,18 @@ class DialogView extends StatelessWidget {
   final String? hint;
   final String? coverName;
   final AddAction? action;
-  final AnimationController? animationController;
-  DialogView(
-      {this.name,
-      this.hint,
-      this.coverName,
-      this.action,
-      this.animationController});
+  DialogView({
+    this.name,
+    this.hint,
+    this.coverName,
+    this.action,
+  });
 
   final _form = GlobalKey<FormState>();
-  // Diary _newDiary = Diary();
   String _name = '';
   Color _coverColor = Colors.cyan;
   // ignore: avoid_init_to_null
   File? _coverImage = null;
-
-  // // Chapter _newChapter = Chapter();
-  // String _chapterName = '';
-  // Color _chapterColor = Colors.cyan;
-  // // ignore: avoid_init_to_null
-  // File? _chapterImage = null;
-  // // ChapterPage _newPage = ChapterPage();
-  // String _pageName = '';
-  // Color _pageColor = Colors.cyan;
-  // // ignore: avoid_init_to_null
-  // File? _pageImage = null;
 
   void _saveForm(BuildContext context) {
     switch (action) {
@@ -83,30 +66,24 @@ class DialogView extends StatelessWidget {
     switch (action) {
       case AddAction.diary:
         if (pickcolor != null && image == null) {
-          // _newDiary = Diary(customColor: pickcolor, image: null);
           _coverColor = pickcolor;
         } else if (pickcolor == null && image != null) {
-          // _newDiary = Diary(image: image);
           _coverImage = image;
         }
         break;
 
       case AddAction.chapter:
         if (pickcolor != null && image == null) {
-          // _newChapter = Chapter(customColor: pickcolor, image: null);
           _coverColor = pickcolor;
         } else if (pickcolor == null && image != null) {
-          // _newChapter = Chapter(image: image);
           _coverImage = image;
         }
         break;
 
       case AddAction.page:
         if (pickcolor != null && image == null) {
-          // _newPage = ChapterPage(customColor: pickcolor, image: null);
           _coverColor = pickcolor;
         } else if (pickcolor == null && image != null) {
-          // _newPage = ChapterPage(image: image);
           _coverImage = image;
         }
         break;
@@ -131,27 +108,7 @@ class DialogView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text.rich(
-                  TextSpan(
-                    text: name,
-                    style: Theme.of(context)
-                        .textTheme
-                        .merge(
-                          TextTheme(
-                            headline6: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w500),
-                          ),
-                        )
-                        .headline6,
-                    // style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                    children: [
-                      TextSpan(
-                        text: ' *',
-                        style: TextStyle(color: Colors.red),
-                      ),
-                    ],
-                  ),
-                ),
+                _buildTitle(context, name),
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 10, right: 10, bottom: 10),
@@ -162,27 +119,12 @@ class DialogView extends StatelessWidget {
                     onSaved: (newValue) {
                       switch (action) {
                         case AddAction.diary:
-                          // _newDiary = Diary(
-                          //   name: newValue!,
-                          //   customColor: _newDiary.customColor,
-                          //   image: _newDiary.image,
-                          // );
                           _name = newValue!;
                           break;
                         case AddAction.chapter:
-                          // _newChapter = Chapter(
-                          //   name: newValue!,
-                          //   customColor: _newChapter.customColor,
-                          //   image: _newChapter.image,
-                          // );
                           _name = newValue!;
                           break;
                         case AddAction.page:
-                          // _newPage = ChapterPage(
-                          //   name: newValue!,
-                          //   customColor: _newPage.customColor,
-                          //   image: _newPage.image,
-                          // );
                           _name = newValue!;
                           break;
                         default:
@@ -190,27 +132,7 @@ class DialogView extends StatelessWidget {
                     },
                   ),
                 ),
-                Text.rich(
-                  TextSpan(
-                    text: coverName,
-                    style: Theme.of(context)
-                        .textTheme
-                        .merge(
-                          TextTheme(
-                            headline6: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w500),
-                          ),
-                        )
-                        .headline6,
-                    // style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                    children: [
-                      TextSpan(
-                        text: ' *',
-                        style: TextStyle(color: Colors.red),
-                      ),
-                    ],
-                  ),
-                ),
+                _buildTitle(context, coverName),
                 CoverPicker(_getCover),
                 Expanded(child: Container()),
                 Row(
@@ -220,9 +142,6 @@ class DialogView extends StatelessWidget {
                     ElevatedButton(
                       child: Text('Cancel'),
                       style: Theme.of(context).elevatedButtonTheme.style,
-                      // ButtonStyle(
-                      //   elevation: MaterialStateProperty.all<double>(3.0),
-                      // ),
                       onPressed: () {
                         _close(context);
                       },
@@ -230,9 +149,6 @@ class DialogView extends StatelessWidget {
                     ElevatedButton(
                       child: Text('Save'),
                       style: Theme.of(context).elevatedButtonTheme.style,
-                      // ButtonStyle(
-                      //   elevation: MaterialStateProperty.all<double>(3.0),
-                      // ),
                       onPressed: () {
                         _saveForm(context);
                       },
@@ -243,6 +159,31 @@ class DialogView extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Text _buildTitle(BuildContext context, String? name) {
+    return Text.rich(
+      TextSpan(
+        text: name,
+        style: Theme.of(context)
+            .textTheme
+            .merge(
+              TextTheme(
+                headline6: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            )
+            .headline6,
+        children: [
+          TextSpan(
+            text: ' *',
+            style: TextStyle(color: Colors.red),
+          ),
+        ],
       ),
     );
   }

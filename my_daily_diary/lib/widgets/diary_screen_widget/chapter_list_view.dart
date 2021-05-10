@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_daily_diary/providers/chapter_data.dart';
 import 'package:provider/provider.dart';
 
 import 'chapter_view.dart';
+import 'package:my_daily_diary/providers/chapter_data.dart';
 
 class ChapterListView extends StatelessWidget {
   final AnimationController _animationController;
@@ -41,11 +41,6 @@ class ChapterListView extends StatelessWidget {
               child: Text(
                 'Add Your frist chapter in this diary 😀',
                 style: Theme.of(context).textTheme.bodyText1,
-                // style: TextStyle(
-                //   color: Theme.of(context).textTheme.headline5!.color,
-                //   // fontSize: 15,
-                //   // fontWeight: FontWeight.w500,
-                // ),
               ),
             ),
           );

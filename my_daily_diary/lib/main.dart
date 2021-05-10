@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
-import 'package:my_daily_diary/providers/chapter_data.dart';
-import 'package:my_daily_diary/providers/diary_data.dart';
-import 'package:my_daily_diary/providers/page_data.dart';
-import 'package:my_daily_diary/providers/theme.dart';
-import 'package:my_daily_diary/screens/chapter_screen.dart';
-
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import './screens/my_diary_screen.dart';
+
+import 'screens/diary_screen.dart';
+import 'screens/chapter_screen.dart';
+import 'screens/page_screen.dart';
+
+import 'providers/diary_data.dart';
+import 'providers/chapter_data.dart';
+import 'providers/page_data.dart';
+import 'providers/theme.dart';
 
 import 'models/chapter.dart';
 import 'models/diary.dart';
 import 'models/page.dart';
-import 'screens/page_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -68,12 +69,11 @@ class MyApp extends StatelessWidget {
           title: 'MyDiary',
           debugShowCheckedModeBanner: false,
           themeMode: themeProvider.themeMode,
-          // theme: ThemeData.dark(),
           theme: MyThemes.lightTheme,
           darkTheme: MyThemes.darkTheme,
-          initialRoute: MyDiaryScreen.routName,
+          initialRoute: DiaryScreen.routName,
           routes: {
-            MyDiaryScreen.routName: (ctx) => MyDiaryScreen(),
+            DiaryScreen.routName: (ctx) => DiaryScreen(),
             ChapterScreen.routName: (ctx) => ChapterScreen(),
             PageScreen.routName: (ctx) => PageScreen(),
           },

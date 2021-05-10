@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
-import 'package:my_daily_diary/models/chapter.dart';
-import 'package:my_daily_diary/models/diary.dart';
-import 'package:my_daily_diary/models/page.dart';
+import '../models/chapter.dart';
+import '../models/diary.dart';
+import '../models/page.dart';
 
 class Boxes {
   static Box<Diary> getDiariesBox() => Hive.box<Diary>('diaries');

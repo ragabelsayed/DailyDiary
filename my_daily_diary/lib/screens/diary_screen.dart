@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-
-// import 'package:my_daily_diary/app_theme.dart';
-import 'package:my_daily_diary/providers/chapter_data.dart';
-import 'package:my_daily_diary/providers/diary_data.dart';
-import 'package:my_daily_diary/widgets/change_theme_btn_widget.dart';
-import 'package:my_daily_diary/widgets/dialog_view.dart';
-import 'package:my_daily_diary/widgets/diary_screen_widget/chapter_list_view.dart';
-import 'package:my_daily_diary/widgets/diary_screen_widget/diary_list_view.dart';
-import 'package:my_daily_diary/widgets/diary_screen_widget/title_view.dart';
 import 'package:provider/provider.dart';
 
-class MyDiaryScreen extends StatefulWidget {
+import '../widgets/diary_screen_widget/title_view.dart';
+import '../widgets/diary_screen_widget/diary_list_view.dart';
+import '../widgets/diary_screen_widget/chapter_list_view.dart';
+import '../widgets/dialog_view.dart';
+import '../widgets/change_theme_btn_widget.dart';
+import '../providers/diary_data.dart';
+import '../providers/chapter_data.dart';
+
+class DiaryScreen extends StatefulWidget {
   static const routName = '/';
 
   @override
-  _MyDiaryScreenState createState() => _MyDiaryScreenState();
+  _DiaryScreenState createState() => _DiaryScreenState();
 }
 
-class _MyDiaryScreenState extends State<MyDiaryScreen>
+class _DiaryScreenState extends State<DiaryScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   double _opacityLevel = 0.0;
+
   @override
   void initState() {
     super.initState();
@@ -50,9 +50,7 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
   Widget build(BuildContext context) {
     Provider.of<DiaryData>(context).getItemsFormDB();
     return Scaffold(
-      // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: _getAppBarUI(),
-      // backgroundColor: Colors.transparent,
       body: _getNewDiary(context),
     );
   }
@@ -62,11 +60,6 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
       title: Text(
         'My Diaries',
         style: Theme.of(context).textTheme.headline6,
-        // style: TextStyle(
-        //   // color: Theme.of(context).textTheme.headline6!.color,
-        //   fontSize: 20,
-        //   fontWeight: FontWeight.w500,
-        // ),
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -74,23 +67,8 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
         ),
       ),
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-      // elevation: 0,
       actions: [ChangeThemeButtonWidget()],
     );
-    // return Padding(
-    //   padding: const EdgeInsets.only(top: 15, left: 16, right: 16),
-    //   child: Center(
-    //     child: Text(
-    //       'My Diaries',
-    //       style: TextStyle(
-    //         color: Colors.black.withOpacity(0.5),
-    //         fontSize: 20,
-    //         fontWeight: FontWeight.w500,
-    //       ),
-    //       textAlign: TextAlign.center,
-    //     ),
-    //   ),
-    // );
   }
 
   Column _getNewDiary(BuildContext context) {
@@ -98,9 +76,7 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          height: MediaQuery.of(context).padding.top,
-        ),
+        SizedBox(height: MediaQuery.of(context).padding.top),
         TitleView(
           titleName: 'Diaries',
           inputDialogName: 'Diary Name',
@@ -117,11 +93,6 @@ class _MyDiaryScreenState extends State<MyDiaryScreen>
                   child: Text(
                     'Add Your frist Diary 😀',
                     style: Theme.of(context).textTheme.bodyText1,
-                    // style: TextStyle(
-                    //   color: Theme.of(context).textTheme.headline5!.color,
-                    //   fontSize: 20,
-                    //   fontWeight: FontWeight.w500,
-                    // ),
                   ),
                 ),
               ),

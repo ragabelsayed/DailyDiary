@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart' as syspath;
@@ -20,6 +18,7 @@ class _CoverPickerState extends State<CoverPicker> {
   bool lightTheme = true;
   Color currentColor = Colors.limeAccent;
   List<Color> currentColors = [Colors.limeAccent, Colors.green];
+
   File? _image;
   final picker = ImagePicker();
   Future _getImage(ImageSource source) async {
@@ -27,11 +26,11 @@ class _CoverPickerState extends State<CoverPicker> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
-        // widget.covor(null, _image);
       } else {
         return;
       }
     });
+
     final appDir = await syspath.getApplicationDocumentsDirectory();
     final appDirPath = appDir.path;
     final fileName = path.basename(pickedFile!.path);
@@ -51,7 +50,6 @@ class _CoverPickerState extends State<CoverPicker> {
       padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 10),
       child: ToggleButtons(
         borderRadius: BorderRadius.circular(50),
-        //renderBorder: false,
         children: [
           SizedBox(
             width: MediaQuery.of(context).size.width / 6,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_daily_diary/models/diary.dart';
-import 'package:my_daily_diary/providers/chapter_data.dart';
-import 'package:my_daily_diary/providers/diary_data.dart';
-// import 'package:my_daily_diary/widgets/Lock_view.dart';
-import 'package:my_daily_diary/widgets/popup_menu.dart';
 import 'package:provider/provider.dart';
+
+import 'package:my_daily_diary/models/diary.dart';
+import 'package:my_daily_diary/providers/diary_data.dart';
+import 'package:my_daily_diary/providers/chapter_data.dart';
+import 'package:my_daily_diary/widgets/popup_menu.dart';
 
 class DiaryView extends StatelessWidget {
   final Diary diaryData;
@@ -42,7 +42,6 @@ class DiaryView extends StatelessWidget {
                               Provider.of<ChapterData>(context, listen: false)
                                 ..setClick(true)
                                 ..setChapters(
-                                  // diaryData.chapters,
                                   diaryData,
                                 );
                             },
@@ -63,12 +62,6 @@ class DiaryView extends StatelessWidget {
                                   colors: [
                                     diaryData.customColor.withAlpha(255),
                                     diaryData.customColor.withAlpha(50),
-                                    // diaryData!.customColor != null
-                                    //     ? diaryData!.customColor.withAlpha(255)
-                                    //     : Colors.pink,
-                                    // diaryData!.customColor != null
-                                    //     ? diaryData!.customColor.withAlpha(50)
-                                    //     : Colors.pink.withRed(5),
                                   ],
                                 ),
                                 boxShadow: [
@@ -76,7 +69,6 @@ class DiaryView extends StatelessWidget {
                                     color: Theme.of(context)
                                         .shadowColor
                                         .withOpacity(0.4),
-                                    // color: Colors.grey.withOpacity(0.7),
                                     offset: const Offset(2.0, 2.0),
                                     blurRadius: 10,
                                   ),
@@ -85,7 +77,7 @@ class DiaryView extends StatelessWidget {
                               child: diaryData.image == null
                                   ? Text('')
                                   : ClipRRect(
-                                      borderRadius: BorderRadius.only(
+                                      borderRadius: const BorderRadius.only(
                                         topRight: Radius.circular(15),
                                         bottomRight: Radius.circular(15),
                                         topLeft: Radius.circular(3),
