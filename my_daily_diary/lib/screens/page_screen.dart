@@ -150,8 +150,12 @@ class PageScreen extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Theme.of(context).primaryColor,
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(15)),
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            topRight: Radius.circular(30),
+                            bottomLeft: Radius.circular(15),
+                            bottomRight: Radius.circular(15),
+                          ),
                         ),
                         child: Form(
                           key: _form,
