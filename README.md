@@ -1,5 +1,3 @@
-# myDailyDiary
-MyDiary  app for stores.
 # Fearures in it:
 - CRUD operations.
 - local storge using NoSql packages.
