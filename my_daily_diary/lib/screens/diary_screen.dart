@@ -50,6 +50,7 @@ class _DiaryScreenState extends State<DiaryScreen>
   Widget build(BuildContext context) {
     Provider.of<DiaryData>(context).getItemsFormDB();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: _getAppBarUI(),
       body: _getNewDiary(context),
     );
@@ -71,7 +72,7 @@ class _DiaryScreenState extends State<DiaryScreen>
     );
   }
 
-  Column _getNewDiary(BuildContext context) {
+  Widget _getNewDiary(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,9 +111,7 @@ class _DiaryScreenState extends State<DiaryScreen>
         const SizedBox(height: 5),
         if (Provider.of<DiaryData>(context).items.isNotEmpty)
           ChapterListView(_animationController),
-        SizedBox(
-          height: MediaQuery.of(context).padding.bottom,
-        ),
+        SizedBox(height: MediaQuery.of(context).padding.bottom),
       ],
     );
   }

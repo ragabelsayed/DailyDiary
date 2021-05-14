@@ -101,6 +101,8 @@ class DiaryView extends StatelessWidget {
                             removeItem: () {
                               Provider.of<DiaryData>(context, listen: false)
                                   .removeDiary(diaryData);
+                              // Provider.of<ChapterData>(context, listen: false)
+                              //     .setClick(false);
                             },
                           ),
                         ),
