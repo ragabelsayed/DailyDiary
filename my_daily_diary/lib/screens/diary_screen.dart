@@ -108,7 +108,8 @@ class _DiaryScreenState extends State<DiaryScreen>
               )
             : const SizedBox(),
         const SizedBox(height: 5),
-        ChapterListView(_animationController),
+        if (Provider.of<DiaryData>(context).items.isNotEmpty)
+          ChapterListView(_animationController),
         SizedBox(
           height: MediaQuery.of(context).padding.bottom,
         ),

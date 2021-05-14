@@ -35,14 +35,14 @@ void main() async {
   await Hive.openBox<ChapterPage>('pages');
   var theme = await SharedPreferences.getInstance().then(
     (prefs) => ThemeMode.values.firstWhere(
-      (theme) => theme.index == prefs.getInt('currentTheme'),
-    ),
+        (theme) => theme.index == prefs.getInt('currentTheme'),
+        orElse: () => ThemeMode.system),
   );
   runApp(MyApp(theme));
 }
 
 class MyApp extends StatelessWidget {
-  final ThemeMode? _currrentTheme;
+  final ThemeMode _currrentTheme;
   MyApp(this._currrentTheme);
 
   @override
@@ -50,8 +50,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) =>
-              ThemeProvider(_currrentTheme ?? ThemeMode.system),
+          create: (context) => ThemeProvider(_currrentTheme),
         ),
         ChangeNotifierProvider(
           create: (context) => DiaryData(),
