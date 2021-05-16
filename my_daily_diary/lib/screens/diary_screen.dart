@@ -77,7 +77,7 @@ class _DiaryScreenState extends State<DiaryScreen>
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: MediaQuery.of(context).padding.top),
+        SizedBox(height: MediaQuery.of(context).padding.top - 10),
         TitleView(
           titleName: 'Diaries',
           inputDialogName: 'Diary Name',
@@ -98,20 +98,19 @@ class _DiaryScreenState extends State<DiaryScreen>
                 ),
               ),
         const SizedBox(height: 16),
-        Provider.of<ChapterData>(context).getClick
-            ? TitleView(
-                titleName: 'Chapters',
-                inputDialogName: 'Chapter Name',
-                inputDialogHint: 'Ex: January, February, Collection ...ets',
-                inputDialogCoverName: 'Chapter Cover',
-                inputDialogAction: AddAction.chapter,
-                opacityLevel: _opacityLevel,
-              )
-            : const SizedBox(),
+        if (Provider.of<ChapterData>(context).getClick)
+          TitleView(
+            titleName: 'Chapters',
+            inputDialogName: 'Chapter Name',
+            inputDialogHint: 'Ex: January, February, Collection ...ets',
+            inputDialogCoverName: 'Chapter Cover',
+            inputDialogAction: AddAction.chapter,
+            opacityLevel: _opacityLevel,
+          ),
         const SizedBox(height: 5),
-        if (Provider.of<DiaryData>(context).items.isNotEmpty)
+        if (Provider.of<ChapterData>(context).getClick)
           ChapterListView(_animationController),
-        SizedBox(height: MediaQuery.of(context).padding.bottom),
+        // SizedBox(height: MediaQuery.of(context).padding.bottom),
       ],
     );
   }

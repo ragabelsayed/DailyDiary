@@ -35,8 +35,9 @@ void main() async {
   await Hive.openBox<ChapterPage>('pages');
   var theme = await SharedPreferences.getInstance().then(
     (prefs) => ThemeMode.values.firstWhere(
-        (theme) => theme.index == prefs.getInt('currentTheme'),
-        orElse: () => ThemeMode.system),
+      (theme) => theme.index == prefs.getInt('currentTheme'),
+      orElse: () => ThemeMode.system,
+    ),
   );
   runApp(MyApp(theme));
 }

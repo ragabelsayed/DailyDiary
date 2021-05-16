@@ -55,9 +55,9 @@ class ChapterData with ChangeNotifier {
 
   void setClick(bool click) {
     _onClickDiary = click;
-    // if (!click) {
-    //   _items = [];
-    // }
+    if (!click) {
+      _items = [];
+    }
     notifyListeners();
   }
 
