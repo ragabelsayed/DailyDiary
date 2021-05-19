@@ -1,4 +1,4 @@
-### DailyDiary
+# DailyDiary
 # Fearures in it:
 - CRUD operations.
 - local storge using NoSql packages.
