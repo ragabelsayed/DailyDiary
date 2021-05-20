@@ -1,5 +1,5 @@
 # DailyDiary
-
+ A complete offline app for dailyDiary writing.
 ## Fearures in it:
 - CRUD operations.
 - local storge using NoSql packages.
