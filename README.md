@@ -3,7 +3,7 @@
 ## Fearures in it:
 - CRUD operations.
 - local storge using NoSql packages.
-- Dark Theme.
+- Dark and Light Themes.
 
 ## Future plan to this project
 - Use bin code and fingerprint to lock diary or chapter or day.
