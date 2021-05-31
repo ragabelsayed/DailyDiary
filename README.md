@@ -1,9 +1,10 @@
-# Fearures in it:
+# DailyDiary
+ A complete offline app for dailyDiary writing.
+## Fearures in it:
 - CRUD operations.
 - local storge using NoSql packages.
-- Dark Theme.
+- Dark and Light Themes.
 
-# Future plan to this project
+## Future plan to this project
 - Use bin code and fingerprint to lock diary or chapter or day.
 - Choose to hide any diary or chapter or day. 
-
