@@ -178,12 +178,12 @@ class DialogView extends StatelessWidget {
               ),
             )
             .headline6,
-        children: [
-          TextSpan(
-            text: ' *',
-            style: TextStyle(color: Colors.red),
-          ),
-        ],
+        // children: [
+        //   TextSpan(
+        //     text: ' *',
+        //     style: TextStyle(color: Colors.red),
+        //   ),
+        // ],
       ),
     );
   }

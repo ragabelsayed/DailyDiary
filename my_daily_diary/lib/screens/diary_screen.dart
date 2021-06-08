@@ -81,7 +81,7 @@ class _DiaryScreenState extends State<DiaryScreen>
         TitleView(
           titleName: 'Diaries',
           inputDialogName: 'Diary Name',
-          inputDialogHint: 'Ex: 2020, Secret ...ets',
+          inputDialogHint: 'Ex: 2021, Secret ...ets',
           inputDialogCoverName: 'Diary Cover',
           inputDialogAction: AddAction.diary,
           opacityLevel: _opacityLevel,
