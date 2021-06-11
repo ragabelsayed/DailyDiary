@@ -23,7 +23,7 @@ class PopUpMenu extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (context) {
-                    return SizedBox();
+                    return Container();
                   },
                 );
               },

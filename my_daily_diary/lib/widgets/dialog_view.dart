@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:my_daily_diary/widgets/lock_view.dart';
 
 import '../providers/chapter_data.dart';
 
@@ -134,7 +135,7 @@ class DialogView extends StatelessWidget {
                 ),
                 _buildTitle(context, coverName),
                 CoverPicker(_getCover),
-                Expanded(child: Container()),
+                Expanded(child: LockView()),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
