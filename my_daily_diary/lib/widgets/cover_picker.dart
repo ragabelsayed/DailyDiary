@@ -46,56 +46,58 @@ class _CoverPickerState extends State<CoverPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 10),
-      child: ToggleButtons(
-        borderRadius: BorderRadius.circular(50),
-        children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 6,
-            child: Icon(Icons.color_lens),
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 4,
-            child: Icon(Icons.photo),
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 6,
-            child: Icon(Icons.camera_alt),
-          ),
-        ],
-        onPressed: (newIndex) {
-          for (var index = 0; index < _isSelected.length; index++) {
-            setState(() {
-              if (index == 0 && newIndex == 0) {
-                _isSelected[index] = !_isSelected[index];
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Select a color'),
-                      content: SingleChildScrollView(
-                        child: BlockPicker(
-                          pickerColor: currentColor,
-                          onColorChanged: changeColor,
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 10, top: 10),
+        child: ToggleButtons(
+          borderRadius: BorderRadius.circular(50),
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 6,
+              child: Icon(Icons.color_lens),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 4,
+              child: Icon(Icons.photo),
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 6,
+              child: Icon(Icons.camera_alt),
+            ),
+          ],
+          onPressed: (newIndex) {
+            for (var index = 0; index < _isSelected.length; index++) {
+              setState(() {
+                if (index == 0 && newIndex == 0) {
+                  _isSelected[index] = !_isSelected[index];
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Select a color'),
+                        content: SingleChildScrollView(
+                          child: BlockPicker(
+                            pickerColor: currentColor,
+                            onColorChanged: changeColor,
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                );
-              } else if (index == 1 && newIndex == 1) {
-                _isSelected[index] = !_isSelected[index];
-                _getImage(ImageSource.gallery);
-              } else if (index == 2 && newIndex == 2) {
-                _isSelected[index] = !_isSelected[index];
-                _getImage(ImageSource.camera);
-              } else {
-                _isSelected[index] = false;
-              }
-            });
-          }
-        },
-        isSelected: _isSelected,
+                      );
+                    },
+                  );
+                } else if (index == 1 && newIndex == 1) {
+                  _isSelected[index] = !_isSelected[index];
+                  _getImage(ImageSource.gallery);
+                } else if (index == 2 && newIndex == 2) {
+                  _isSelected[index] = !_isSelected[index];
+                  _getImage(ImageSource.camera);
+                } else {
+                  _isSelected[index] = false;
+                }
+              });
+            }
+          },
+          isSelected: _isSelected,
+        ),
       ),
     );
   }

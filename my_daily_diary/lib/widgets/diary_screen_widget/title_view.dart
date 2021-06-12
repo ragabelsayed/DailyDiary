@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 import '../dialog_view.dart';
 
 class TitleView extends StatelessWidget {
-  final String? titleName;
-  final String? inputDialogName;
-  final String? inputDialogHint;
-  final String? inputDialogCoverName;
-  final AddAction? inputDialogAction;
+  final String titleName;
+  final String inputDialogName;
+  final String inputDialogHint;
+  final String inputDialogCoverName;
+  final AddAction inputDialogAction;
+  final String inputDialogLockName;
   final double opacityLevel;
   const TitleView({
-    this.titleName,
-    this.inputDialogName,
-    this.inputDialogHint,
-    this.inputDialogCoverName,
-    this.inputDialogAction,
+    required this.titleName,
+    required this.inputDialogName,
+    required this.inputDialogHint,
+    required this.inputDialogCoverName,
+    required this.inputDialogAction,
+    required this.inputDialogLockName,
     required this.opacityLevel,
   });
 
@@ -27,7 +29,7 @@ class TitleView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            titleName!,
+            titleName,
             style: Theme.of(context).textTheme.headline6,
             textAlign: TextAlign.center,
           ),
@@ -51,6 +53,7 @@ class TitleView extends StatelessWidget {
                       hint: inputDialogHint,
                       coverName: inputDialogCoverName,
                       action: inputDialogAction,
+                      lockName: inputDialogLockName,
                     );
                   },
                 );

@@ -83,6 +83,7 @@ class _ChapterScreenState extends State<ChapterScreen>
                                     hint: 'Ex: 1, 2 ...30 ets',
                                     coverName: 'Page Cover',
                                     action: AddAction.page,
+                                    lockName: 'Page Lock',
                                   );
                                 },
                               );

@@ -13,15 +13,17 @@ enum AddAction { diary, chapter, page }
 
 // ignore: must_be_immutable
 class DialogView extends StatelessWidget {
-  final String? name;
-  final String? hint;
-  final String? coverName;
-  final AddAction? action;
+  final String name;
+  final String hint;
+  final String coverName;
+  final String lockName;
+  final AddAction action;
   DialogView({
-    this.name,
-    this.hint,
-    this.coverName,
-    this.action,
+    required this.name,
+    required this.hint,
+    required this.coverName,
+    required this.action,
+    required this.lockName,
   });
 
   final _form = GlobalKey<FormState>();
@@ -135,7 +137,9 @@ class DialogView extends StatelessWidget {
                 ),
                 _buildTitle(context, coverName),
                 CoverPicker(_getCover),
-                Expanded(child: LockView()),
+                _buildTitle(context, lockName),
+                LockView(),
+                Expanded(child: Container()),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
