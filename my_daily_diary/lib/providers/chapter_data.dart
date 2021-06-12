@@ -24,6 +24,7 @@ class ChapterData with ChangeNotifier {
     required String name,
     required Color color,
     File? image,
+    required String password,
   }) {
     final _newChapter = Chapter(
       id: DateTime.now().toString(),
@@ -31,6 +32,7 @@ class ChapterData with ChangeNotifier {
       customColor: color,
       image: image,
       pages: HiveList(pageBox),
+      password: password,
     );
     _items.add(_newChapter);
     notifyListeners();

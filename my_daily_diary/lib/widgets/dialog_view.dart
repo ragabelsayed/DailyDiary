@@ -31,6 +31,7 @@ class DialogView extends StatelessWidget {
   Color _coverColor = Colors.cyan;
   // ignore: avoid_init_to_null
   File? _coverImage = null;
+  String _password = '';
 
   void _saveForm(BuildContext context) {
     switch (action) {
@@ -40,6 +41,7 @@ class DialogView extends StatelessWidget {
           name: _name,
           color: _coverColor,
           image: _coverImage,
+          password: _password,
         );
         Navigator.pop(context);
         break;
@@ -49,6 +51,7 @@ class DialogView extends StatelessWidget {
           name: _name,
           color: _coverColor,
           image: _coverImage,
+          password: _password,
         );
         Navigator.pop(context);
         break;
@@ -58,6 +61,7 @@ class DialogView extends StatelessWidget {
           name: _name,
           color: _coverColor,
           image: _coverImage,
+          password: _password,
         );
         Navigator.pop(context);
         break;

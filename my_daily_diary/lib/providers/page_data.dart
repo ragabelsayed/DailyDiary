@@ -20,6 +20,7 @@ class PageData with ChangeNotifier {
     required String name,
     required Color color,
     File? image,
+    required String password,
   }) {
     final _newPage = ChapterPage(
       id: DateTime.now().toString(),
@@ -38,6 +39,7 @@ class PageData with ChangeNotifier {
       fontName: 'lato',
       isSelected1: [true, false, false],
       isSelected2: [false, false],
+      password: password,
     );
     _items.add(_newPage);
     notifyListeners();

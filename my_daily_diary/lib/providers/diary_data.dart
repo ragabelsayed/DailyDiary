@@ -22,6 +22,7 @@ class DiaryData with ChangeNotifier {
     required String name,
     required Color color,
     File? image,
+    required String password,
   }) {
     final _newDiary = Diary(
       id: DateTime.now().toString(),
@@ -29,6 +30,7 @@ class DiaryData with ChangeNotifier {
       customColor: color,
       image: image,
       chapters: HiveList(chapterBox),
+      password: password,
     );
     _items.add(_newDiary);
     notifyListeners();

@@ -8,8 +8,7 @@ class LockView extends StatefulWidget {
 
 class LockViewState extends State<LockView> {
   final List<bool> _isSelected = [false, false];
-  final TextEditingController _pinPutController = TextEditingController();
-  final FocusNode _pinPutFocusNode = FocusNode();
+  // final TextEditingController _pinPutController = TextEditingController();
 
   BoxDecoration get _pinPutDecoration {
     return BoxDecoration(
@@ -18,15 +17,80 @@ class LockViewState extends State<LockView> {
     );
   }
 
+  void _pinCode() {
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        child: Container(
+          height: MediaQuery.of(context).size.height / 4,
+          color: Theme.of(context).primaryColor,
+          // margin: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'PIN Code',
+                style: Theme.of(context)
+                    .textTheme
+                    .merge(
+                      TextTheme(
+                        headline6: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    )
+                    .headline6,
+              ),
+              const SizedBox(height: 15),
+              PinPut(
+                fieldsCount: 5,
+                onSaved: (newValue) {},
+                // controller: _pinPutController,
+                submittedFieldDecoration: _pinPutDecoration.copyWith(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                selectedFieldDecoration: _pinPutDecoration,
+                followingFieldDecoration: _pinPutDecoration.copyWith(
+                  borderRadius: BorderRadius.circular(5.0),
+                  border: Border.all(
+                    color: Colors.deepPurpleAccent.withOpacity(.5),
+                  ),
+                ),
+              ),
+              Expanded(child: Container()),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    child: Text('Cancel'),
+                    style: Theme.of(context).elevatedButtonTheme.style,
+                    onPressed: () {
+                      _close(context);
+                    },
+                  ),
+                  ElevatedButton(
+                    child: Text('Save'),
+                    style: Theme.of(context).elevatedButtonTheme.style,
+                    onPressed: () {
+                      // _saveForm(context);
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   void _close(BuildContext context) {
     Navigator.pop(context);
   }
-  // @override
-  // void dispose() {
-  //   _pinPutController.dispose();
-  //   _pinPutFocusNode.dispose();
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +114,7 @@ class LockViewState extends State<LockView> {
               setState(() {
                 if (index == 0 && newIndex == 0) {
                   _isSelected[index] = !_isSelected[index];
+                  _pinCode();
                 } else if (index == 1 && newIndex == 1) {
                   _isSelected[index] = !_isSelected[index];
                 } else {
@@ -62,91 +127,5 @@ class LockViewState extends State<LockView> {
         ),
       ),
     );
-    // Dialog(
-    //   child: Container(
-    //     // color: Colors.white,
-    //     height: MediaQuery.of(context).size.height / 3,
-    //     color: Theme.of(context).primaryColor,
-    //     margin: const EdgeInsets.all(20.0),
-    //     padding: const EdgeInsets.all(20.0),
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.start,
-    //       crossAxisAlignment: CrossAxisAlignment.center,
-    //       children: [
-    //         Text(
-    //           'PIN Code',
-    //           style: Theme.of(context)
-    //               .textTheme
-    //               .merge(
-    //                 TextTheme(
-    //                   headline6: TextStyle(
-    //                     fontSize: 18,
-    //                     fontWeight: FontWeight.w500,
-    //                   ),
-    //                 ),
-    //               )
-    //               .headline6,
-    //         ),
-    //         const SizedBox(height: 10),
-    //         PinPut(
-    //           fieldsCount: 5,
-    //           // onSubmit: (String pin) => _showSnackBar(pin, context),
-    //           // focusNode: _pinPutFocusNode,
-    //           controller: _pinPutController,
-    //           submittedFieldDecoration: _pinPutDecoration.copyWith(
-    //             borderRadius: BorderRadius.circular(20.0),
-    //           ),
-    //           selectedFieldDecoration: _pinPutDecoration,
-    //           followingFieldDecoration: _pinPutDecoration.copyWith(
-    //             borderRadius: BorderRadius.circular(5.0),
-    //             border: Border.all(
-    //               color: Colors.deepPurpleAccent.withOpacity(.5),
-    //             ),
-    //           ),
-    //         ),
-    //         Expanded(child: Container()),
-    //         Row(
-    //           mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //           crossAxisAlignment: CrossAxisAlignment.center,
-    //           children: [
-    //             ElevatedButton(
-    //               child: Text('Cancel'),
-    //               style: Theme.of(context).elevatedButtonTheme.style,
-    //               onPressed: () {
-    //                 _close(context);
-    //               },
-    //             ),
-    //             ElevatedButton(
-    //               child: Text('Save'),
-    //               style: Theme.of(context).elevatedButtonTheme.style,
-    //               onPressed: () {
-    //                 // _saveForm(context);
-    //               },
-    //             ),
-    //           ],
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
-
-  // void _showSnackBar(String pin, BuildContext context) {
-  //   final snackBar = SnackBar(
-  //     duration: const Duration(seconds: 3),
-  //     content: Container(
-  //       height: 80.0,
-  //       child: Center(
-  //         child: Text(
-  //           'Pin Submitted. Value: $pin',
-  //           style: const TextStyle(fontSize: 25.0),
-  //         ),
-  //       ),
-  //     ),
-  //     backgroundColor: Colors.deepPurpleAccent,
-  //   );
-  //   Scaffold.of(context)
-  //     ..hideCurrentSnackBar()
-  //     ..showSnackBar(snackBar);
-  // }
 }

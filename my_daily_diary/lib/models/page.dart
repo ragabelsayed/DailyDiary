@@ -45,7 +45,9 @@ class ChapterPage extends HiveObject {
   @HiveField(12)
   List<bool> isSelected2;
 
-  // String? password;
+  @HiveField(13)
+  String password;
+
   ChapterPage({
     required this.id,
     required this.name,
@@ -60,6 +62,6 @@ class ChapterPage extends HiveObject {
     required this.fontName,
     required this.isSelected1,
     required this.isSelected2,
-    // this.password,
+    required this.password,
   });
 }

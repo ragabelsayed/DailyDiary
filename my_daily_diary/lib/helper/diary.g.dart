@@ -23,13 +23,14 @@ class DiaryAdapter extends TypeAdapter<Diary> {
       customColor: Color(fields[3]),
       chapters: (fields[4] as HiveList).castHiveList(),
       onClickDiary: fields[5] as bool,
+      password: fields[6] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, Diary obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class DiaryAdapter extends TypeAdapter<Diary> {
       ..writeByte(4)
       ..write(obj.chapters)
       ..writeByte(5)
-      ..write(obj.onClickDiary);
+      ..write(obj.onClickDiary)
+      ..writeByte(6)
+      ..write(obj.password);
   }
 
   @override
