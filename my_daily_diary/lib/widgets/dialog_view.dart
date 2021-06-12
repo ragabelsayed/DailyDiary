@@ -98,6 +98,12 @@ class DialogView extends StatelessWidget {
     }
   }
 
+  void _getPassword(String? password) {
+    if (password != null) {
+      _password = password;
+    }
+  }
+
   void _close(BuildContext context) {
     Navigator.pop(context);
   }
@@ -142,7 +148,7 @@ class DialogView extends StatelessWidget {
                 _buildTitle(context, coverName),
                 CoverPicker(_getCover),
                 _buildTitle(context, lockName),
-                LockView(),
+                LockView(_getPassword),
                 Expanded(child: Container()),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

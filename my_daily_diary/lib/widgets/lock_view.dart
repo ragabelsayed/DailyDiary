@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 
 class LockView extends StatefulWidget {
+  final void Function(String? password) password;
+  const LockView(this.password);
   @override
   LockViewState createState() => LockViewState();
 }
 
 class LockViewState extends State<LockView> {
   final List<bool> _isSelected = [false, false];
-  // final TextEditingController _pinPutController = TextEditingController();
+  final TextEditingController _pinPutController = TextEditingController();
 
   BoxDecoration get _pinPutDecoration {
     return BoxDecoration(
@@ -47,8 +49,7 @@ class LockViewState extends State<LockView> {
               const SizedBox(height: 15),
               PinPut(
                 fieldsCount: 5,
-                onSaved: (newValue) {},
-                // controller: _pinPutController,
+                controller: _pinPutController,
                 submittedFieldDecoration: _pinPutDecoration.copyWith(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
@@ -76,7 +77,8 @@ class LockViewState extends State<LockView> {
                     child: Text('Save'),
                     style: Theme.of(context).elevatedButtonTheme.style,
                     onPressed: () {
-                      // _saveForm(context);
+                      widget.password(_pinPutController.text);
+                      _close(context);
                     },
                   ),
                 ],
@@ -90,6 +92,12 @@ class LockViewState extends State<LockView> {
 
   void _close(BuildContext context) {
     Navigator.pop(context);
+  }
+
+  @override
+  void dispose() {
+    _pinPutController.dispose();
+    super.dispose();
   }
 
   @override
