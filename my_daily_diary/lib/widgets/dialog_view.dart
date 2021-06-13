@@ -148,7 +148,7 @@ class DialogView extends StatelessWidget {
                 _buildTitle(context, coverName),
                 CoverPicker(_getCover),
                 _buildTitle(context, lockName),
-                LockView(_getPassword),
+                LockView(password: _getPassword, btnName: 'Save'),
                 Expanded(child: Container()),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

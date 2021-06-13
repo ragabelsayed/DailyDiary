@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_daily_diary/widgets/lock_view.dart';
 import 'package:provider/provider.dart';
 
 import 'package:my_daily_diary/models/diary.dart';
@@ -19,6 +20,8 @@ class DiaryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _password = diaryData.password;
+
     return Padding(
       padding: const EdgeInsets.only(right: 16),
       child: AnimatedBuilder(
@@ -39,11 +42,23 @@ class DiaryView extends StatelessWidget {
                         Material(
                           child: InkWell(
                             onTap: () {
-                              Provider.of<ChapterData>(context, listen: false)
-                                ..setClick(true)
-                                ..setChapters(
-                                  diaryData,
+                              if (_password.isEmpty)
+                                Provider.of<ChapterData>(context, listen: false)
+                                  ..setClick(true)
+                                  ..setChapters(
+                                    diaryData,
+                                  );
+                              if (_password.isNotEmpty) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => Dialog(
+                                    child: LockView(
+                                      btnName: 'Unlock',
+                                      lockCode: _password,
+                                    ),
+                                  ),
                                 );
+                              }
                             },
                             child: Container(
                               width: 130,
