@@ -21,6 +21,8 @@ class DiaryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _password = diaryData.password;
+    final _providerChapterData =
+        Provider.of<ChapterData>(context, listen: false);
 
     return Padding(
       padding: const EdgeInsets.only(right: 16),
@@ -56,13 +58,13 @@ class DiaryView extends StatelessWidget {
                                 );
                               } else if (_password.isNotEmpty &&
                                   diaryData.passwordState) {
-                                Provider.of<ChapterData>(context, listen: false)
+                                _providerChapterData
                                   ..setClick(true)
                                   ..setChapters(
                                     diaryData,
                                   );
                               } else {
-                                Provider.of<ChapterData>(context, listen: false)
+                                _providerChapterData
                                   ..setClick(true)
                                   ..setChapters(
                                     diaryData,
@@ -99,7 +101,38 @@ class DiaryView extends StatelessWidget {
                                 ],
                               ),
                               child: diaryData.image == null
-                                  ? Text('')
+                                  ? _password.isNotEmpty &&
+                                          !diaryData.passwordState
+                                      ? Stack(
+                                          fit: StackFit.expand,
+                                          children: [
+                                            Opacity(
+                                              opacity: 0.5,
+                                              child: Text(''),
+                                            ),
+                                            Icon(
+                                              Icons.lock,
+                                              size: 40,
+                                            ),
+                                          ],
+                                        )
+                                      : _password.isNotEmpty &&
+                                              diaryData.passwordState
+                                          ? Stack(
+                                              fit: StackFit.expand,
+                                              children: [
+                                                Text(''),
+                                                Positioned(
+                                                  left: 10,
+                                                  bottom: 10,
+                                                  child: Icon(
+                                                    Icons.lock_open,
+                                                    size: 25,
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          : SizedBox()
                                   : ClipRRect(
                                       borderRadius: const BorderRadius.only(
                                         topRight: Radius.circular(15),
@@ -107,10 +140,47 @@ class DiaryView extends StatelessWidget {
                                         topLeft: Radius.circular(3),
                                         bottomLeft: Radius.circular(3),
                                       ),
-                                      child: Image.file(
-                                        diaryData.image!,
-                                        fit: BoxFit.cover,
-                                      ),
+                                      child: _password.isNotEmpty &&
+                                              !diaryData.passwordState
+                                          ? Stack(
+                                              fit: StackFit.expand,
+                                              children: [
+                                                Opacity(
+                                                  opacity: 0.5,
+                                                  child: Image.file(
+                                                    diaryData.image!,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                                Icon(
+                                                  Icons.lock,
+                                                  size: 40,
+                                                ),
+                                              ],
+                                            )
+                                          : _password.isNotEmpty &&
+                                                  diaryData.passwordState
+                                              ? Stack(
+                                                  fit: StackFit.expand,
+                                                  children: [
+                                                    Image.file(
+                                                      diaryData.image!,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                    Positioned(
+                                                      left: 10,
+                                                      bottom: 10,
+                                                      child: Icon(
+                                                        Icons.lock_open,
+                                                        size: 25,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              : Image.file(
+                                                  diaryData.image!,
+                                                  fit: BoxFit.cover,
+                                                ),
                                     ),
                             ),
                           ),
