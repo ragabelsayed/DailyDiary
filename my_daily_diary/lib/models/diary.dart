@@ -28,6 +28,10 @@ class Diary extends HiveObject {
 
   @HiveField(6)
   final String password;
+
+  @HiveField(7)
+  bool passwordState;
+
   Diary({
     required this.id,
     required this.name,
@@ -36,5 +40,6 @@ class Diary extends HiveObject {
     required this.chapters,
     this.onClickDiary = false,
     required this.password,
+    this.passwordState = false,
   });
 }

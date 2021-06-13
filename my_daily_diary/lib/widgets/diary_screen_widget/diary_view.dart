@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:my_daily_diary/widgets/lock_view.dart';
 import 'package:provider/provider.dart';
 
 import 'package:my_daily_diary/models/diary.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
 import 'package:my_daily_diary/providers/chapter_data.dart';
 import 'package:my_daily_diary/widgets/popup_menu.dart';
+import 'package:my_daily_diary/widgets/pin_code.dart';
 
 class DiaryView extends StatelessWidget {
   final Diary diaryData;
@@ -42,22 +42,31 @@ class DiaryView extends StatelessWidget {
                         Material(
                           child: InkWell(
                             onTap: () {
-                              if (_password.isEmpty)
+                              Provider.of<DiaryData>(context, listen: false)
+                                  .currentDiary(diaryData.id);
+                              if (_password.isNotEmpty &&
+                                  !diaryData.passwordState) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => PinCode(
+                                    btnName: 'Unlock',
+                                    lockCode: _password,
+                                    passwordState: PasswordState.diary,
+                                  ),
+                                );
+                              } else if (_password.isNotEmpty &&
+                                  diaryData.passwordState) {
                                 Provider.of<ChapterData>(context, listen: false)
                                   ..setClick(true)
                                   ..setChapters(
                                     diaryData,
                                   );
-                              if (_password.isNotEmpty) {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => Dialog(
-                                    child: LockView(
-                                      btnName: 'Unlock',
-                                      lockCode: _password,
-                                    ),
-                                  ),
-                                );
+                              } else {
+                                Provider.of<ChapterData>(context, listen: false)
+                                  ..setClick(true)
+                                  ..setChapters(
+                                    diaryData,
+                                  );
                               }
                             },
                             child: Container(

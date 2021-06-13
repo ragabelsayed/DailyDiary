@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:my_daily_diary/providers/diary_data.dart';
 import 'package:pinput/pin_put/pin_put.dart';
+import 'package:provider/provider.dart';
+
+enum PasswordState { diary, chapter, page }
 
 class PinCode extends StatefulWidget {
   final void Function(String? password)? password;
   final String btnName;
   final String? lockCode;
-  PinCode({this.password, required this.btnName, this.lockCode});
+  final PasswordState? passwordState;
+  PinCode({
+    this.password,
+    required this.btnName,
+    this.lockCode,
+    this.passwordState,
+  });
 
   @override
   _PinCodeState createState() => _PinCodeState();
@@ -93,7 +103,17 @@ class _PinCodeState extends State<PinCode> {
                       _close(context);
                     }
                     if (widget.btnName == 'Unlock') {
-                      if (_pinPutController.text == widget.lockCode!) {}
+                      if (_pinPutController.text == widget.lockCode!) {
+                        switch (widget.passwordState!) {
+                          case PasswordState.diary:
+                            Provider.of<DiaryData>(context, listen: false)
+                                .setlockstate(true);
+                            _close(context);
+
+                            break;
+                          default:
+                        }
+                      }
                     }
                   },
                 ),

@@ -9,6 +9,7 @@ class DiaryData with ChangeNotifier {
   final diaryBox = Boxes.getDiariesBox();
   final chapterBox = Boxes.getChaptersBox();
   List<Diary> _items = [];
+  late Diary _currentDiary;
 
   List<Diary> get items => [..._items];
 
@@ -44,5 +45,15 @@ class DiaryData with ChangeNotifier {
     notifyListeners();
     diary.delete();
     // box.delete(diary.key);
+  }
+
+  void currentDiary(String id) {
+    _currentDiary = _items.firstWhere((diary) => diary.id == id);
+    notifyListeners();
+  }
+
+  void setlockstate(bool status) {
+    _currentDiary.passwordState = status;
+    notifyListeners();
   }
 }

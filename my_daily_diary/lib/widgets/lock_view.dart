@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_daily_diary/widgets/pin_code.dart';
-import 'package:pinput/pin_put/pin_put.dart';
 
 class LockView extends StatefulWidget {
   final void Function(String? password)? password;
