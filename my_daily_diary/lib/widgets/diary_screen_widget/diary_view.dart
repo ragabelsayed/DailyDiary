@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:my_daily_diary/widgets/lock_view.dart';
 import 'package:provider/provider.dart';
 
 import 'package:my_daily_diary/models/diary.dart';
 import 'package:my_daily_diary/providers/diary_data.dart';
 import 'package:my_daily_diary/providers/chapter_data.dart';
 import 'package:my_daily_diary/widgets/popup_menu.dart';
-import 'package:my_daily_diary/widgets/pin_code.dart';
 
 class DiaryView extends StatelessWidget {
   final Diary diaryData;
@@ -50,10 +50,10 @@ class DiaryView extends StatelessWidget {
                                   !diaryData.passwordState) {
                                 showDialog(
                                   context: context,
-                                  builder: (context) => PinCode(
+                                  builder: (context) => LockView(
                                     btnName: 'Unlock',
                                     lockCode: _password,
-                                    passwordState: PasswordState.diary,
+                                    addAcionFor: AddAcionFor.diary,
                                   ),
                                 );
                               } else if (_password.isNotEmpty &&
@@ -106,10 +106,7 @@ class DiaryView extends StatelessWidget {
                                       ? Stack(
                                           fit: StackFit.expand,
                                           children: [
-                                            Opacity(
-                                              opacity: 0.5,
-                                              child: Text(''),
-                                            ),
+                                            SizedBox(),
                                             Icon(
                                               Icons.lock,
                                               size: 40,
@@ -121,7 +118,7 @@ class DiaryView extends StatelessWidget {
                                           ? Stack(
                                               fit: StackFit.expand,
                                               children: [
-                                                Text(''),
+                                                SizedBox(),
                                                 Positioned(
                                                   left: 10,
                                                   bottom: 10,
@@ -198,6 +195,7 @@ class DiaryView extends StatelessWidget {
                               Provider.of<ChapterData>(context, listen: false)
                                   .setClick(false);
                             },
+                            password: _password,
                           ),
                         ),
                       ],

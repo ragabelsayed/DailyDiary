@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:my_daily_diary/widgets/lock_view.dart';
-
 import '../providers/chapter_data.dart';
 
 import 'package:my_daily_diary/providers/diary_data.dart';
@@ -148,7 +147,30 @@ class DialogView extends StatelessWidget {
                 _buildTitle(context, coverName),
                 CoverPicker(_getCover),
                 _buildTitle(context, lockName),
-                LockView(password: _getPassword, btnName: 'Save'),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10, top: 10),
+                    child: OutlinedButton.icon(
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 20),
+                        shape: StadiumBorder(),
+                        primary: Theme.of(context).primaryIconTheme.color,
+                      ),
+                      icon: Icon(Icons.pin),
+                      label: Text('Enter PIN code'),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => LockView(
+                            btnName: 'Save',
+                            password: _getPassword,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
                 Expanded(child: Container()),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

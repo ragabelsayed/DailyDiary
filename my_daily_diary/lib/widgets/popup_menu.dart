@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:my_daily_diary/widgets/lock_view.dart';
 
 class PopUpMenu extends StatelessWidget {
   final String dialogContent;
   final String snackBarContent;
   final Function removeItem;
+  final String? itemId;
+  final String? password;
 
   PopUpMenu({
     required this.dialogContent,
     required this.snackBarContent,
     required this.removeItem,
+    this.itemId,
+    this.password,
   });
   @override
   Widget build(BuildContext context) {
@@ -19,14 +24,16 @@ class PopUpMenu extends StatelessWidget {
             child: ListTile(
               leading: Icon(Icons.lock),
               title: Text('Lock'),
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return Container();
-                  },
-                );
-              },
+              onTap: password!.isEmpty
+                  ? () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return LockView(btnName: 'Lock');
+                        },
+                      );
+                    }
+                  : null,
             ),
           ),
           PopupMenuItem(
