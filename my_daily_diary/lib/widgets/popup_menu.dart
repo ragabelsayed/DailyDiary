@@ -5,7 +5,7 @@ class PopUpMenu extends StatelessWidget {
   final String dialogContent;
   final String snackBarContent;
   final Function removeItem;
-  final Function? lockItem;
+  final Function(String? lockCode)? lockItem;
   final String? itemPassword;
 
   PopUpMenu({

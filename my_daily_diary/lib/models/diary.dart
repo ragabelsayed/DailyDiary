@@ -27,7 +27,7 @@ class Diary extends HiveObject {
   final bool onClickDiary;
 
   @HiveField(6)
-  final String password;
+  String password;
 
   @HiveField(7)
   bool passwordState;

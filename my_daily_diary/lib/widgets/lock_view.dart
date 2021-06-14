@@ -9,7 +9,7 @@ class LockView extends StatefulWidget {
   // used to pass lock code from user to open obj which is already locked.
   final String? lockCode;
   // used to make password for obj and save it in D.B.
-  final Function? lockItem;
+  final Function(String? lockCode)? lockItem;
   // used to unlock item only while using the app (make obj open only in memory and running time and not saved in D.B)
   final Function? unLockItem;
   LockView({
@@ -106,8 +106,8 @@ class LockViewState extends State<LockView> {
                     }
                     // add locke code for certain obj already exists.
                     if (widget.btnName == 'Lock') {
-                      widget.lockItem!();
-                      // _close(context);
+                      widget.lockItem!(_pinPutController.text);
+                      _close(context);
                     }
                     // check lock code to open certain obj.
                     if (widget.btnName == 'Unlock') {

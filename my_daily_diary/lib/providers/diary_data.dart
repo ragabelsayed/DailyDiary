@@ -52,8 +52,14 @@ class DiaryData with ChangeNotifier {
     notifyListeners();
   }
 
-  void setCodestate(bool status) {
+  void unLockDiary(bool status) {
     _currentDiary.passwordState = status;
     notifyListeners();
+  }
+
+  void lockDiary(String lockCode) {
+    _currentDiary.password = lockCode;
+    notifyListeners();
+    _currentDiary.save();
   }
 }

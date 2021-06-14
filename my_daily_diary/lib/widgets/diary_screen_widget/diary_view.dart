@@ -56,7 +56,7 @@ class DiaryView extends StatelessWidget {
                                     unLockItem: () {
                                       Provider.of<DiaryData>(context,
                                               listen: false)
-                                          .setCodestate(true);
+                                          .unLockDiary(true);
                                     },
                                   ),
                                 );
@@ -199,7 +199,12 @@ class DiaryView extends StatelessWidget {
                               Provider.of<ChapterData>(context, listen: false)
                                   .setClick(false);
                             },
-                            lockItem: () {},
+                            itemPassword: _password,
+                            lockItem: (String? lockcode) {
+                              Provider.of<DiaryData>(context, listen: false)
+                                ..currentDiary(diaryData.id)
+                                ..lockDiary(lockcode!);
+                            },
                           ),
                         ),
                       ],
