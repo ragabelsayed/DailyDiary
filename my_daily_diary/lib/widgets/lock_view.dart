@@ -26,6 +26,7 @@ class LockView extends StatefulWidget {
 class LockViewState extends State<LockView> {
   final TextEditingController _pinPutController = TextEditingController();
   bool _validateCode = false;
+  String _errorMessage = '';
 
   BoxDecoration get _pinPutDecoration {
     return BoxDecoration(
@@ -94,7 +95,7 @@ class LockViewState extends State<LockView> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Enter your code first !',
+                        _errorMessage,
                         style: TextStyle(color: Theme.of(context).errorColor),
                       ),
                     ),
@@ -123,13 +124,21 @@ class LockViewState extends State<LockView> {
                       } else {
                         setState(() {
                           _validateCode = !_validateCode;
+                          _errorMessage = 'Enter your code first !';
                         });
                       }
                     }
                     // add locke code for certain obj already exists.
                     if (widget.btnName == 'Lock') {
-                      widget.lockItem!(_pinPutController.text);
-                      _close(context);
+                      if (_pinPutController.text.isNotEmpty) {
+                        widget.lockItem!(_pinPutController.text);
+                        _close(context);
+                      } else {
+                        setState(() {
+                          _validateCode = !_validateCode;
+                          _errorMessage = 'Enter your code first !';
+                        });
+                      }
                     }
                     // check lock code to open certain obj.
                     if (widget.btnName == 'Unlock') {
