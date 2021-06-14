@@ -7,9 +7,13 @@ import 'package:provider/provider.dart';
 enum AddAcionFor { diary, chapter, page }
 
 class LockView extends StatefulWidget {
+  // method to pass and save password for obj when it is created for first time from DialogView. useally use when btnName = save
   final void Function(String? password)? password;
+  // name of btn. it also will used to determine the operation for this widget like (save, lock, unlock)
   final String btnName;
+  // used to pass lock code from user to open obj which is already locked.
   final String? lockCode;
+  // used when you want to implement some action or method for certain obj. Useally used in lock or unlock operation to lock or un lock for certain obj.
   final AddAcionFor? addAcionFor;
   LockView({
     this.password,
@@ -97,11 +101,12 @@ class LockViewState extends State<LockView> {
                   child: Text(widget.btnName),
                   style: Theme.of(context).elevatedButtonTheme.style,
                   onPressed: () {
+                    // Save password when creating obj for first time from dialog view.
                     if (widget.btnName == 'Save') {
                       widget.password!(_pinPutController.text);
                       _close(context);
                     }
-
+                    // add locke code for certain obj already exists.
                     if (widget.btnName == 'Lock') {
                       switch (widget.addAcionFor!) {
                         case AddAcionFor.diary:
@@ -113,7 +118,7 @@ class LockViewState extends State<LockView> {
                         default:
                       }
                     }
-                    // check lock code to open diary.
+                    // check lock code to open certain obj.
                     if (widget.btnName == 'Unlock') {
                       if (_pinPutController.text == widget.lockCode!) {
                         switch (widget.addAcionFor!) {
