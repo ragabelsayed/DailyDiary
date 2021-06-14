@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_daily_diary/providers/diary_data.dart';
-
 import 'package:pinput/pin_put/pin_put.dart';
-import 'package:provider/provider.dart';
-
-enum AddAcionFor { diary, chapter, page }
 
 class LockView extends StatefulWidget {
   // method to pass and save password for obj when it is created for first time from DialogView. useally use when btnName = save
@@ -13,13 +8,16 @@ class LockView extends StatefulWidget {
   final String btnName;
   // used to pass lock code from user to open obj which is already locked.
   final String? lockCode;
-  // used when you want to implement some action or method for certain obj. Useally used in lock or unlock operation to lock or un lock for certain obj.
-  final AddAcionFor? addAcionFor;
+  // used to make password for obj and save it in D.B.
+  final Function? lockItem;
+  // used to unlock item only while using the app (make obj open only in memory and running time and not saved in D.B)
+  final Function? unLockItem;
   LockView({
     this.password,
     required this.btnName,
     this.lockCode,
-    this.addAcionFor,
+    this.lockItem,
+    this.unLockItem,
   });
   @override
   LockViewState createState() => LockViewState();
@@ -108,28 +106,14 @@ class LockViewState extends State<LockView> {
                     }
                     // add locke code for certain obj already exists.
                     if (widget.btnName == 'Lock') {
-                      switch (widget.addAcionFor!) {
-                        case AddAcionFor.diary:
-                          // Provider.of<DiaryData>(context, listen: false)
-                          //     .setlockstate(true);
-                          // _close(context);
-
-                          break;
-                        default:
-                      }
+                      widget.lockItem!();
+                      // _close(context);
                     }
                     // check lock code to open certain obj.
                     if (widget.btnName == 'Unlock') {
                       if (_pinPutController.text == widget.lockCode!) {
-                        switch (widget.addAcionFor!) {
-                          case AddAcionFor.diary:
-                            Provider.of<DiaryData>(context, listen: false)
-                                .setlockstate(true);
-                            _close(context);
-
-                            break;
-                          default:
-                        }
+                        widget.unLockItem!();
+                        _close(context);
                       }
                     }
                   },

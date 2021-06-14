@@ -53,7 +53,11 @@ class DiaryView extends StatelessWidget {
                                   builder: (context) => LockView(
                                     btnName: 'Unlock',
                                     lockCode: _password,
-                                    addAcionFor: AddAcionFor.diary,
+                                    unLockItem: () {
+                                      Provider.of<DiaryData>(context,
+                                              listen: false)
+                                          .setCodestate(true);
+                                    },
                                   ),
                                 );
                               } else if (_password.isNotEmpty &&
@@ -195,7 +199,7 @@ class DiaryView extends StatelessWidget {
                               Provider.of<ChapterData>(context, listen: false)
                                   .setClick(false);
                             },
-                            password: _password,
+                            lockItem: () {},
                           ),
                         ),
                       ],

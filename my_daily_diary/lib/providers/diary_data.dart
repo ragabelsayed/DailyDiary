@@ -52,7 +52,7 @@ class DiaryData with ChangeNotifier {
     notifyListeners();
   }
 
-  void setlockstate(bool status) {
+  void setCodestate(bool status) {
     _currentDiary.passwordState = status;
     notifyListeners();
   }

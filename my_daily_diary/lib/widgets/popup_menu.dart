@@ -5,15 +5,15 @@ class PopUpMenu extends StatelessWidget {
   final String dialogContent;
   final String snackBarContent;
   final Function removeItem;
-  final String? itemId;
-  final String? password;
+  final Function? lockItem;
+  final String? itemPassword;
 
   PopUpMenu({
     required this.dialogContent,
     required this.snackBarContent,
     required this.removeItem,
-    this.itemId,
-    this.password,
+    this.lockItem,
+    this.itemPassword,
   });
   @override
   Widget build(BuildContext context) {
@@ -24,12 +24,15 @@ class PopUpMenu extends StatelessWidget {
             child: ListTile(
               leading: Icon(Icons.lock),
               title: Text('Lock'),
-              onTap: password!.isEmpty
+              onTap: itemPassword!.isEmpty
                   ? () {
                       showDialog(
                         context: context,
                         builder: (context) {
-                          return LockView(btnName: 'Lock');
+                          return LockView(
+                            btnName: 'Lock',
+                            lockItem: lockItem,
+                          );
                         },
                       );
                     }
