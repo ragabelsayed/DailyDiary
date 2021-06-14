@@ -25,6 +25,7 @@ class LockView extends StatefulWidget {
 
 class LockViewState extends State<LockView> {
   final TextEditingController _pinPutController = TextEditingController();
+  bool _validateCode = false;
 
   BoxDecoration get _pinPutDecoration {
     return BoxDecoration(
@@ -47,7 +48,7 @@ class LockViewState extends State<LockView> {
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-        height: MediaQuery.of(context).size.height / 4,
+        height: MediaQuery.of(context).size.height / 4 + 15,
         // margin: const EdgeInsets.all(20.0),
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -82,11 +83,26 @@ class LockViewState extends State<LockView> {
                   color: Colors.deepPurpleAccent.withOpacity(.5),
                 ),
               ),
+              onSubmit: (value) {
+                setState(() {
+                  _validateCode = !_validateCode;
+                });
+              },
             ),
-            Expanded(child: Container()),
+            _validateCode
+                ? Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Enter your code first !',
+                        style: TextStyle(color: Theme.of(context).errorColor),
+                      ),
+                    ),
+                  )
+                : Expanded(child: SizedBox()),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 ElevatedButton(
                   child: Text('Cancel'),
@@ -101,8 +117,14 @@ class LockViewState extends State<LockView> {
                   onPressed: () {
                     // Save password when creating obj for first time from dialog view.
                     if (widget.btnName == 'Save') {
-                      widget.password!(_pinPutController.text);
-                      _close(context);
+                      if (_pinPutController.text.isNotEmpty) {
+                        widget.password!(_pinPutController.text);
+                        _close(context);
+                      } else {
+                        setState(() {
+                          _validateCode = !_validateCode;
+                        });
+                      }
                     }
                     // add locke code for certain obj already exists.
                     if (widget.btnName == 'Lock') {
