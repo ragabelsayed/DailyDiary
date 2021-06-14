@@ -142,9 +142,14 @@ class LockViewState extends State<LockView> {
                     }
                     // check lock code to open certain obj.
                     if (widget.btnName == 'Unlock') {
-                      if (_pinPutController.text == widget.lockCode!) {
+                      if (widget.lockCode! == _pinPutController.text) {
                         widget.unLockItem!();
                         _close(context);
+                      } else {
+                        setState(() {
+                          _validateCode = !_validateCode;
+                          _errorMessage = 'Enter or correct your code please!';
+                        });
                       }
                     }
                   },
