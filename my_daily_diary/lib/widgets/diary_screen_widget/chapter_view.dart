@@ -76,10 +76,27 @@ class ChapterView extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: IconSlideAction(
-                      caption: 'Secure',
+                      caption: 'Lock',
                       color: Colors.grey[700]!.withOpacity(0.7),
                       icon: Icons.lock,
-                      onTap: () => onDismissed!(SlidableAction.lock),
+                      onTap: _password.isEmpty
+                          ? () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return LockView(
+                                    btnName: 'Lock',
+                                    lockItem: (String? lockcode) {
+                                      Provider.of<ChapterData>(context,
+                                          listen: false)
+                                        ..currentChapter(chapterData.id)
+                                        ..lockDiary(lockcode!);
+                                    },
+                                  );
+                                },
+                              );
+                            }
+                          : null,
                     ),
                   ),
                 ),
@@ -182,8 +199,6 @@ class ChapterView extends StatelessWidget {
                           ],
                         ),
                         onTap: () {
-                          Provider.of<ChapterData>(context, listen: false)
-                              .currentChapter(chapterData.id);
                           showDialog(
                             context: context,
                             builder: (context) => LockView(
@@ -191,7 +206,8 @@ class ChapterView extends StatelessWidget {
                               lockCode: _password,
                               unLockItem: () {
                                 Provider.of<ChapterData>(context, listen: false)
-                                    .unLockChapter(true);
+                                  ..currentChapter(chapterData.id)
+                                  ..unLockChapter(true);
                               },
                             ),
                           );

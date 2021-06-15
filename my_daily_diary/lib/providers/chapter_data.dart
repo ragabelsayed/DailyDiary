@@ -77,4 +77,10 @@ class ChapterData with ChangeNotifier {
     _currentChapter.passwordState = status;
     notifyListeners();
   }
+
+  void lockDiary(String lockCode) {
+    _currentChapter.password = lockCode;
+    notifyListeners();
+    _currentChapter.save();
+  }
 }
