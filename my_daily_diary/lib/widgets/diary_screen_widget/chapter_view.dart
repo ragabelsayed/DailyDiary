@@ -35,15 +35,9 @@ class ChapterView extends StatelessWidget {
           leading: CircleAvatar(
             radius: 25,
             backgroundColor: chapterData.customColor.withAlpha(255),
-            child: chapterData.image == null
-                ? Text('')
-                : ClipRRect(
-                    borderRadius: BorderRadius.circular(25),
-                    child: Image.file(
-                      chapterData.image!,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+            foregroundImage: chapterData.image != null
+                ? FileImage(chapterData.image!)
+                : null,
           ),
           title: Text(
             chapterData.name,
@@ -211,15 +205,9 @@ class ChapterView extends StatelessWidget {
                               radius: 25,
                               backgroundColor:
                                   chapterData.customColor.withAlpha(255),
-                              child: chapterData.image == null
-                                  ? Text('')
-                                  : ClipRRect(
-                                      borderRadius: BorderRadius.circular(25),
-                                      child: Image.file(
-                                        chapterData.image!,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
+                              foregroundImage: chapterData.image != null
+                                  ? FileImage(chapterData.image!)
+                                  : null,
                             ),
                             title: Text(
                               chapterData.name,
