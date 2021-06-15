@@ -26,7 +26,6 @@ class ChapterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _password = chapterData.password;
-    final _providerDiaryData = Provider.of<ChapterData>(context, listen: false);
     return AnimatedBuilder(
       animation: animationController,
       builder: (context, child) {
@@ -179,8 +178,8 @@ class ChapterView extends StatelessWidget {
                           children: [
                             Opacity(opacity: 0.3, child: _listTile),
                             Positioned(
-                              top: 20,
-                              left: MediaQuery.of(context).size.width / 2,
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height / 10,
                               child: Icon(
                                 Icons.lock,
                                 size: 35,
@@ -205,20 +204,48 @@ class ChapterView extends StatelessWidget {
                         },
                       )
                     : _password.isNotEmpty && chapterData.passwordState
-                        ? InkWell(
-                            child: Stack(
-                            children: [
-                              _listTile,
-                              Positioned(
-                                left: 10,
-                                bottom: 10,
-                                child: Icon(
+                        ? ListTile(
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 12, horizontal: 10),
+                            leading: CircleAvatar(
+                              radius: 25,
+                              backgroundColor:
+                                  chapterData.customColor.withAlpha(255),
+                              child: chapterData.image == null
+                                  ? Text('')
+                                  : ClipRRect(
+                                      borderRadius: BorderRadius.circular(25),
+                                      child: Image.file(
+                                        chapterData.image!,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                            ),
+                            title: Text(
+                              chapterData.name,
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
                                   Icons.lock_open,
                                   size: 25,
                                 ),
-                              ),
-                            ],
-                          ))
+                                IconButton(
+                                  icon: Icon(Icons.arrow_forward_ios),
+                                  onPressed: () {
+                                    Navigator.of(context).pushNamed(
+                                      ChapterScreen.routName,
+                                    );
+                                    Provider.of<PageData>(context,
+                                            listen: false)
+                                        .setPages(chapterData);
+                                  },
+                                ),
+                              ],
+                            ),
+                          )
                         : _listTile,
               ),
             ),
