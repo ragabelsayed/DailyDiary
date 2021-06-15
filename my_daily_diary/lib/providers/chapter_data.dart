@@ -11,10 +11,11 @@ class ChapterData with ChangeNotifier {
   final diaryBox = Boxes.getDiariesBox();
   final chapterBox = Boxes.getChaptersBox();
   final pageBox = Boxes.getPagesBox();
-
   late Diary _diary;
   List<Chapter> _items = [];
   bool _onClickDiary = false;
+
+  late Chapter _currentChapter;
 
   List<Chapter> get items {
     return [..._items];
@@ -65,5 +66,15 @@ class ChapterData with ChangeNotifier {
 
   bool get getClick {
     return _onClickDiary;
+  }
+
+  void currentChapter(String id) {
+    _currentChapter = _items.firstWhere((chapter) => chapter.id == id);
+    notifyListeners();
+  }
+
+  void unLockChapter(bool status) {
+    _currentChapter.passwordState = status;
+    notifyListeners();
   }
 }

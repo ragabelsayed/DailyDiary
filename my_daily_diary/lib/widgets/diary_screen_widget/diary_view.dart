@@ -147,7 +147,7 @@ class DiaryView extends StatelessWidget {
                                               fit: StackFit.expand,
                                               children: [
                                                 Opacity(
-                                                  opacity: 0.5,
+                                                  opacity: 0.3,
                                                   child: Image.file(
                                                     diaryData.image!,
                                                     fit: BoxFit.cover,
