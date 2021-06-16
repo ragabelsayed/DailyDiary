@@ -12,7 +12,7 @@ import '../lock_view.dart';
 class PagesView extends StatelessWidget {
   final ChapterPage pageData;
   final AnimationController animationController;
-  final Animation animation;
+  final Animation<double> animation;
 
   PagesView({
     required this.pageData,
@@ -25,7 +25,7 @@ class PagesView extends StatelessWidget {
     return AnimatedBuilder(
       animation: animationController,
       builder: (context, child) => FadeTransition(
-        opacity: animation as Animation<double>,
+        opacity: animation,
         child: Transform(
           transform: Matrix4.translationValues(
               0.0, 25 * (-0.1 * animation.value), 0.0),
@@ -122,11 +122,14 @@ class PagesView extends StatelessWidget {
                                 ? Stack(
                                     fit: StackFit.expand,
                                     children: [
-                                      Opacity(
-                                        opacity: 0.3,
-                                        child: Image.file(
-                                          pageData.image!,
-                                          fit: BoxFit.cover,
+                                      Container(
+                                        color: Theme.of(context).cardColor,
+                                        child: Opacity(
+                                          opacity: 0.3,
+                                          child: Image.file(
+                                            pageData.image!,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                       Icon(
@@ -172,6 +175,11 @@ class PagesView extends StatelessWidget {
                           .removePage(pageData);
                     },
                     itemPassword: _password,
+                    lockItem: (String? lockcode) {
+                      Provider.of<PageData>(context, listen: false)
+                        ..currentPage(pageData.id)
+                        ..lockDiary(lockcode!);
+                    },
                   ),
                 ),
                 pageData.name.isNotEmpty

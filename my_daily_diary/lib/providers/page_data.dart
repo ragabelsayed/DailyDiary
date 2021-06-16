@@ -122,4 +122,10 @@ class PageData with ChangeNotifier {
     _currentPage.passwordState = status;
     notifyListeners();
   }
+
+  void lockDiary(String lockCode) {
+    _currentPage.password = lockCode;
+    notifyListeners();
+    _currentPage.save();
+  }
 }

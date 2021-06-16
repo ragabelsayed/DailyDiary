@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_daily_diary/widgets/lock_view.dart';
+import '../widgets/lock_view.dart';
 
 class PopUpMenu extends StatelessWidget {
   final String dialogContent;
