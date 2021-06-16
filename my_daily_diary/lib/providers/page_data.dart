@@ -117,4 +117,9 @@ class PageData with ChangeNotifier {
   String get fontName {
     return _currentPage.fontName;
   }
+
+  void unLockPage(bool status) {
+    _currentPage.passwordState = status;
+    notifyListeners();
+  }
 }

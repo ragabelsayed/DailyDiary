@@ -44,8 +44,6 @@ class DiaryView extends StatelessWidget {
                         Material(
                           child: InkWell(
                             onTap: () {
-                              Provider.of<DiaryData>(context, listen: false)
-                                  .currentDiary(diaryData.id);
                               if (_password.isNotEmpty &&
                                   !diaryData.passwordState) {
                                 showDialog(
@@ -55,8 +53,9 @@ class DiaryView extends StatelessWidget {
                                     lockCode: _password,
                                     unLockItem: () {
                                       Provider.of<DiaryData>(context,
-                                              listen: false)
-                                          .unLockDiary(true);
+                                          listen: false)
+                                        ..currentDiary(diaryData.id)
+                                        ..unLockDiary(true);
                                     },
                                   ),
                                 );
