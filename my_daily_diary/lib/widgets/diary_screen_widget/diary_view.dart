@@ -145,11 +145,15 @@ class DiaryView extends StatelessWidget {
                                           ? Stack(
                                               fit: StackFit.expand,
                                               children: [
-                                                Opacity(
-                                                  opacity: 0.3,
-                                                  child: Image.file(
-                                                    diaryData.image!,
-                                                    fit: BoxFit.cover,
+                                                Container(
+                                                  color: Theme.of(context)
+                                                      .cardColor,
+                                                  child: Opacity(
+                                                    opacity: 0.3,
+                                                    child: Image.file(
+                                                      diaryData.image!,
+                                                      fit: BoxFit.cover,
+                                                    ),
                                                   ),
                                                 ),
                                                 Icon(
