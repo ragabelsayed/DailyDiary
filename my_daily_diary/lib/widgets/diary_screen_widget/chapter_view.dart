@@ -19,38 +19,42 @@ class ChapterView extends StatelessWidget {
     required this.animation,
     required this.animationController,
   });
+
+  ListTile _buildListTile({
+    required BuildContext context,
+    required Chapter data,
+    required Widget trailing,
+  }) {
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+      leading: CircleAvatar(
+        radius: 25,
+        backgroundColor: data.customColor.withAlpha(255),
+        foregroundImage: data.image != null ? FileImage(data.image!) : null,
+      ),
+      title: Text(
+        data.name,
+        style: Theme.of(context).textTheme.subtitle1,
+      ),
+      trailing: trailing,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final _password = chapterData.password;
+    IconButton _iconButton = IconButton(
+      icon: Icon(Icons.arrow_forward_ios),
+      onPressed: () {
+        Navigator.of(context).pushNamed(
+          ChapterScreen.routName,
+        );
+        Provider.of<PageData>(context, listen: false).setPages(chapterData);
+      },
+    );
     return AnimatedBuilder(
       animation: animationController,
       builder: (context, child) {
-        ListTile _listTile = ListTile(
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-          leading: CircleAvatar(
-            radius: 25,
-            backgroundColor: chapterData.customColor.withAlpha(255),
-            foregroundImage: chapterData.image != null
-                ? FileImage(chapterData.image!)
-                : null,
-          ),
-          title: Text(
-            chapterData.name,
-            style: Theme.of(context).textTheme.subtitle1,
-          ),
-          trailing: IconButton(
-            icon: Icon(Icons.arrow_forward_ios),
-            onPressed: () {
-              Navigator.of(context).pushNamed(
-                ChapterScreen.routName,
-              );
-              Provider.of<PageData>(context, listen: false)
-                  .setPages(chapterData);
-            },
-          ),
-        );
-
         return FadeTransition(
           opacity: animation as Animation<double>,
           child: Transform(
@@ -169,7 +173,6 @@ class ChapterView extends StatelessWidget {
               child: Container(
                 margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
                 decoration: BoxDecoration(
-                  // border: Border(right: BorderSide(color: Colors.red)),
                   color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
@@ -184,7 +187,16 @@ class ChapterView extends StatelessWidget {
                     ? InkWell(
                         child: Stack(
                           children: [
-                            Opacity(opacity: 0.3, child: _listTile),
+                            Opacity(
+                                opacity: 0.3,
+                                child: _buildListTile(
+                                  context: context,
+                                  data: chapterData,
+                                  trailing: IconButton(
+                                    icon: Icon(Icons.arrow_forward_ios),
+                                    onPressed: null,
+                                  ),
+                                )),
                             Positioned(
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.height / 10,
@@ -208,21 +220,9 @@ class ChapterView extends StatelessWidget {
                         },
                       )
                     : _password.isNotEmpty && chapterData.passwordState
-                        ? ListTile(
-                            contentPadding: const EdgeInsets.symmetric(
-                                vertical: 12, horizontal: 10),
-                            leading: CircleAvatar(
-                              radius: 25,
-                              backgroundColor:
-                                  chapterData.customColor.withAlpha(255),
-                              foregroundImage: chapterData.image != null
-                                  ? FileImage(chapterData.image!)
-                                  : null,
-                            ),
-                            title: Text(
-                              chapterData.name,
-                              style: Theme.of(context).textTheme.subtitle1,
-                            ),
+                        ? _buildListTile(
+                            context: context,
+                            data: chapterData,
                             trailing: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -230,21 +230,15 @@ class ChapterView extends StatelessWidget {
                                   Icons.lock_open,
                                   size: 25,
                                 ),
-                                IconButton(
-                                  icon: Icon(Icons.arrow_forward_ios),
-                                  onPressed: () {
-                                    Navigator.of(context).pushNamed(
-                                      ChapterScreen.routName,
-                                    );
-                                    Provider.of<PageData>(context,
-                                            listen: false)
-                                        .setPages(chapterData);
-                                  },
-                                ),
+                                _iconButton,
                               ],
                             ),
                           )
-                        : _listTile,
+                        : _buildListTile(
+                            context: context,
+                            data: chapterData,
+                            trailing: _iconButton,
+                          ),
               ),
             ),
           ),
