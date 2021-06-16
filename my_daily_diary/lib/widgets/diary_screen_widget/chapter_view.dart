@@ -9,19 +9,15 @@ import 'package:my_daily_diary/providers/page_data.dart';
 
 import '../lock_view.dart';
 
-enum SlidableAction { lock, delete }
-
 class ChapterView extends StatelessWidget {
   final Chapter chapterData;
   final Animation animation;
   final AnimationController animationController;
-  final Function(SlidableAction action)? onDismissed;
 
   const ChapterView({
     required this.chapterData,
     required this.animation,
     required this.animationController,
-    this.onDismissed,
   });
   @override
   Widget build(BuildContext context) {
@@ -54,6 +50,7 @@ class ChapterView extends StatelessWidget {
             },
           ),
         );
+
         return FadeTransition(
           opacity: animation as Animation<double>,
           child: Transform(
@@ -119,7 +116,6 @@ class ChapterView extends StatelessWidget {
                       caption: 'Delete',
                       color: Colors.red,
                       icon: Icons.delete,
-                      // onTap: () => onDismissed(SlidableAction.delete),
                       onTap: () {
                         showDialog(
                           context: context,
@@ -173,6 +169,7 @@ class ChapterView extends StatelessWidget {
               child: Container(
                 margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
                 decoration: BoxDecoration(
+                  // border: Border(right: BorderSide(color: Colors.red)),
                   color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
@@ -191,10 +188,7 @@ class ChapterView extends StatelessWidget {
                             Positioned(
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.height / 10,
-                              child: Icon(
-                                Icons.lock,
-                                size: 35,
-                              ),
+                              child: Icon(Icons.lock, size: 35),
                             ),
                           ],
                         ),

@@ -111,8 +111,26 @@ class _DiaryScreenState extends State<DiaryScreen>
           ),
         const SizedBox(height: 5),
         if (Provider.of<ChapterData>(context).getClick)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(
+                  Icons.arrow_forward_rounded,
+                  size: 20,
+                  color: Colors.grey.withOpacity(0.5),
+                ),
+                Icon(
+                  Icons.arrow_back_rounded,
+                  size: 20,
+                  color: Colors.red.withOpacity(0.5),
+                ),
+              ],
+            ),
+          ),
+        if (Provider.of<ChapterData>(context).getClick)
           ChapterListView(_animationController),
-        // SizedBox(height: MediaQuery.of(context).padding.bottom),
       ],
     );
   }
