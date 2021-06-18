@@ -17,10 +17,12 @@ class _FontFeaturesState extends State<FontFeatures> {
     'roboto',
     'openSans',
     'raleway',
-    'quicksand',
+    'teko',
+    'lobster',
     'dancingScript',
     'pacifico',
-    'indieFlower'
+    'kaushanScript',
+    'indieFlower',
   ];
 
   void changeColor(Color color) {
@@ -110,7 +112,7 @@ class _FontFeaturesState extends State<FontFeatures> {
             ),
             const SizedBox(width: 10),
             IconButton(
-                icon: Icon(Icons.format_color_text),
+                icon: Icon(Icons.format_color_text_rounded),
                 onPressed: () {
                   showDialog(
                     context: context,

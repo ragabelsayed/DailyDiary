@@ -48,8 +48,14 @@ class PageScreen extends StatelessWidget {
           fontStyle: fontStyle,
         );
 
-      case 'quicksand':
-        return GoogleFonts.quicksand(
+      case 'teko':
+        return GoogleFonts.teko(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+        );
+      case 'lobster':
+        return GoogleFonts.lobster(
           color: color,
           fontWeight: fontWeight,
           fontStyle: fontStyle,
@@ -69,6 +75,12 @@ class PageScreen extends StatelessWidget {
           fontStyle: fontStyle,
         );
 
+      case 'kaushanScript':
+        return GoogleFonts.kaushanScript(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+        );
       case 'indieFlower':
         return GoogleFonts.indieFlower(
           color: color,
