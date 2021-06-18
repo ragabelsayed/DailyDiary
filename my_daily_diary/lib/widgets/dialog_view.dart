@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-
+import 'package:my_daily_diary/widgets/lock_view.dart';
 import '../providers/chapter_data.dart';
 
 import 'package:my_daily_diary/providers/diary_data.dart';
@@ -12,15 +12,17 @@ enum AddAction { diary, chapter, page }
 
 // ignore: must_be_immutable
 class DialogView extends StatelessWidget {
-  final String? name;
-  final String? hint;
-  final String? coverName;
-  final AddAction? action;
+  final String name;
+  final String hint;
+  final String coverName;
+  final String lockName;
+  final AddAction action;
   DialogView({
-    this.name,
-    this.hint,
-    this.coverName,
-    this.action,
+    required this.name,
+    required this.hint,
+    required this.coverName,
+    required this.action,
+    required this.lockName,
   });
 
   final _form = GlobalKey<FormState>();
@@ -28,6 +30,7 @@ class DialogView extends StatelessWidget {
   Color _coverColor = Colors.cyan;
   // ignore: avoid_init_to_null
   File? _coverImage = null;
+  String _password = '';
 
   void _saveForm(BuildContext context) {
     switch (action) {
@@ -37,6 +40,7 @@ class DialogView extends StatelessWidget {
           name: _name,
           color: _coverColor,
           image: _coverImage,
+          password: _password,
         );
         Navigator.pop(context);
         break;
@@ -46,6 +50,7 @@ class DialogView extends StatelessWidget {
           name: _name,
           color: _coverColor,
           image: _coverImage,
+          password: _password,
         );
         Navigator.pop(context);
         break;
@@ -55,6 +60,7 @@ class DialogView extends StatelessWidget {
           name: _name,
           color: _coverColor,
           image: _coverImage,
+          password: _password,
         );
         Navigator.pop(context);
         break;
@@ -88,6 +94,12 @@ class DialogView extends StatelessWidget {
         }
         break;
       default:
+    }
+  }
+
+  void _getPassword(String? password) {
+    if (password != null) {
+      _password = password;
     }
   }
 
@@ -134,6 +146,31 @@ class DialogView extends StatelessWidget {
                 ),
                 _buildTitle(context, coverName),
                 CoverPicker(_getCover),
+                _buildTitle(context, lockName),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10, top: 10),
+                    child: OutlinedButton.icon(
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 20),
+                        shape: StadiumBorder(),
+                        primary: Theme.of(context).primaryIconTheme.color,
+                      ),
+                      icon: Icon(Icons.pin),
+                      label: Text('Enter PIN code'),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => LockView(
+                            btnName: 'Save',
+                            password: _getPassword,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
                 Expanded(child: Container()),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

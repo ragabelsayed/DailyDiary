@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_daily_diary/widgets/lock_view.dart';
 import 'package:provider/provider.dart';
 
 import 'package:my_daily_diary/models/diary.dart';
@@ -19,6 +20,10 @@ class DiaryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _password = diaryData.password;
+    final _providerChapterData =
+        Provider.of<ChapterData>(context, listen: false);
+
     return Padding(
       padding: const EdgeInsets.only(right: 16),
       child: AnimatedBuilder(
@@ -39,11 +44,35 @@ class DiaryView extends StatelessWidget {
                         Material(
                           child: InkWell(
                             onTap: () {
-                              Provider.of<ChapterData>(context, listen: false)
-                                ..setClick(true)
-                                ..setChapters(
-                                  diaryData,
+                              if (_password.isNotEmpty &&
+                                  !diaryData.passwordState) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => LockView(
+                                    btnName: 'Unlock',
+                                    lockCode: _password,
+                                    unLockItem: () {
+                                      Provider.of<DiaryData>(context,
+                                          listen: false)
+                                        ..currentDiary(diaryData.id)
+                                        ..unLockDiary(true);
+                                    },
+                                  ),
                                 );
+                              } else if (_password.isNotEmpty &&
+                                  diaryData.passwordState) {
+                                _providerChapterData
+                                  ..setClick(true)
+                                  ..setChapters(
+                                    diaryData,
+                                  );
+                              } else {
+                                _providerChapterData
+                                  ..setClick(true)
+                                  ..setChapters(
+                                    diaryData,
+                                  );
+                              }
                             },
                             child: Container(
                               width: 130,
@@ -75,7 +104,35 @@ class DiaryView extends StatelessWidget {
                                 ],
                               ),
                               child: diaryData.image == null
-                                  ? Text('')
+                                  ? _password.isNotEmpty &&
+                                          !diaryData.passwordState
+                                      ? Stack(
+                                          fit: StackFit.expand,
+                                          children: [
+                                            SizedBox(),
+                                            Icon(
+                                              Icons.lock,
+                                              size: 40,
+                                            ),
+                                          ],
+                                        )
+                                      : _password.isNotEmpty &&
+                                              diaryData.passwordState
+                                          ? Stack(
+                                              fit: StackFit.expand,
+                                              children: [
+                                                SizedBox(),
+                                                Positioned(
+                                                  left: 10,
+                                                  bottom: 10,
+                                                  child: Icon(
+                                                    Icons.lock_open,
+                                                    size: 25,
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          : SizedBox()
                                   : ClipRRect(
                                       borderRadius: const BorderRadius.only(
                                         topRight: Radius.circular(15),
@@ -83,10 +140,51 @@ class DiaryView extends StatelessWidget {
                                         topLeft: Radius.circular(3),
                                         bottomLeft: Radius.circular(3),
                                       ),
-                                      child: Image.file(
-                                        diaryData.image!,
-                                        fit: BoxFit.cover,
-                                      ),
+                                      child: _password.isNotEmpty &&
+                                              !diaryData.passwordState
+                                          ? Stack(
+                                              fit: StackFit.expand,
+                                              children: [
+                                                Container(
+                                                  color: Theme.of(context)
+                                                      .cardColor,
+                                                  child: Opacity(
+                                                    opacity: 0.3,
+                                                    child: Image.file(
+                                                      diaryData.image!,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Icon(
+                                                  Icons.lock,
+                                                  size: 40,
+                                                ),
+                                              ],
+                                            )
+                                          : _password.isNotEmpty &&
+                                                  diaryData.passwordState
+                                              ? Stack(
+                                                  fit: StackFit.expand,
+                                                  children: [
+                                                    Image.file(
+                                                      diaryData.image!,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                    Positioned(
+                                                      left: 10,
+                                                      bottom: 10,
+                                                      child: Icon(
+                                                        Icons.lock_open,
+                                                        size: 25,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              : Image.file(
+                                                  diaryData.image!,
+                                                  fit: BoxFit.cover,
+                                                ),
                                     ),
                             ),
                           ),
@@ -103,6 +201,12 @@ class DiaryView extends StatelessWidget {
                                   .removeDiary(diaryData);
                               Provider.of<ChapterData>(context, listen: false)
                                   .setClick(false);
+                            },
+                            itemPassword: _password,
+                            lockItem: (String? lockcode) {
+                              Provider.of<DiaryData>(context, listen: false)
+                                ..currentDiary(diaryData.id)
+                                ..lockDiary(lockcode!);
                             },
                           ),
                         ),

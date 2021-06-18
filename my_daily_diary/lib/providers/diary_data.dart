@@ -9,6 +9,7 @@ class DiaryData with ChangeNotifier {
   final diaryBox = Boxes.getDiariesBox();
   final chapterBox = Boxes.getChaptersBox();
   List<Diary> _items = [];
+  late Diary _currentDiary;
 
   List<Diary> get items => [..._items];
 
@@ -22,6 +23,7 @@ class DiaryData with ChangeNotifier {
     required String name,
     required Color color,
     File? image,
+    required String password,
   }) {
     final _newDiary = Diary(
       id: DateTime.now().toString(),
@@ -29,6 +31,7 @@ class DiaryData with ChangeNotifier {
       customColor: color,
       image: image,
       chapters: HiveList(chapterBox),
+      password: password,
     );
     _items.add(_newDiary);
     notifyListeners();
@@ -42,5 +45,21 @@ class DiaryData with ChangeNotifier {
     notifyListeners();
     diary.delete();
     // box.delete(diary.key);
+  }
+
+  void currentDiary(String id) {
+    _currentDiary = _items.firstWhere((diary) => diary.id == id);
+    notifyListeners();
+  }
+
+  void unLockDiary(bool status) {
+    _currentDiary.passwordState = status;
+    notifyListeners();
+  }
+
+  void lockDiary(String lockCode) {
+    _currentDiary.password = lockCode;
+    notifyListeners();
+    _currentDiary.save();
   }
 }

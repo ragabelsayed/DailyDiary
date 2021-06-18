@@ -26,7 +26,6 @@ class ChapterPageAdapter extends TypeAdapter<ChapterPage> {
           .map((dynamic e) => (e as Map).cast<String, String>())
           .toList(),
       currenTextColor: Color(fields[6]),
-      // textAlign: fields[7] as TextAlign,
       textAlign: TextAlign.values
           .firstWhere((textAlign) => textAlign.index == fields[7]),
       fontweight: fields[8] as bool,
@@ -34,13 +33,14 @@ class ChapterPageAdapter extends TypeAdapter<ChapterPage> {
       fontName: fields[10] as String,
       isSelected1: (fields[11] as List).cast<bool>(),
       isSelected2: (fields[12] as List).cast<bool>(),
+      password: fields[13] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, ChapterPage obj) {
     writer
-      ..writeByte(13)
+      ..writeByte(14)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -66,7 +66,9 @@ class ChapterPageAdapter extends TypeAdapter<ChapterPage> {
       ..writeByte(11)
       ..write(obj.isSelected1)
       ..writeByte(12)
-      ..write(obj.isSelected2);
+      ..write(obj.isSelected2)
+      ..writeByte(13)
+      ..write(obj.password);
   }
 
   @override

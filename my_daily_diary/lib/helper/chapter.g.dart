@@ -22,13 +22,14 @@ class ChapterAdapter extends TypeAdapter<Chapter> {
       image: fields[2] != null ? File(fields[2]) : null,
       customColor: Color(fields[3]),
       pages: (fields[4] as HiveList).castHiveList(),
+      password: fields[5] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, Chapter obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -38,7 +39,9 @@ class ChapterAdapter extends TypeAdapter<Chapter> {
       ..writeByte(3)
       ..write(obj.customColor.value)
       ..writeByte(4)
-      ..write(obj.pages);
+      ..write(obj.pages)
+      ..writeByte(5)
+      ..write(obj.password);
   }
 
   @override

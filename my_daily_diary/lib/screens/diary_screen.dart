@@ -83,6 +83,7 @@ class _DiaryScreenState extends State<DiaryScreen>
           inputDialogName: 'Diary Name',
           inputDialogHint: 'Ex: 2021, Secret ...ets',
           inputDialogCoverName: 'Diary Cover',
+          inputDialogLockName: 'Diary Lock',
           inputDialogAction: AddAction.diary,
           opacityLevel: _opacityLevel,
         ),
@@ -104,13 +105,32 @@ class _DiaryScreenState extends State<DiaryScreen>
             inputDialogName: 'Chapter Name',
             inputDialogHint: 'Ex: January, February, Collection ...ets',
             inputDialogCoverName: 'Chapter Cover',
+            inputDialogLockName: 'Chapter Lock',
             inputDialogAction: AddAction.chapter,
             opacityLevel: _opacityLevel,
           ),
         const SizedBox(height: 5),
         if (Provider.of<ChapterData>(context).getClick)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(
+                  Icons.arrow_forward_rounded,
+                  size: 20,
+                  color: Colors.grey.withOpacity(0.5),
+                ),
+                Icon(
+                  Icons.arrow_back_rounded,
+                  size: 20,
+                  color: Colors.red.withOpacity(0.5),
+                ),
+              ],
+            ),
+          ),
+        if (Provider.of<ChapterData>(context).getClick)
           ChapterListView(_animationController),
-        // SizedBox(height: MediaQuery.of(context).padding.bottom),
       ],
     );
   }

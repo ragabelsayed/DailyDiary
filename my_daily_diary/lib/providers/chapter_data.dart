@@ -11,10 +11,11 @@ class ChapterData with ChangeNotifier {
   final diaryBox = Boxes.getDiariesBox();
   final chapterBox = Boxes.getChaptersBox();
   final pageBox = Boxes.getPagesBox();
-
   late Diary _diary;
   List<Chapter> _items = [];
   bool _onClickDiary = false;
+
+  late Chapter _currentChapter;
 
   List<Chapter> get items {
     return [..._items];
@@ -24,6 +25,7 @@ class ChapterData with ChangeNotifier {
     required String name,
     required Color color,
     File? image,
+    required String password,
   }) {
     final _newChapter = Chapter(
       id: DateTime.now().toString(),
@@ -31,6 +33,7 @@ class ChapterData with ChangeNotifier {
       customColor: color,
       image: image,
       pages: HiveList(pageBox),
+      password: password,
     );
     _items.add(_newChapter);
     notifyListeners();
@@ -63,5 +66,21 @@ class ChapterData with ChangeNotifier {
 
   bool get getClick {
     return _onClickDiary;
+  }
+
+  void currentChapter(String id) {
+    _currentChapter = _items.firstWhere((chapter) => chapter.id == id);
+    notifyListeners();
+  }
+
+  void unLockChapter(bool status) {
+    _currentChapter.passwordState = status;
+    notifyListeners();
+  }
+
+  void lockDiary(String lockCode) {
+    _currentChapter.password = lockCode;
+    notifyListeners();
+    _currentChapter.save();
   }
 }

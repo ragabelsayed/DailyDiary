@@ -20,6 +20,7 @@ class PageData with ChangeNotifier {
     required String name,
     required Color color,
     File? image,
+    required String password,
   }) {
     final _newPage = ChapterPage(
       id: DateTime.now().toString(),
@@ -38,6 +39,7 @@ class PageData with ChangeNotifier {
       fontName: 'lato',
       isSelected1: [true, false, false],
       isSelected2: [false, false],
+      password: password,
     );
     _items.add(_newPage);
     notifyListeners();
@@ -114,5 +116,16 @@ class PageData with ChangeNotifier {
 
   String get fontName {
     return _currentPage.fontName;
+  }
+
+  void unLockPage(bool status) {
+    _currentPage.passwordState = status;
+    notifyListeners();
+  }
+
+  void lockDiary(String lockCode) {
+    _currentPage.password = lockCode;
+    notifyListeners();
+    _currentPage.save();
   }
 }

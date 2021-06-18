@@ -25,7 +25,13 @@ class Diary extends HiveObject {
 
   @HiveField(5)
   final bool onClickDiary;
-  // final String? password;
+
+  @HiveField(6)
+  String password;
+
+  @HiveField(7)
+  bool passwordState;
+
   Diary({
     required this.id,
     required this.name,
@@ -33,6 +39,7 @@ class Diary extends HiveObject {
     required this.customColor,
     required this.chapters,
     this.onClickDiary = false,
-    // this.password,
+    required this.password,
+    this.passwordState = false,
   });
 }

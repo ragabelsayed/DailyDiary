@@ -22,13 +22,19 @@ class Chapter extends HiveObject {
 
   @HiveField(4)
   final HiveList<ChapterPage> pages;
-  // final String? password;
+
+  @HiveField(5)
+  String password;
+
+  @HiveField(6)
+  bool passwordState;
   Chapter({
     required this.id,
     required this.name,
     this.image,
     required this.customColor,
     required this.pages,
-    // this.password,
+    required this.password,
+    this.passwordState = false,
   });
 }
