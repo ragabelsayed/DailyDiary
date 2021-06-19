@@ -6,7 +6,7 @@
  ✔️ Lock Code to secure or close(Diary, Chapter, Page).  
  ✔️ Dark and Light Themes.  
  ✔️ local storge.  
- ✔️ Writing feature:
+ ✔️ Writing feature:  
    * More Fonts.
    * Change Color.
    * Text Alignment.
