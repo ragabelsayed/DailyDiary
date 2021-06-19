@@ -7,11 +7,11 @@
  ✔️ Dark and Light Themes.  
  ✔️ local storge.  
  ✔️ Writing feature:  
-    * More Fonts.
-    * Change Color.
-    * Text Alignment.
-    * Bold and Italic Text.  
- ✔️ Animation
+   * More Fonts.
+   * Change Color.
+   * Text Alignment.
+   * Bold and Italic Text.  
+ ✔️ Animation.
 
 
 ## Wishlist:
