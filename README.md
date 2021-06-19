@@ -13,6 +13,11 @@
     * Text Alignment.
     * Bold and Italic Text.
 ## Demo:
+|   |   |   |   |   |
+|---|---|---|---|---|
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
 Light | Dark|
 ----- | ----|
 <img src="https://user-images.githubusercontent.com/58103293/122657549-b47da500-d164-11eb-9278-bd03ce66cafa.png" width="250" height="500">|
