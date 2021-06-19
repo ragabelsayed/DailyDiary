@@ -1,7 +1,7 @@
 # DailyDiary
  A complete offline app for dailyDiary writing.
 ## Fearures:
-:white_check_mark: CRUD operations(Diary, Chapter, Page).
+✅ CRUD operations(Diary, Chapter, Page).
 ✔️ (Gallery & Camera Image, CustomColor) Cover for (Diary, Chapter, Page).
 ✔️ Lock Code to secure or close(Diary, Chapter, Page).
 ✔️ Dark and Light Themes.
@@ -12,9 +12,7 @@
   * Text Alignment.
   * Bold and Italic Text.
 ✔️ More Fonts To use.
-
 ✔️ Custom Color for writing.
-
 ✔️ 
 
 
