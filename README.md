@@ -1,8 +1,8 @@
 # DailyDiary
  A complete offline app for dailyDiary writing.
 ## Fearures:
-- CRUD operations.
-- local storge using NoSql packages.
+:done:CRUD operations.
+- local storge.
 - Dark and Light Themes.
 
 ## Wishlist:
