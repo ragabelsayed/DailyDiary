@@ -13,11 +13,11 @@
     * Text Alignment.
     * Bold and Italic Text.
 ## Demo:
-| SplashScreen                                                                                                                                                                                                                                                                              |   |   |   |   |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|---|---|---|
-| Light \| Dark                                                                                                                                                                                                                                                                             |   |   |   |   |
-| <img src="https://user-images.githubusercontent.com/58103293/122657549-b47da500-d164-11eb-9278-bd03ce66cafa.png" width="250" height="500"> \|  <img src="https://user-images.githubusercontent.com/58103293/122657550-b6dfff00-d164-11eb-9951-ada5242fb93b.png" width="250" height="500"> |   |   |   |   |
-|                                                                                                                                                                                                                                                                                           |   |   |   |   |
+![wihte_main](https://user-images.githubusercontent.com/58103293/122658068-37a0fa00-d169-11eb-8a52-278fca4c481e.png)![dark_main](https://user-images.githubusercontent.com/58103293/122658070-3a9bea80-d169-11eb-857a-f8130cae6ab7.png)
+![dark_main](https://user-images.githubusercontent.com/58103293/122658072-438cbc00-d169-11eb-9940-2895124cd35f.png)
+![wihte_main](https://user-images.githubusercontent.com/58103293/122658075-4d162400-d169-11eb-9f89-9aa9d98cd69d.png)
+
+
 ## Wishlist:
 - Use bin code and fingerprint to lock diary or chapter or day.
 - Choose to hide any diary or chapter or day. 
