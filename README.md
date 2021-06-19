@@ -1,13 +1,13 @@
 # DailyDiary
  A complete offline app for dailyDiary writing.
 ## Fearures:
-✅ CRUD operations(Diary, Chapter, Page).  
+- [x] CRUD operations(Diary, Chapter, Page).  
 - [x] (Gallery & Camera Image, CustomColor) Cover for (Diary, Chapter, Page).  
-✔️ Lock Code to secure or close(Diary, Chapter, Page).  
-✔️ Dark and Light Themes.  
-✔️ local storge.  
-✔️ Animation.  
-✔️ Writing feature:
+- [x] Lock Code to secure or close(Diary, Chapter, Page).  
+- [x] Dark and Light Themes.  
+- [x] local storge.  
+- [x] Animation.  
+- [x] Writing feature:
     * More Fonts.
     * Change Color.
     * Text Alignment.
