@@ -8,9 +8,9 @@
 ✔️ local storge.  
 ✔️ Writing feature:
       * More Fonts.
-   * Change Color.
-   * Text Alignment.
-   * Bold and Italic Text.
+      * Change Color.
+      * Text Alignment.
+      * Bold and Italic Text.
 ✔️ Animation.
 
 
