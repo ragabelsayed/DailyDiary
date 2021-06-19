@@ -6,12 +6,12 @@
 ✔️ Lock Code to secure or close(Diary, Chapter, Page).  
 ✔️ Dark and Light Themes.  
 ✔️ local storge.  
-✔️ Animation.
+✔️ Animation.  
 ✔️ Writing feature:
-     * More Fonts.
-     * Change Color.
-     * Text Alignment.
-     * Bold and Italic Text.
+  * More Fonts.
+  * Change Color.
+  * Text Alignment.
+  * Bold and Italic Text.
 
 
 
