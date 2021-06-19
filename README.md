@@ -10,7 +10,7 @@
 * More Fonts.  
 * Change Color.  
 * Text Alignment.  
-* Bold and Italic Text.
+* Bold and Italic Text.     
 ✔️ Animation.
 
 
