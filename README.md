@@ -8,13 +8,10 @@
 ✔️ local storge.  
 ✔️ Animation.  
 ✔️ Writing feature:
-   * More Fonts.
-   * Change Color.
-   * Text Alignment.
-   * Bold and Italic Text.
-
-
-
+    * More Fonts.
+    * Change Color.
+    * Text Alignment.
+    * Bold and Italic Text.
 ## Wishlist:
 - Use bin code and fingerprint to lock diary or chapter or day.
 - Choose to hide any diary or chapter or day. 
