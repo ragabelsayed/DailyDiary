@@ -1,8 +1,8 @@
 # DailyDiary
  A complete offline app for dailyDiary writing.
 ## Fearures:
-- [x] CRUD operations(Diary, Chapter, Page).  
-- [x] (Gallery & Camera Image, CustomColor) Cover for (Diary, Chapter, Page).  
+- [x] CRUD operations.  
+- [x] (Gallery & Camera Image, CustomColor) Cover.  
 - [x] Lock Code to secure or close(Diary, Chapter, Page).  
 - [x] Dark and Light Themes.  
 - [x] local storge.  
