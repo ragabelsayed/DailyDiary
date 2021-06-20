@@ -15,7 +15,6 @@
 ## Demo:
 - Light theme                                                                                                                                                                     
 | <img src="https://user-images.githubusercontent.com/58103293/122657549-b47da500-d164-11eb-9278-bd03ce66cafa.png" width="250" height="500"> | <img src="https://user-images.githubusercontent.com/58103293/122658075-4d162400-d169-11eb-9f89-9aa9d98cd69d.png" width="250" height="500"> |
-|--------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
 | <img src="https://user-images.githubusercontent.com/58103293/122658195-b480a380-d16a-11eb-8f92-7c52f62249df.png" width="250" height="500"> | <img src="https://user-images.githubusercontent.com/58103293/122658201-c06c6580-d16a-11eb-807e-be4e8dc98984.png" width="250" height="500"> |
 
 - Dark theme
