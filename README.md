@@ -25,3 +25,6 @@
 ## Wishlist:
 - [ ] Fingerprint to open app.
 - [ ] Ability to hide any item. 
+## Technology:
+- Provider state management.
+- Hive NoSQL database.
