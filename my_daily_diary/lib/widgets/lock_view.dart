@@ -47,9 +47,10 @@ class LockViewState extends State<LockView> {
 
   @override
   Widget build(BuildContext context) {
+    Size _size = MediaQuery.of(context).size;
     return Dialog(
       child: Container(
-        height: MediaQuery.of(context).size.height / 4 + 15,
+        height: _validateCode ? _size.height / 3 : _size.height / 4 + 15,
         // margin: const EdgeInsets.all(20.0),
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -85,22 +86,21 @@ class LockViewState extends State<LockView> {
                 ),
               ),
               onSubmit: (value) {
-                setState(() {
-                  _validateCode = !_validateCode;
-                });
+                if (_validateCode) {
+                  setState(() {
+                    _validateCode = !_validateCode;
+                  });
+                }
               },
             ),
-            _validateCode
-                ? Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        _errorMessage,
-                        style: TextStyle(color: Theme.of(context).errorColor),
-                      ),
-                    ),
-                  )
-                : Expanded(child: SizedBox()),
+            if (_validateCode)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  _errorMessage,
+                  style: TextStyle(color: Theme.of(context).errorColor),
+                ),
+              ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.end,

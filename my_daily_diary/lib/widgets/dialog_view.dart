@@ -111,14 +111,12 @@ class DialogView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-        height: MediaQuery.of(context).size.height / 2,
+        height: MediaQuery.of(context).size.height / 2 + 20,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
             key: _form,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: ListView(
               children: [
                 _buildTitle(context, name),
                 Padding(
@@ -171,7 +169,6 @@ class DialogView extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: Container()),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
