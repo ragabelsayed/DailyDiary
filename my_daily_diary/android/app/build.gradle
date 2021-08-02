@@ -65,6 +65,8 @@ android {
            signingConfig signingConfigs.release
        }
    }
+    ndkVersion '22.1.7171670'
+    buildToolsVersion '31.0.0'
 }
 
 flutter {
@@ -74,3 +76,5 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
+
+android.buildTypes.release.ndk.debugSymbolLevel = 'FULL'
