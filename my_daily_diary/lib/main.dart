@@ -24,6 +24,13 @@ void main() async {
   SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
   );
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      // statusBarIconBrightness: Brightness.light,
+      // statusBarBrightness: Brightness.light,
+    ),
+  );
   await Hive.initFlutter();
   Hive
     ..registerAdapter(DiaryAdapter())
