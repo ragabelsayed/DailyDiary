@@ -36,6 +36,11 @@ class _ChapterScreenState extends State<ChapterScreen>
 
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 0.0,
+        leading: SizedBox(),
+        elevation: 0.0,
+      ),
       body: FutureBuilder(
         future: _getData(),
         builder: (context, snapshot) {
