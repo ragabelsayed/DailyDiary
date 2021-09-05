@@ -22,11 +22,13 @@ class ChapterView extends StatelessWidget {
 
   ListTile _buildListTile({
     required BuildContext context,
+    required Function onTap,
     required Chapter data,
-    required Widget trailing,
+    Widget trailing = const Icon(Icons.arrow_forward_ios),
   }) {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+      onTap: () => onTap(),
       leading: CircleAvatar(
         radius: 25,
         backgroundColor: data.customColor.withAlpha(255),
@@ -43,15 +45,12 @@ class ChapterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _password = chapterData.password;
-    IconButton _iconButton = IconButton(
-      icon: Icon(Icons.arrow_forward_ios),
-      onPressed: () {
-        Navigator.of(context).pushNamed(
-          ChapterScreen.routName,
-        );
-        Provider.of<PageData>(context, listen: false).setPages(chapterData);
-      },
-    );
+    Function onPressed = () {
+      Navigator.of(context).pushNamed(
+        ChapterScreen.routName,
+      );
+      Provider.of<PageData>(context, listen: false).setPages(chapterData);
+    };
     return AnimatedBuilder(
       animation: animationController,
       builder: (context, child) {
@@ -184,40 +183,36 @@ class ChapterView extends StatelessWidget {
                   ],
                 ),
                 child: _password.isNotEmpty && !chapterData.passwordState
-                    ? InkWell(
-                        child: Stack(
-                          children: [
-                            Opacity(
-                                opacity: 0.3,
-                                child: _buildListTile(
+                    ? Stack(
+                        children: [
+                          Opacity(
+                            opacity: 0.3,
+                            child: _buildListTile(
+                              context: context,
+                              data: chapterData,
+                              onTap: () {
+                                showDialog(
                                   context: context,
-                                  data: chapterData,
-                                  trailing: IconButton(
-                                    icon: Icon(Icons.arrow_forward_ios),
-                                    onPressed: null,
+                                  builder: (context) => LockView(
+                                    btnName: 'Unlock',
+                                    lockCode: _password,
+                                    unLockItem: () {
+                                      Provider.of<ChapterData>(context,
+                                          listen: false)
+                                        ..currentChapter(chapterData.id)
+                                        ..unLockChapter(true);
+                                    },
                                   ),
-                                )),
-                            Positioned(
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height / 10,
-                              child: Icon(Icons.lock, size: 35),
-                            ),
-                          ],
-                        ),
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) => LockView(
-                              btnName: 'Unlock',
-                              lockCode: _password,
-                              unLockItem: () {
-                                Provider.of<ChapterData>(context, listen: false)
-                                  ..currentChapter(chapterData.id)
-                                  ..unLockChapter(true);
+                                );
                               },
                             ),
-                          );
-                        },
+                          ),
+                          Positioned(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height / 10,
+                            child: Icon(Icons.lock, size: 35),
+                          ),
+                        ],
                       )
                     : _password.isNotEmpty && chapterData.passwordState
                         ? _buildListTile(
@@ -230,14 +225,15 @@ class ChapterView extends StatelessWidget {
                                   Icons.lock_open,
                                   size: 25,
                                 ),
-                                _iconButton,
+                                Icon(Icons.arrow_forward_ios),
                               ],
                             ),
+                            onTap: onPressed,
                           )
                         : _buildListTile(
                             context: context,
                             data: chapterData,
-                            trailing: _iconButton,
+                            onTap: onPressed,
                           ),
               ),
             ),
