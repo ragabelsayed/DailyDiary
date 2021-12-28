@@ -1,3 +1,4 @@
+![diary bachground](https://user-images.githubusercontent.com/58103293/147351552-3312fae6-9356-46dc-8cfe-e2016d1073c3.png)
 # DailyDiary
  A complete offline app for dailyDiary writing.
 ## Fearures:
